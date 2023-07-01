@@ -4,4 +4,3 @@
 
 
 
-[![pork](https://cdn.discordapp.com/attachments/1093933642054643822/1124737580064321657/7352-johnpork.png)](https://www.youtube.com/watch?v=w5BnMKOG33M)
