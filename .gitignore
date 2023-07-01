@@ -9,6 +9,12 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/Attheria_clone_0
+/Attheria_clone_1
+/Attheria_clone_2
+/Attheria_clone_3
+/Attheria_clone_4
+/Attheria_clone_5
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
