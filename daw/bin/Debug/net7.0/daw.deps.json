@@ -1,0 +1,176 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "daw/1.0.0": {
+        "dependencies": {
+          "Microsoft.ClearScript": "7.4.2"
+        },
+        "runtime": {
+          "daw.dll": {}
+        }
+      },
+      "Microsoft.ClearScript/7.4.2": {
+        "dependencies": {
+          "Microsoft.ClearScript.V8": "7.4.2",
+          "Microsoft.ClearScript.V8.ICUData": "7.4.2",
+          "Microsoft.ClearScript.V8.Native.win-x64": "7.4.2",
+          "Microsoft.ClearScript.V8.Native.win-x86": "7.4.2",
+          "Microsoft.ClearScript.Windows": "7.4.2"
+        }
+      },
+      "Microsoft.ClearScript.Core/7.4.2": {
+        "runtime": {
+          "lib/net5.0/ClearScript.Core.dll": {
+            "assemblyVersion": "7.4.2.0",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8/7.4.2": {
+        "dependencies": {
+          "Microsoft.ClearScript.Core": "7.4.2",
+          "Microsoft.ClearScript.V8.ICUData": "7.4.2",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/ClearScript.V8.dll": {
+            "assemblyVersion": "7.4.2.0",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.ICUData/7.4.2": {
+        "runtime": {
+          "lib/netstandard1.0/ClearScript.V8.ICUData.dll": {
+            "assemblyVersion": "7.4.2.0",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.win-x64/7.4.2": {
+        "runtimeTargets": {
+          "runtimes/win-x64/native/ClearScriptV8.win-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.V8.Native.win-x86/7.4.2": {
+        "runtimeTargets": {
+          "runtimes/win-x86/native/ClearScriptV8.win-x86.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.Windows/7.4.2": {
+        "dependencies": {
+          "Microsoft.ClearScript.Core": "7.4.2",
+          "Microsoft.ClearScript.Windows.Core": "7.4.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ClearScript.Windows.dll": {
+            "assemblyVersion": "7.4.2.0",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Microsoft.ClearScript.Windows.Core/7.4.2": {
+        "dependencies": {
+          "Microsoft.ClearScript.Core": "7.4.2"
+        },
+        "runtime": {
+          "lib/net5.0/ClearScript.Windows.Core.dll": {
+            "assemblyVersion": "7.4.2.0",
+            "fileVersion": "7.4.2.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "daw/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.ClearScript/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qmBYBwpGe83lVfyPmhLq4E+9KqaOy8yUoeI9whc/Ipjkkvmr3nk4+R76l6zvYKIkYGH2FYcxD8c+VQwNAynaUA==",
+      "path": "microsoft.clearscript/7.4.2",
+      "hashPath": "microsoft.clearscript.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.Core/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EHITzjTF3wchM2epMEGuo0FDVuscW6tvY7kXFEo9SVMg5UYPLH3IGaLrODtdM82+1Q5f0xU/RtOZ5PHLcjbEpg==",
+      "path": "microsoft.clearscript.core/7.4.2",
+      "hashPath": "microsoft.clearscript.core.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cA+EfenwcBLMEpKPA8cmRBowY1a3w+I8XFiUudYbRyoXjwDTjsORogaOWQaZetVfO2ER1WasfD6iq1w1RZTXoA==",
+      "path": "microsoft.clearscript.v8/7.4.2",
+      "hashPath": "microsoft.clearscript.v8.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.ICUData/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q8FAC8XD5eckRpL5fN7d8bfqStNdULstl0fuk8Fp0faz4r2aQWNPxc7vfl+R98U2gh2N12nJ9tO9wYnHqjVpIg==",
+      "path": "microsoft.clearscript.v8.icudata/7.4.2",
+      "hashPath": "microsoft.clearscript.v8.icudata.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.win-x64/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SAwqAp0JLApXajZ8ZDVpv6f1epkkbEFx+KBWfSw1nwJcr1HnxKIIOoEssZg9Alyi/sLq6iHS+YrePXIgjW1pmw==",
+      "path": "microsoft.clearscript.v8.native.win-x64/7.4.2",
+      "hashPath": "microsoft.clearscript.v8.native.win-x64.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.V8.Native.win-x86/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qz/W2YKijQKYZ2hlOReCg2VijRI2JS6nLvl4Pxk5h6T1GoQe4RfaUs4Te4ezCiAHr2uln0bk5GcOUPLE9sNO5g==",
+      "path": "microsoft.clearscript.v8.native.win-x86/7.4.2",
+      "hashPath": "microsoft.clearscript.v8.native.win-x86.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.Windows/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-72sFssel1joxTW4DEJGuu1qjnYVduEhd+ujCSr84GFvbXHNjYPhl1YrWHTBHLGu8EzV7V9bjqulFFJiV0ococw==",
+      "path": "microsoft.clearscript.windows/7.4.2",
+      "hashPath": "microsoft.clearscript.windows.7.4.2.nupkg.sha512"
+    },
+    "Microsoft.ClearScript.Windows.Core/7.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TAeleHVATqZM+r0IdgPO3n+nwQNNwPdQOmxurwecZkVJUnatIdwwaMcG2U5pmcda9eaY0JWaN5Scud7pSHFtTA==",
+      "path": "microsoft.clearscript.windows.core/7.4.2",
+      "hashPath": "microsoft.clearscript.windows.core.7.4.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    }
+  }
+}
