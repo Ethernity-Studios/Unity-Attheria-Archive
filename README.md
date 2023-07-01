@@ -1,2 +1,2 @@
 # Attheria
-[![omg](https://cdn.discordapp.com/attachments/1093911928495149170/1121096538735788122/FzJ4Hm-WwAAQ7Zp.png)](https://www.youtube.com/watch?v=QOhmcbfwxnA)
+[![omg](https://images-ext-2.discordapp.net/external/63_eFZo_RvQPsOEF7UCe0NheGT5ledM4Y6PaJql2XIk/https/media.tenor.com/c5a_h8U1MzkAAAPo/nuh-uh-beocord.mp4)](https://www.youtube.com/watch?v=QOhmcbfwxnA)
