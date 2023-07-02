@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 
 using Microsoft.ClearScript.V8;
-using Microsoft.ClearScript;
 using Microsoft.ClearScript.JavaScript;
 
 public class TestModding : MonoBehaviour
 {
-     static List<IJavaScriptObject> fns = new();
-     V8ScriptEngine engine = new V8ScriptEngine();
+     static readonly List<IJavaScriptObject> fns = new();
+     readonly V8ScriptEngine engine = new();
 
     void Start()
     {
