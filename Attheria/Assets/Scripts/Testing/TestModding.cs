@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-
+using AOT;
 using Microsoft.ClearScript.V8;
 using Microsoft.ClearScript.JavaScript;
 
@@ -35,7 +35,7 @@ public class TestModding : MonoBehaviour
     }
 
     public int playerHealth = 69;
-
+[MonoPInvokeCallback(typeof(TestModding))]
     public static int gethp()
     {
         return 5;
