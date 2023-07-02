@@ -9,10 +9,10 @@ using Microsoft.ClearScript.JavaScript;
 public class TestModding : MonoBehaviour
 {
      static List<IJavaScriptObject> fns = new();
-     V8ScriptEngine engine = new V8ScriptEngine();
+     V8ScriptEngine engine = new();
 
-    void Start()
-    {
+    void Start() {
+
         onJumpEvent += TestMethod;
 
         //V8Engine e = new();
