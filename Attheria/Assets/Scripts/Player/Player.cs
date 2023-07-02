@@ -9,6 +9,6 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
-        if(isOw)
+
     }
 }
