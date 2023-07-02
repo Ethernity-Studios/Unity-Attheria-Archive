@@ -1,9 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using AOT;
-//using V8.Net;
+
 using Microsoft.ClearScript.V8;
 using Microsoft.ClearScript;
 using Microsoft.ClearScript.JavaScript;
