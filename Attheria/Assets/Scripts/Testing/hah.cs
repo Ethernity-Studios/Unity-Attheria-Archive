@@ -1,3 +1,4 @@
+using Mirror.FizzySteam;
 using Steamworks;
 using UnityEngine;
 
@@ -5,8 +6,15 @@ public class hah : MonoBehaviour
 {
     void Start()
     {
-        SteamUser.GetSteamID();
-        SteamAPI.RestartAppIfNecessary(AppId_t.Invalid);
+        if (SteamManager.Initialized)
+        {
+            SteamUser.GetSteamID();
+            SteamAPI.RestartAppIfNecessary(AppId_t.Invalid); 
+        }
+        
+
+        Debug.Log(Application.persistentDataPath);
+
     }
 
     void Update()
