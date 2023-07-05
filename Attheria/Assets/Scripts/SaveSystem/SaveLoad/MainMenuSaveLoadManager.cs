@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 using SaveSystem.WorldSettings;
+using Tommy;
 using UnityEngine;
 
 public class MainMenuSaveLoadManager : MonoBehaviour
@@ -38,19 +38,19 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
     public void LoadSaves()
     {
-        // ReSharper disable once CollectionNeverQueried.Local
         foreach (var d in Directory.GetDirectories(SavePath))
         {
             WorldSettings settings;
             string path = $"{d}/WorldSettings.wrld";
             if (!File.Exists(path))
             {
-                settings= createDefaultSettings();
+                settings = createDefaultSettings();
             }
             else
             {
-                string json = File.ReadAllText(path);
-                settings = JsonConvert.DeserializeObject<WorldSettings>(json);
+                using StreamReader reader = File.OpenText(path);
+                TomlTable table = TOML.Parse(reader);
+                settings = getTomlSettings(table);
             }
 
             if (settings != null) SavedGames.Add(settings);
@@ -83,8 +83,12 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
         string savePath = $"{SavePath}/{settings.WorldName}";
         Directory.CreateDirectory(savePath);
-        var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
-        File.WriteAllText($"{savePath}/WorldSettings.wrld", json);
+
+
+        using (StreamWriter writer = File.CreateText($"{savePath}/WorldSettings.wrld"))
+        {
+            createTomlTable(settings).WriteTo(writer);
+        }
 
         Directory.CreateDirectory($"{savePath}/Data");
     }
@@ -106,10 +110,39 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
         foreach (var s in Saves)
         {
-           Destroy(s); 
+            Destroy(s);
         }
-        
+
         Saves.Clear();
         LoadSaves();
+    }
+
+    TomlTable createTomlTable(WorldSettings settings)
+    {
+        return new TomlTable()
+        {
+            ["World"] =
+            {
+                ["WorldName"] = settings.WorldName,
+                ["MapName"] = settings.MapName,
+            },
+
+            ["SomeSettings"] =
+            {
+                ["TestField"] = settings.TestField,
+                ["TestIntField"] = settings.TestFieldInt
+            },
+        };
+    }
+
+    WorldSettings getTomlSettings(TomlTable table)
+    {
+        return new WorldSettings()
+        {
+            MapName = table["World"]["MapName"],
+            WorldName = table["World"]["WorldName"],
+            TestField = table["SomeSettings"]["TestField"],
+            TestFieldInt = table["SomeSettings"]["TestIntField"]
+        };
     }
 }

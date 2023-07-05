@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using a;
 using SaveSystem.Surrogates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SaveLoad : MonoBehaviour
 {
@@ -54,6 +54,7 @@ public class SaveLoad : MonoBehaviour
         return (Dictionary<string, object>)getBinaryFormatter().Deserialize(stream);
     }
 
+    [FormerlySerializedAs("OL")] private int scs;
     void SaveFile(object state)
     {
         using var stream = File.Open(SavePath, FileMode.Create);

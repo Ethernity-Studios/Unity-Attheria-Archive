@@ -32,8 +32,6 @@ public class SavedGame : MonoBehaviour
 
     public void DeleteSave()
     {
-        Debug.Log(Path);
-
         Directory.Delete(Path, true);
         savedWorld.Saves.Remove(gameObject);
         Destroy(gameObject);
