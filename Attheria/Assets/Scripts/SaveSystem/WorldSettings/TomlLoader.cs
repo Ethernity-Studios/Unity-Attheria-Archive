@@ -7,19 +7,6 @@ using UnityEngine;
 namespace SaveSystem.WorldSettings {
     public class TomlLoader: MonoBehaviour {
         static object readValue(TomlNode node, Type clazz) {
-            object KYS() {
-                var aids = node.AsTable.RawTable.Keys;
-                var bufrik = new Dictionary<string, object>();
-
-                foreach (var aid in aids) {
-                    var hodnotka = node.AsTable.RawTable[aid];
-
-                    bufrik.Add(aid, readValue(hodnotka, clazz.GenericTypeArguments[1]));
-                }
-
-                return bufrik;
-            }
-            
             if (clazz == typeof(string)) {
                 return node.AsString.ToString();
             }
@@ -42,18 +29,28 @@ namespace SaveSystem.WorldSettings {
             {
                 "List" => (from TomlNode o in node.AsArray
                     select Convert.ChangeType(readValue(node, clazz.GenericTypeArguments[0]), clazz.GenericTypeArguments[0])).ToList(),
-                "Dictionary" => KYS(),
-                _ => O(node, clazz)
+                "Dictionary" => readDictionary(node, clazz),
+                _ => readObject(node, clazz)
             };
         }
+        
+        static object readDictionary(TomlNode node, Type clazz) {
+            var buffer = new Dictionary<string, object>();
 
-        private static object O(TomlNode node, Type clazz) {
-            var fields = clazz.GetFields();
+            foreach (var item in node.AsTable.RawTable.Keys) {
+                var tomlValue = node.AsTable.RawTable[item];
+
+                buffer.Add(item, readValue(tomlValue, clazz.GenericTypeArguments[1]));
+            }
+
+            return buffer;
+        }
+
+        static object readObject(TomlNode node, Type clazz) {
             var obj = Activator.CreateInstance(clazz);
 
-            foreach (var field in fields) {
-                var a = node[field.Name];
-                field.SetValue(obj, readValue(a, field.FieldType));
+            foreach (var field in clazz.GetFields()) {
+                field.SetValue(obj, readValue(node[field.Name], field.FieldType));
             }
 
             return obj;
@@ -63,17 +60,15 @@ namespace SaveSystem.WorldSettings {
             return (T) Convert.ChangeType(readValue(node, typeof(T)), typeof(T));
         }
         
-        static  T read<T>(TomlNode table, string name) {
-            var autista = table[name].AsTable;
+        public static T readSegment<T>(TomlNode node, string name) {
+            var tomlObject = node[name].AsTable;
             
             var clazz = typeof(T);
 
             var obj = (T)Activator.CreateInstance(clazz);
 
-            var fields = clazz.GetFields();
-
-            foreach (var field in fields) {
-                var a = autista[field.Name];
+            foreach (var field in clazz.GetFields()) {
+                var a = tomlObject[field.Name];
                 field.SetValue(obj, readValue(a, field.FieldType));
             }
 
