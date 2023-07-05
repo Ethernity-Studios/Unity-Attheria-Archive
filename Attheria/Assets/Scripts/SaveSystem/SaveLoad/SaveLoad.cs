@@ -10,13 +10,14 @@ public class SaveLoad : MonoBehaviour
 {
     private string SavePath => $"{Application.persistentDataPath}/save.lol";
     
+    [ContextMenu("Save")]
     public void Save()
     {
         var state = LoadFile();
         CaptureState(state);
         SaveFile(state);
     }
-
+    [ContextMenu("Load")]
     public void Load()
     {
         var state = LoadFile();

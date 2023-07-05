@@ -20,13 +20,17 @@ public class MainMenuUIManager : MonoBehaviour
     public GameObject SingleplayerScreen;
     public GameObject SettingsScreen;
 
-    [Header("Saved Games")] 
-    public GameObject SavedGames;
+    [Header("Saved Worlds")] 
+    public GameObject SavedWorlds;
 
+    [Header("Saves")] 
+    public GameObject Saves;
+    public GameObject SavedGames;
+    
     [Header("New Game")]
     public Button StartGameBtn;
 
-    public TMP_InputField SaveNameInput;
+    public TMP_InputField WorldNameInput;
     public Button NewWorldSettingsButton;
 
     [Header("World Settings")] 
@@ -73,6 +77,10 @@ public class MainMenuUIManager : MonoBehaviour
             loadDefaultWorldSettings();
             MainMenuSaveLoadManager.Instance.LoadSaves();
             firstSingleplayerOpen = false;
+        }
+        else
+        {
+            MainMenuSaveLoadManager.Instance.ReloadSaves();
         }
         
         closeScreens();
@@ -137,9 +145,9 @@ public class MainMenuUIManager : MonoBehaviour
         {
             TestField = TestField.text ?? DefaultWorldSettings.TestField,
             TestFieldInt =  int.Parse(TestIntField.text),
-            WorldName = "Attheria"
+            WorldName = WorldNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : WorldNameInput.text,
+            MapName = DefaultWorldSettings.MapName
         };
-        string saveName = SaveNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : SaveNameInput.text;
-        MainMenuSaveLoadManager.Instance.CreateSave(settings, saveName);
+        MainMenuSaveLoadManager.Instance.CreateSave(settings);
     }
 }

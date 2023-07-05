@@ -9,9 +9,12 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 {
     public static MainMenuSaveLoadManager Instance { get; set; }
 
-    [SerializeField] private GameObject Save;
+    [SerializeField] private GameObject World;
 
     private string SavePath => $"{Application.persistentDataPath}/Saves";
+
+    public List<WorldSettings> SavedGames = new();
+    public List<GameObject> Saves = new();
 
     private void Awake()
     {
@@ -36,11 +39,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     public void LoadSaves()
     {
         // ReSharper disable once CollectionNeverQueried.Local
-        List<WorldSettings> Saves = new();
         foreach (var d in Directory.GetDirectories(SavePath))
         {
             WorldSettings settings;
-            string path = $"{d}/WorldSettings.config";
+            string path = $"{d}/WorldSettings.wrld";
             if (!File.Exists(path))
             {
                 settings= createDefaultSettings();
@@ -51,37 +53,38 @@ public class MainMenuSaveLoadManager : MonoBehaviour
                 settings = JsonConvert.DeserializeObject<WorldSettings>(json);
             }
 
-            if (settings != null) Saves.Add(settings);
+            if (settings != null) SavedGames.Add(settings);
             instantiateSave(settings, d);
         }
     }
 
     void instantiateSave(WorldSettings setting, string path)
     {
-        GameObject g = Instantiate(Save, MainMenuUIManager.Instance.SavedGames.transform, true);
+        GameObject g = Instantiate(World, MainMenuUIManager.Instance.SavedWorlds.transform, true);
         g.transform.localScale = Vector3.one;
-        var ws = g.GetComponent<WorldSave>();
-        ws.SaveName = path.Split("/").Last().Split("\\")[1];
-        ws.MapName = setting.WorldName;
+        Saves.Add(g);
+        var ws = g.GetComponent<SavedWorld>();
+        ws.WorldName = path.Split("/").Last().Split("\\")[1];
+        ws.MapName = setting.MapName;
         ws.Path = path;
         ws.WorldSettings = setting;
     }
 
-    public void CreateSave(WorldSettings settings, string saveName)
+    public void CreateSave(WorldSettings settings)
     {
         manageSaveFolder();
         int index = 0;
         foreach (var d in Directory.GetDirectories(SavePath))
         {
-            if (d == $"{SavePath}\\{saveName}" || d == $"{SavePath}\\{saveName} ({index})") index++;
+            if (d == $"{SavePath}\\{settings.WorldName}" || d == $"{SavePath}\\{settings.WorldName} ({index})") index++;
         }
 
-        saveName = index == 0 ? $"{saveName}" : $"{saveName} ({index})";
+        settings.WorldName = index == 0 ? $"{settings.WorldName}" : $"{settings.WorldName} ({index})";
 
-        string savePath = $"{SavePath}/{saveName}";
+        string savePath = $"{SavePath}/{settings.WorldName}";
         Directory.CreateDirectory(savePath);
         var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
-        File.WriteAllText($"{savePath}/WorldSettings.config", json);
+        File.WriteAllText($"{savePath}/WorldSettings.wrld", json);
 
         Directory.CreateDirectory($"{savePath}/Data");
     }
@@ -92,7 +95,21 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         {
             WorldName = DefaultWorldSettings.WorldName,
             TestField = DefaultWorldSettings.TestField,
-            TestFieldInt = DefaultWorldSettings.TestFieldInt
+            TestFieldInt = DefaultWorldSettings.TestFieldInt,
+            MapName = DefaultWorldSettings.MapName
         };
+    }
+
+    public void ReloadSaves()
+    {
+        SavedGames.Clear();
+
+        foreach (var s in Saves)
+        {
+           Destroy(s); 
+        }
+        
+        Saves.Clear();
+        LoadSaves();
     }
 }
