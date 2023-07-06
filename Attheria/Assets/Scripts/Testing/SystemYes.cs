@@ -26,4 +26,9 @@ public class SystemYes : MonoBehaviour, ISavable
     {
         public int level;
     }
+
+
 }
+
+
+

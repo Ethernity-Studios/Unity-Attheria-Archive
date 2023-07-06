@@ -5,15 +5,18 @@ namespace SaveSystem.WorldSettings
     [Serializable]
     public class WorldSettings
     {
+        
         public World world;
         public SomeSettings someSettings;
         
+        [Serializable]
         public class World
         {
             public string WorldName;
             public string MapName;
         }
 
+        [Serializable]
         public class SomeSettings
         {
             public string TestField;
