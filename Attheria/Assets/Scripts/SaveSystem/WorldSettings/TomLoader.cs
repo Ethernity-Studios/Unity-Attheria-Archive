@@ -15,29 +15,31 @@ namespace SaveSystem.WorldSettings {
             return node;
         }
 
-        static TomlNode writeDictionary(Dictionary<string, object> dictionary) {
+        static TomlNode writeDictionary(Dictionary<string, object> dictionary, Type valueType) {
             var node = new TomlTable();
             
             foreach (var item in dictionary) {
-                node.Add(item.Key, writeValue(item.Value));
+                node.Add(item.Key, writeValue(item.Value, valueType));
             }
 
             return node;
         }
 
-        static TomlNode writeArray(IEnumerable<object> iterable) {
+        static TomlNode writeArray(IEnumerable<object> iterable, Type itemType) {
             var node = new TomlArray();
 
             foreach (var item in iterable) {
-                node.Add(writeValue(item));
+                node.Add(writeValue(item, itemType));
             }
 
             return node;
         }
 
-        public static TomlNode writeValue(object value) {
-            var clazz = typeof(object);
+        public static TomlNode writeValue<T>(T value) {
+            return writeValue(value, typeof(T));
+        }
 
+        static TomlNode writeValue(object value, Type clazz) {
             if (clazz == typeof(string)) {
                 return new TomlString
                 {
@@ -71,8 +73,8 @@ namespace SaveSystem.WorldSettings {
 
             return clazz.Name switch
             {
-                "Dictionary" => writeDictionary((Dictionary<string, object>)value),
-                "List" => writeArray((IEnumerable<object>)value),
+                "Dictionary" => writeDictionary((Dictionary<string, object>)value, clazz.GenericTypeArguments[1]),
+                "List" => writeArray((IEnumerable<object>)value, clazz.GenericTypeArguments[0]),
                 _ => writeObject(value)
             };
         }
@@ -136,10 +138,6 @@ namespace SaveSystem.WorldSettings {
             var obj = readObject(tomlObject, clazz);
 
             return (T)Convert.ChangeType(obj, clazz);
-        }
-        
-        public static void TestShit(string[] args) {
-            
         }
     }
 }
