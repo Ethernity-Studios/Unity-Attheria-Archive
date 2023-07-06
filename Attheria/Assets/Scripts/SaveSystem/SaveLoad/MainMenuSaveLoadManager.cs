@@ -142,5 +142,5 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         };
     }
 
-    WorldSettings getTomlSettings(TomlTable table) => TomlLoader.readValue<WorldSettings>(table);
+    WorldSettings getTomlSettings(TomlTable table) => TomLoader.readValue<WorldSettings>(table);
 }
