@@ -50,13 +50,17 @@ namespace SaveSystem.WorldSettings {
             var obj = Activator.CreateInstance(clazz);
 
             foreach (var field in clazz.GetFields()) {
+                if (!node.HasKey(field.Name)) {
+                    field.SetValue(obj, null);
+                    continue;
+                }
                 field.SetValue(obj, readValue(node[field.Name], field.FieldType));
             }
 
             return obj;
         }
 
-        static T readValue<T>(TomlNode node) {
+        public static T readValue<T>(TomlNode node) {
             return (T) Convert.ChangeType(readValue(node, typeof(T)), typeof(T));
         }
         
@@ -65,14 +69,9 @@ namespace SaveSystem.WorldSettings {
             
             var clazz = typeof(T);
 
-            var obj = (T)Activator.CreateInstance(clazz);
+            var obj = readObject(tomlObject, clazz);
 
-            foreach (var field in clazz.GetFields()) {
-                var a = tomlObject[field.Name];
-                field.SetValue(obj, readValue(a, field.FieldType));
-            }
-
-            return obj;
+            return (T)Convert.ChangeType(obj, clazz);
         }
     }
 }
