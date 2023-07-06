@@ -124,23 +124,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         LoadSaves();
     }
 
-    TomlTable createTomlTable(WorldSettings settings)
-    {
-        return new TomlTable()
-        {
-            ["World"] =
-            {
-                ["WorldName"] = settings.world.WorldName,
-                ["MapName"] = settings.world.MapName,
-            },
+    TomlNode createTomlTable(WorldSettings settings) => TomLoader.writeValue(settings);
 
-            ["SomeSettings"] =
-            {
-                ["TestField"] = settings.someSettings.TestField,
-                ["TestIntField"] = settings.someSettings.TestFieldInt
-            },
-        };
-    }
-
-    WorldSettings getTomlSettings(TomlTable table) => TomLoader.readValue<WorldSettings>(table);
+    WorldSettings getTomlSettings(TomlNode table) => TomLoader.readValue<WorldSettings>(table);
 }
