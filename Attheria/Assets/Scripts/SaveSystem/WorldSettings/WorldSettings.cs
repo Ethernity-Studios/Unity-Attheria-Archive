@@ -5,11 +5,20 @@ namespace SaveSystem.WorldSettings
     [Serializable]
     public class WorldSettings
     {
-        public string WorldName;
-        public string MapName;
+        public World world;
+        public SomeSettings someSettings;
+        
+        public class World
+        {
+            public string WorldName;
+            public string MapName;
+        }
 
-        public string TestField;
-        public int TestFieldInt;
+        public class SomeSettings
+        {
+            public string TestField;
+            public int TestFieldInt;
+        }
     }
 
     public static class DefaultWorldSettings

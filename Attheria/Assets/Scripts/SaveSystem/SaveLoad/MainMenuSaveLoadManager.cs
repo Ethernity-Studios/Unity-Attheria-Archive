@@ -65,7 +65,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         Saves.Add(g);
         var ws = g.GetComponent<SavedWorld>();
         ws.WorldName = path.Split("/").Last().Split("\\")[1];
-        ws.MapName = setting.MapName;
+        ws.MapName = setting.world.MapName;
         ws.Path = path;
         ws.WorldSettings = setting;
     }
@@ -76,12 +76,12 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         int index = 0;
         foreach (var d in Directory.GetDirectories(SavePath))
         {
-            if (d == $"{SavePath}\\{settings.WorldName}" || d == $"{SavePath}\\{settings.WorldName} ({index})") index++;
+            if (d == $"{SavePath}\\{settings.world.WorldName}" || d == $"{SavePath}\\{settings.world.WorldName} ({index})") index++;
         }
 
-        settings.WorldName = index == 0 ? $"{settings.WorldName}" : $"{settings.WorldName} ({index})";
+        settings.world.WorldName = index == 0 ? $"{settings.world.WorldName}" : $"{settings.world.WorldName} ({index})";
 
-        string savePath = $"{SavePath}/{settings.WorldName}";
+        string savePath = $"{SavePath}/{settings.world.WorldName}";
         Directory.CreateDirectory(savePath);
 
 
@@ -97,10 +97,16 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     {
         return new WorldSettings()
         {
-            WorldName = DefaultWorldSettings.WorldName,
-            TestField = DefaultWorldSettings.TestField,
-            TestFieldInt = DefaultWorldSettings.TestFieldInt,
-            MapName = DefaultWorldSettings.MapName
+            world = new()
+            {
+                WorldName = DefaultWorldSettings.WorldName,
+                MapName = DefaultWorldSettings.MapName
+            },
+            someSettings = new()
+            {
+                TestField = DefaultWorldSettings.TestField,
+                TestFieldInt = DefaultWorldSettings.TestFieldInt,
+            }
         };
     }
 
@@ -123,26 +129,17 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         {
             ["World"] =
             {
-                ["WorldName"] = settings.WorldName,
-                ["MapName"] = settings.MapName,
+                ["WorldName"] = settings.world.WorldName,
+                ["MapName"] = settings.world.MapName,
             },
 
             ["SomeSettings"] =
             {
-                ["TestField"] = settings.TestField,
-                ["TestIntField"] = settings.TestFieldInt
+                ["TestField"] = settings.someSettings.TestField,
+                ["TestIntField"] = settings.someSettings.TestFieldInt
             },
         };
     }
 
-    WorldSettings getTomlSettings(TomlTable table)
-    {
-        return new WorldSettings()
-        {
-            MapName = table["World"]["MapName"],
-            WorldName = table["World"]["WorldName"],
-            TestField = table["SomeSettings"]["TestField"],
-            TestFieldInt = table["SomeSettings"]["TestIntField"]
-        };
-    }
+    WorldSettings getTomlSettings(TomlTable table) => TomlLoader.readValue<WorldSettings>(table);
 }

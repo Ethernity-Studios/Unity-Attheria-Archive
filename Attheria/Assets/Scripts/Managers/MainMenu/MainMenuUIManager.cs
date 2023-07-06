@@ -6,44 +6,37 @@ using TMPro;
 
 public class MainMenuUIManager : MonoBehaviour
 {
-    [Header("Main Menu")]
-    public Button MultiplayerBtn;
+    [Header("Main Menu")] public Button MultiplayerBtn;
     public Button SingleplayerBtn;
     public Button SettingsBtn;
     public Button ExitBtn;
 
     public GameObject BackBtn;
 
-    [Header("Screens")] 
-    public GameObject MainMenuScreen;
+    [Header("Screens")] public GameObject MainMenuScreen;
     public GameObject MultiplayerScreen;
     public GameObject SingleplayerScreen;
     public GameObject SettingsScreen;
 
-    [Header("Saved Worlds")] 
-    public GameObject SavedWorlds;
+    [Header("Saved Worlds")] public GameObject SavedWorlds;
 
-    [Header("Saves")] 
-    public GameObject Saves;
+    [Header("Saves")] public GameObject Saves;
     public GameObject SavedGames;
-    
-    [Header("New Game")]
-    public Button StartGameBtn;
+
+    [Header("New Game")] public Button StartGameBtn;
 
     public TMP_InputField WorldNameInput;
     public Button NewWorldSettingsButton;
 
-    [Header("World Settings")] 
-    public GameObject WorldSettingsScreen;
+    [Header("World Settings")] public GameObject WorldSettingsScreen;
     public Button SettingsSaveBtn;
 
-    [Header("Settings fields")] 
-    public TMP_InputField TestField;
+    [Header("Settings fields")] public TMP_InputField TestField;
     public TMP_InputField TestIntField;
 
     private bool settingsMenuOpened = false;
     private bool firstSingleplayerOpen = true;
-    
+
     public static MainMenuUIManager Instance { get; set; }
 
     private void Awake()
@@ -64,12 +57,14 @@ public class MainMenuUIManager : MonoBehaviour
         BackBtn.SetActive(false);
         MainMenuScreen.SetActive(true);
     }
+
     public void OpenMultiplayerScreen()
     {
         closeScreens();
         BackBtn.SetActive(true);
         MultiplayerScreen.SetActive(true);
     }
+
     public void OpenSingleplayerScreen()
     {
         if (firstSingleplayerOpen)
@@ -82,11 +77,12 @@ public class MainMenuUIManager : MonoBehaviour
         {
             MainMenuSaveLoadManager.Instance.ReloadSaves();
         }
-        
+
         closeScreens();
         BackBtn.SetActive(true);
         SingleplayerScreen.SetActive(true);
     }
+
     public void OpenSettingsScreen()
     {
         closeScreens();
@@ -119,8 +115,8 @@ public class MainMenuUIManager : MonoBehaviour
 
     void loadWorldSetting(WorldSettings settings)
     {
-        TestField.text = settings.TestField;
-        TestIntField.text = settings.TestFieldInt.ToString();
+        TestField.text = settings.someSettings.TestField;
+        TestIntField.text = settings.someSettings.TestFieldInt.ToString();
     }
 
     void loadDefaultWorldSettings()
@@ -143,10 +139,16 @@ public class MainMenuUIManager : MonoBehaviour
     {
         WorldSettings settings = new()
         {
-            TestField = TestField.text ?? DefaultWorldSettings.TestField,
-            TestFieldInt =  int.Parse(TestIntField.text),
-            WorldName = WorldNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : WorldNameInput.text,
-            MapName = DefaultWorldSettings.MapName
+            world = new()
+            {
+                WorldName = WorldNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : WorldNameInput.text,
+                MapName = DefaultWorldSettings.MapName
+            },
+            someSettings = new()
+            {
+                TestField = TestField.text ?? DefaultWorldSettings.TestField,
+                TestFieldInt = int.Parse(TestIntField.text),
+            }
         };
         MainMenuSaveLoadManager.Instance.CreateSave(settings);
     }
