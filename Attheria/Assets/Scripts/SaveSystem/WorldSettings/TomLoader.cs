@@ -5,11 +5,11 @@ using Tommy;
 
 namespace SaveSystem.WorldSettings {
     public static class TomLoader {
-        static TomlNode writeObject(object obj) {
+        static TomlNode writeObject(object obj, Type type) {
             var node = new TomlTable();
 
-            foreach (var field in obj.GetType().GetFields()) {
-                node[field.Name] = writeValue(field.GetValue(obj));
+            foreach (var field in type.GetFields()) {
+                node[field.Name] = writeValue(field.GetValue(obj), field.FieldType);
             }
 
             return node;
@@ -75,7 +75,7 @@ namespace SaveSystem.WorldSettings {
             {
                 "Dictionary" => writeDictionary((Dictionary<string, object>)value, clazz.GenericTypeArguments[1]),
                 "List" => writeArray((IEnumerable<object>)value, clazz.GenericTypeArguments[0]),
-                _ => writeObject(value)
+                _ => writeObject(value, clazz)
             };
         }
         
