@@ -32,6 +32,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         manageSaveFolder();
     }
 
+    /// <summary>
+    /// Checks if save directory exists, if not creates a new one
+    /// </summary>
     void manageSaveFolder()
     {
         if (!Directory.Exists($"{Application.persistentDataPath}/Saves"))
@@ -40,6 +43,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads all worlds
+    /// </summary>
     public void LoadSaves()
     {
         foreach (var d in Directory.GetDirectories(SavePath))
@@ -62,6 +68,11 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns world gameobject and sets its parameters
+    /// </summary>
+    /// <param name="setting">Loade world settings</param>
+    /// <param name="path">Path to loaded world</param>
     void instantiateSave(WorldSettings setting, string path)
     {
         GameObject g = Instantiate(World, MainMenuUIManager.Instance.SavedWorlds.transform, true);
@@ -74,6 +85,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         ws.WorldSettings = setting;
     }
 
+    /// <summary>
+    /// Creates world save file with world settings
+    /// </summary>
+    /// <param name="settings"></param>
     public void CreateSave(WorldSettings settings)
     {
         manageSaveFolder();
@@ -97,6 +112,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         Directory.CreateDirectory($"{savePath}/Data");
     }
 
+    /// <summary>
+    /// Generates default world settings
+    /// </summary>
+    /// <returns></returns>
     WorldSettings createDefaultSettings()
     {
         return new WorldSettings()
@@ -114,8 +133,14 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// Updates world settings
+    /// </summary>
+    /// <param name="settings">New world settings</param>
+    /// <param name="path">Path to world settings</param>
     public void OverrideWorldSettings(WorldSettings settings, string path)
     {
+        if (!File.Exists($"{path}/WorldSettings.wrld")) return; // World settings file doesn't exists
         File.WriteAllText($"{path}/WorldSettings.wrld", "");
         using StreamWriter writer = File.CreateText($"{path}/WorldSettings.wrld");
         {
@@ -123,6 +148,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reload all world saves
+    /// </summary>
     public void ReloadSaves()
     {
         SavedGames.Clear();
@@ -136,7 +164,17 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         LoadSaves();
     }
 
+    /// <summary>
+    /// Creates TomlNode with world settings
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <returns></returns>
     TomlNode createTomlTable(WorldSettings settings) => TomLoader.writeValue(settings);
 
+    /// <summary>
+    /// Returns WorldSettings
+    /// </summary>
+    /// <param name="table"></param>
+    /// <returns></returns>
     WorldSettings getTomlSettings(TomlNode table) => TomLoader.readValue<WorldSettings>(table);
 }

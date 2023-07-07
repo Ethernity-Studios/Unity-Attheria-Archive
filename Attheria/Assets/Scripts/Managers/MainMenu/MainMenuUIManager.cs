@@ -1,4 +1,3 @@
-using System;
 using SaveSystem.WorldSettings;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,21 +57,27 @@ public class MainMenuUIManager : MonoBehaviour
         ConfirmScreen.SetActive(true);
         ConfirmScreen.SetActive(false);
     }
-
+/// <summary>
+/// Open main screen
+/// </summary>
     public void OpenMainMenuScreen()
     {
         closeScreens();
         BackBtn.SetActive(false);
         MainMenuScreen.SetActive(true);
     }
-
+/// <summary>
+/// Opens multiplayer screen
+/// </summary>
     public void OpenMultiplayerScreen()
     {
         closeScreens();
         BackBtn.SetActive(true);
         MultiplayerScreen.SetActive(true);
     }
-
+/// <summary>
+/// Opens singleplayer screen
+/// </summary>
     public void OpenSingleplayerScreen()
     {
         if (firstSingleplayerOpen)
@@ -90,14 +95,18 @@ public class MainMenuUIManager : MonoBehaviour
         BackBtn.SetActive(true);
         SingleplayerScreen.SetActive(true);
     }
-
+/// <summary>
+/// Opens game settings screen
+/// </summary>
     public void OpenSettingsScreen()
     {
         closeScreens();
         BackBtn.SetActive(true);
         SettingsScreen.SetActive(true);
     }
-
+/// <summary>
+/// Closes all screens
+/// </summary>
     private void closeScreens()
     {
         MainMenuScreen.SetActive(false);
@@ -108,34 +117,50 @@ public class MainMenuUIManager : MonoBehaviour
         settingsMenuOpened = false;
         WorldSettingsScreen.SetActive(false);
     }
-
+/// <summary>
+/// Back button callback
+/// </summary>
     public void BackToMainMenu()
     {
         OpenMainMenuScreen();
     }
-
+/// <summary>
+/// Closes application
+/// </summary>
     public void CloseApplication() => Application.Quit();
-    
+   
+/// <summary>
+/// Toggles world settings 
+/// </summary>
     public void ToggleWorldSettingsMenu()
     {
         settingsMenuOpened = !settingsMenuOpened;
         WorldSettingsScreen.SetActive(settingsMenuOpened);
     }
-
+/// <summary>
+/// Loads world settings from param settings
+/// </summary>
+/// <param name="settings"></param>
     public void LoadWorldSetting(WorldSettings settings)
     {
         TestField.text = settings.someSettings.TestField;
         TestIntField.text = settings.someSettings.TestFieldInt.ToString();
     }
-
+/// <summary>
+/// Loads default world settings
+/// </summary>
     void loadDefaultWorldSettings()
     {
         TestField.text = DefaultWorldSettings.TestField;
         TestIntField.text = DefaultWorldSettings.TestFieldInt.ToString();
     }
-
+/// <summary>
+/// Closes world settings menu
+/// </summary>
     public void CloseWorldSettingsMenu() => ToggleWorldSettingsMenu();
-
+/// <summary>
+/// saves and closes world settings
+/// </summary>
     public void SaveWorldSettingsMenu()
     {
         WorldSettings settings = MainMenuSaveLoadManager.Instance.LoadedSettings;
@@ -149,7 +174,9 @@ public class MainMenuUIManager : MonoBehaviour
         MainMenuSaveLoadManager.Instance.LoadedSettings = null;
         ToggleWorldSettingsMenu();
     }
-
+/// <summary>
+/// Create world callback
+/// </summary>
     public void CreateSave()
     {
         WorldSettings settings = new()
