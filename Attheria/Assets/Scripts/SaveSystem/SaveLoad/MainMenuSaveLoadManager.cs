@@ -17,6 +17,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     public List<WorldSettings> SavedGames = new();
     public List<GameObject> Saves = new();
 
+    public WorldSettings LoadedSettings;
+    public string LoadedWorldPath;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -64,7 +67,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         GameObject g = Instantiate(World, MainMenuUIManager.Instance.SavedWorlds.transform, true);
         g.transform.localScale = Vector3.one;
         Saves.Add(g);
-        var ws = g.GetComponent<SavedWorld>();
+        var ws = g.GetComponent<SavedWorldInstance>();
         ws.WorldName = path.Split("/").Last().Split("\\")[1];
         ws.MapName = setting.world.MapName;
         ws.Path = path;
@@ -109,6 +112,15 @@ public class MainMenuSaveLoadManager : MonoBehaviour
                 TestFieldInt = DefaultWorldSettings.TestFieldInt,
             }
         };
+    }
+
+    public void OverrideWorldSettings(WorldSettings settings, string path)
+    {
+        File.WriteAllText($"{path}/WorldSettings.wrld", "");
+        using StreamWriter writer = File.CreateText($"{path}/WorldSettings.wrld");
+        {
+            createTomlTable(settings).WriteTo(writer);
+        }
     }
 
     public void ReloadSaves()
