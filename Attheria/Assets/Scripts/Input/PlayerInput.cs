@@ -141,7 +141,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6e8078e7-9dcb-4da0-8074-2d6927366db3"",
-                    ""path"": ""<Keyboard>/semicolon"",
+                    ""path"": ""<Keyboard>/backquote"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

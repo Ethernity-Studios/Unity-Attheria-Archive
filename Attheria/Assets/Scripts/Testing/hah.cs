@@ -1,3 +1,4 @@
+using Mirror;
 using Mirror.FizzySteam;
 using Steamworks;
 using UnityEngine;
