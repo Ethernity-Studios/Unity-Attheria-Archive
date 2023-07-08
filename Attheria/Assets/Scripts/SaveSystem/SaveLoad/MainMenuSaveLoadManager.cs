@@ -9,6 +9,7 @@ using UnityEngine.TestTools;
 public class MainMenuSaveLoadManager : MonoBehaviour
 {
     public static MainMenuSaveLoadManager Instance { get; set; }
+    public const int x = 1;
 
     [SerializeField] private GameObject World;
 
