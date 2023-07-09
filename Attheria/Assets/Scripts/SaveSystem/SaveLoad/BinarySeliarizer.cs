@@ -12,14 +12,14 @@ namespace SaveSystem.SaveLoad {
         
         MemoryStream s = new MemoryStream();
 
-        public byte[] getBytes() {
+        /*public byte[] getBytes() {
             var buf = new byte[s.Length] { };
 
             s.Read(buf);
 
             return buf;
         }
-
+*/
         public void writeValue<T>(T value) {
             var d = new StreamWriter(s);
             JsonSerializer.CreateDefault(null).Serialize(d, 1);
