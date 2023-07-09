@@ -4,12 +4,10 @@ using System.Linq;
 using SaveSystem.WorldSettings;
 using Tommy;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 public class MainMenuSaveLoadManager : MonoBehaviour
 {
     public static MainMenuSaveLoadManager Instance { get; set; }
-    public const int x = 1;
 
     [SerializeField] private GameObject World;
 
@@ -31,6 +29,8 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         manageSaveFolder();
+
+        manageServerWorld();
     }
 
     /// <summary>
@@ -38,10 +38,12 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     /// </summary>
     void manageSaveFolder()
     {
+#if UNITY_STANDALONE
         if (!Directory.Exists($"{Application.persistentDataPath}/Saves"))
         {
             Directory.CreateDirectory($"{Application.persistentDataPath}/Saves");
         }
+#endif
     }
 
     /// <summary>
@@ -111,6 +113,41 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         }
 
         Directory.CreateDirectory($"{savePath}/Data");
+    }
+
+    /// <summary>
+    /// Handles world saves on server build
+    /// </summary>
+    void manageServerWorld()
+    {
+#if UNITY_SERVER
+        string serverPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/World";
+        if (!Directory.Exists(serverPath))
+        {
+            Debug.Log("World directory not found, creating a new one!");
+
+            Directory.CreateDirectory(serverPath);
+        }
+
+        WorldSettings settings = new();
+        if (!File.Exists($"{serverPath}/WorldSettings.wrld"))
+        {
+            settings = createDefaultSettings();
+            using (StreamWriter writer = File.CreateText($"{serverPath}/WorldSettings.wrld"))
+            {
+                createTomlTable(settings).WriteTo(writer);
+            }
+        }
+        else
+        {
+            using StreamReader reader = File.OpenText($"{serverPath}/WorldSettings.wrld");
+            TomlTable table = TOML.Parse(reader);
+            settings = getTomlSettings(table);
+        }
+
+        string savePath = $"{serverPath}";
+        Directory.CreateDirectory($"{savePath}/Data");
+#endif
     }
 
     /// <summary>
