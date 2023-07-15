@@ -128,7 +128,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""cf63e2a1-7e85-4966-a9b6-baa7f6eb866a"",
             ""actions"": [
                 {
-                    ""name"": ""Open"",
+                    ""name"": ""Toggle"",
                     ""type"": ""Button"",
                     ""id"": ""95ea0078-50b0-4eb3-9471-d3c1fcc2ecb2"",
                     ""expectedControlType"": ""Button"",
@@ -141,11 +141,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6e8078e7-9dcb-4da0-8074-2d6927366db3"",
-                    ""path"": ""<Keyboard>/backquote"",
+                    ""path"": ""<Keyboard>/f12"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Open"",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MainMenu"",
+            ""id"": ""1ec66fe5-9996-4ca0-985d-750c5c042e93"",
+            ""actions"": [
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""b122704a-e74d-42da-acc1-adcccdbef791"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""25a29ef0-7d0e-4e7a-9749-95561b20c6c2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -162,7 +190,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
         // Console
         m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
-        m_Console_Open = m_Console.FindAction("Open", throwIfNotFound: true);
+        m_Console_Toggle = m_Console.FindAction("Toggle", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_Toggle = m_MainMenu.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,12 +347,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // Console
     private readonly InputActionMap m_Console;
     private List<IConsoleActions> m_ConsoleActionsCallbackInterfaces = new List<IConsoleActions>();
-    private readonly InputAction m_Console_Open;
+    private readonly InputAction m_Console_Toggle;
     public struct ConsoleActions
     {
         private @PlayerInput m_Wrapper;
         public ConsoleActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Open => m_Wrapper.m_Console_Open;
+        public InputAction @Toggle => m_Wrapper.m_Console_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_Console; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -331,16 +362,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ConsoleActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ConsoleActionsCallbackInterfaces.Add(instance);
-            @Open.started += instance.OnOpen;
-            @Open.performed += instance.OnOpen;
-            @Open.canceled += instance.OnOpen;
+            @Toggle.started += instance.OnToggle;
+            @Toggle.performed += instance.OnToggle;
+            @Toggle.canceled += instance.OnToggle;
         }
 
         private void UnregisterCallbacks(IConsoleActions instance)
         {
-            @Open.started -= instance.OnOpen;
-            @Open.performed -= instance.OnOpen;
-            @Open.canceled -= instance.OnOpen;
+            @Toggle.started -= instance.OnToggle;
+            @Toggle.performed -= instance.OnToggle;
+            @Toggle.canceled -= instance.OnToggle;
         }
 
         public void RemoveCallbacks(IConsoleActions instance)
@@ -358,6 +389,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public ConsoleActions @Console => new ConsoleActions(this);
+
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
+    private readonly InputAction m_MainMenu_Toggle;
+    public struct MainMenuActions
+    {
+        private @PlayerInput m_Wrapper;
+        public MainMenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Toggle => m_Wrapper.m_MainMenu_Toggle;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IMainMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MainMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Add(instance);
+            @Toggle.started += instance.OnToggle;
+            @Toggle.performed += instance.OnToggle;
+            @Toggle.canceled += instance.OnToggle;
+        }
+
+        private void UnregisterCallbacks(IMainMenuActions instance)
+        {
+            @Toggle.started -= instance.OnToggle;
+            @Toggle.performed -= instance.OnToggle;
+            @Toggle.canceled -= instance.OnToggle;
+        }
+
+        public void RemoveCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MainMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MainMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -368,6 +445,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     }
     public interface IConsoleActions
     {
-        void OnOpen(InputAction.CallbackContext context);
+        void OnToggle(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnToggle(InputAction.CallbackContext context);
     }
 }

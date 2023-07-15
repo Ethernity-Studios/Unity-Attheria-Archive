@@ -106,7 +106,7 @@
             "id": "cf63e2a1-7e85-4966-a9b6-baa7f6eb866a",
             "actions": [
                 {
-                    "name": "Open",
+                    "name": "Toggle",
                     "type": "Button",
                     "id": "95ea0078-50b0-4eb3-9471-d3c1fcc2ecb2",
                     "expectedControlType": "Button",
@@ -119,11 +119,39 @@
                 {
                     "name": "",
                     "id": "6e8078e7-9dcb-4da0-8074-2d6927366db3",
-                    "path": "<Keyboard>/backquote",
+                    "path": "<Keyboard>/f12",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Open",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MainMenu",
+            "id": "1ec66fe5-9996-4ca0-985d-750c5c042e93",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "b122704a-e74d-42da-acc1-adcccdbef791",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "25a29ef0-7d0e-4e7a-9749-95561b20c6c2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

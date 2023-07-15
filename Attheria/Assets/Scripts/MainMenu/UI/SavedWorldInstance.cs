@@ -46,6 +46,7 @@ public class SavedWorldInstance : MonoBehaviour
             sg.SavedWorldInstance = this;
             sg.SaveName = savePath.Split("\\").Last();
             Saves.Add(g);
+            MainMenuSaveLoadManager.Instance.SaveInstances.Add(g);
         }
     }
 

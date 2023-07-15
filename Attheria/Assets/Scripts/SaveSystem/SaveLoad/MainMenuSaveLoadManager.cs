@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Mirror;
 using SaveSystem.WorldSettings;
 using Tommy;
 using UnityEngine;
@@ -14,10 +15,14 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     private string SavePath => $"{Application.persistentDataPath}/Saves";
 
     public List<WorldSettings> SavedGames = new();
-    public List<GameObject> Saves = new();
+    public List<GameObject> WorldInstances = new();
+    public List<GameObject> SaveInstances = new();
 
     public WorldSettings LoadedSettings;
     public string LoadedWorldPath;
+
+    [SerializeField] private Transport KCP_TRANSPORT;
+    [SerializeField] private Transport STEAMWORKS_TRANSPORT;
 
     private void Awake()
     {
@@ -27,9 +32,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         manageSaveFolder();
-
         manageServerWorld();
     }
 
@@ -80,7 +83,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     {
         GameObject g = Instantiate(World, MainMenuUIManager.Instance.SavedWorlds.transform, true);
         g.transform.localScale = Vector3.one;
-        Saves.Add(g);
+        WorldInstances.Add(g);
         var ws = g.GetComponent<SavedWorldInstance>();
         ws.WorldName = path.Split("/").Last().Split("\\")[1];
         ws.MapName = setting.world.MapName;
@@ -113,6 +116,11 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         }
 
         Directory.CreateDirectory($"{savePath}/Data");
+
+        LoadedSettings = settings;
+        LoadedWorldPath = savePath;
+
+        LoadSave();
     }
 
     /// <summary>
@@ -193,12 +201,12 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     {
         SavedGames.Clear();
 
-        foreach (var s in Saves)
+        foreach (var s in WorldInstances)
         {
             Destroy(s);
         }
 
-        Saves.Clear();
+        WorldInstances.Clear();
         LoadSaves();
     }
 
@@ -215,4 +223,22 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     /// <param name="table"></param>
     /// <returns></returns>
     WorldSettings getTomlSettings(TomlNode table) => TomLoader.readValue<WorldSettings>(table);
+
+    /// <summary>
+    /// Starts selected game
+    /// </summary>
+    public void LoadSave()
+    {
+        GameConfigManager.Instance.Settings = LoadedSettings;
+        GameConfigManager.Instance.SavePath = LoadedWorldPath;
+
+        NetworkManager.singleton.StartHost();
+        MainMenuUIManager.Instance.ShowLoadingScreen();
+    }
+
+    /// <summary>
+    /// Sets network transport protocol
+    /// </summary>
+    /// <param name="onlineMode"></param>
+    public void SetTransportProtocol(bool onlineMode) => NetworkManager.singleton.transport = onlineMode ? STEAMWORKS_TRANSPORT : KCP_TRANSPORT;
 }

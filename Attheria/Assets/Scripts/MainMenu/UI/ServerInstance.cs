@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class AA : MonoBehaviour
+public class ServerInstance : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log("Serus ne");
-
+        
     }
 
     void Update()

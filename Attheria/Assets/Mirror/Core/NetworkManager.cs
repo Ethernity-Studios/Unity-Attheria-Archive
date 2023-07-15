@@ -855,6 +855,7 @@ namespace Mirror
             {
                 case SceneOperation.Normal:
                     loadingSceneAsync = SceneManager.LoadSceneAsync(newSceneName);
+                    loadingSceneAsync.allowSceneActivation = false;
                     break;
                 case SceneOperation.LoadAdditive:
                     // Ensure additive scene is not already loaded on client by name or path
@@ -868,6 +869,7 @@ namespace Mirror
                         // Reset the flag that we disabled before entering this switch
                         NetworkClient.isLoadingScene = false;
                     }
+                    loadingSceneAsync.allowSceneActivation = false;
                     break;
                 case SceneOperation.UnloadAdditive:
                     // Ensure additive scene is actually loaded on client by name or path
@@ -881,6 +883,7 @@ namespace Mirror
                         // Reset the flag that we disabled before entering this switch
                         NetworkClient.isLoadingScene = false;
                     }
+                    loadingSceneAsync.allowSceneActivation = false;
                     break;
             }
 

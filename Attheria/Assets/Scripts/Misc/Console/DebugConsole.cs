@@ -1,23 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class ConsoleToGUI : MonoBehaviour
+public class DebugConsole : MonoBehaviour
 {
     private PlayerInput playerInput;
     
-    string myLog = "*begin log";
+    string myLog = "----- Debug console -----";
     string filename = "";
     bool doShow = false;
-    int kChars = 700;
+    readonly int kChars = 700;
 
     private void Awake()
     {
         playerInput = new();
         playerInput.Enable();
 
-        playerInput.Console.Open.performed += toggleConsole;
+        playerInput.Console.Toggle.performed += toggleConsole;
     }
 
     void OnEnable()
@@ -56,7 +55,10 @@ public class ConsoleToGUI : MonoBehaviour
             filename = d + "/log-" + r + ".txt";
         }
         try { System.IO.File.AppendAllText(filename, logString + "\n"); }
-        catch { }
+        catch
+        {
+            // ignored
+        }
     }
 
     void OnGUI()

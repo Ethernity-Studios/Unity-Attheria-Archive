@@ -1,10 +1,7 @@
-using System;
 using System.IO;
-using SaveSystem.WorldSettings;
 using TMPro;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SavedGameInstance : MonoBehaviour
 {
@@ -19,7 +16,7 @@ public class SavedGameInstance : MonoBehaviour
     [SerializeField] private TMP_Text SavePlaytimeText;
 
     [HideInInspector] public SavedWorldInstance SavedWorldInstance;
-    
+
     private void Start()
     {
         SaveNameText.text = SaveName;
@@ -32,7 +29,10 @@ public class SavedGameInstance : MonoBehaviour
     /// </summary>
     public void LoadSave()
     {
-        //Load scene
+        MainMenuSaveLoadManager.Instance.LoadedSettings = SavedWorldInstance.WorldSettings;
+        MainMenuSaveLoadManager.Instance.LoadedWorldPath = SavedWorldInstance.Path;
+        
+        MainMenuSaveLoadManager.Instance.LoadSave();
     }
 
     /// <summary>
@@ -51,9 +51,8 @@ public class SavedGameInstance : MonoBehaviour
             ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteSaveTitle, ConfirmScreenDialogs.DeleteSaveDescription);
             ConfirmScreenInstance.Instance.OnButtonClick += resultDialogSave;
         }
-
-
     }
+
     /// <summary>
     /// Delete only save
     /// </summary>
@@ -73,6 +72,7 @@ public class SavedGameInstance : MonoBehaviour
 
         ConfirmScreenInstance.Instance.OnButtonClick -= resultDialogSave;
     }
+
     /// <summary>
     /// Delete save and world
     /// </summary>

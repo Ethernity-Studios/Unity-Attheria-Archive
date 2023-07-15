@@ -24,7 +24,8 @@ public class MainMenuUIManager : MonoBehaviour
     [Header("Saved Worlds")] 
     public GameObject SavedWorlds;
 
-    [Header("Saves")] public GameObject Saves;
+    [Header("Saves")] 
+    public GameObject Saves;
     public GameObject SavedGames;
 
     [Header("New Game")] 
@@ -46,6 +47,9 @@ public class MainMenuUIManager : MonoBehaviour
     [Space(10)]
     private bool settingsMenuOpened = false;
     private bool firstSingleplayerOpen = true;
+    [Header("Loading screen")] 
+    public GameObject LoadingScreenCanvas;
+    public TMP_Text LoadingScreenWorldTitle;
     
     public static MainMenuUIManager Instance { get; set; }
 
@@ -123,6 +127,12 @@ public class MainMenuUIManager : MonoBehaviour
     public void BackToMainMenu()
     {
         OpenMainMenuScreen();
+
+        foreach (var save in MainMenuSaveLoadManager.Instance.SaveInstances)
+        {
+            Destroy(save);
+        }
+        MainMenuSaveLoadManager.Instance.SaveInstances.Clear();
     }
 /// <summary>
 /// Closes application
@@ -171,7 +181,6 @@ public class MainMenuUIManager : MonoBehaviour
             
             MainMenuSaveLoadManager.Instance.OverrideWorldSettings(settings, MainMenuSaveLoadManager.Instance.LoadedWorldPath);
         }
-        MainMenuSaveLoadManager.Instance.LoadedSettings = null;
         ToggleWorldSettingsMenu();
     }
 /// <summary>
@@ -193,5 +202,14 @@ public class MainMenuUIManager : MonoBehaviour
             }
         };
         MainMenuSaveLoadManager.Instance.CreateSave(settings);
+    }
+
+/// <summary>
+/// Shows loading screen
+/// </summary>
+    public void ShowLoadingScreen()
+    {
+        LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
+        LoadingScreenCanvas.SetActive(true);
     }
 }
