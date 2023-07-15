@@ -34,6 +34,14 @@ public class SavedWorldInstance : MonoBehaviour
     {
         MainMenuUIManager.Instance.Saves.SetActive(true);
 
+        //Clears all saves
+        foreach (var g in Saves)
+        {
+            Destroy(g);
+        }
+        Saves.Clear();
+
+        //Loads all saves
         string path = $"{Path}/Data";
         foreach (var dir in Directory.GetDirectories(path))
         {
