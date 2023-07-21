@@ -1,6 +1,5 @@
 using System.Collections;
 using Mirror;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,7 +23,17 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine(animateLoadBar());
     }
 
+    /// <summary>
+    /// Wait for all data to load then fade out the loading screen
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="loadSceneMode"></param>
     private void fadeOutScreen(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        SaveLoadManager.Instance.DataLoaded += fadeOut;
+    }
+
+    void fadeOut()
     {
         StartCoroutine(fadeOutScreenCoroutine());
     }
