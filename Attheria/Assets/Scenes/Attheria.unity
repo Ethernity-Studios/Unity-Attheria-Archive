@@ -402,6 +402,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167996375}
   m_CullTransparentMesh: 1
+--- !u!1 &209653655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209653658}
+  - component: {fileID: 209653659}
+  - component: {fileID: 209653656}
+  m_Layer: 0
+  m_Name: Test2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &209653656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209653655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46b06a6341b9ed4b9661f0c9b51e23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: a4cbc1c6-90e2-42fe-b7d9-7fa52e086b93
+  SaveFile: lol
+--- !u!4 &209653658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209653655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &209653659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209653655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5701c926af6be894eb24a2ac3ed1bd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sliggy: 
 --- !u!1 &269014427
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,18 +594,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2de45781c8b644b956fcedcae4542a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level: 5
-  GEJ: 0600000003000000
+  Level: 0
+  GEJ: 0000000000000000
   Enemies:
   - {fileID: 1427024151}
   - {fileID: 2001995202}
-  SavableEnemies:
-  - name: dad
-    hp: 45454
-    position: {x: 5, y: 6, z: 0}
-  - name: drfgdfgdfg
-    hp: 45
-    position: {x: 0, y: 34, z: 4}
+  SavableEnemies: []
 --- !u!4 &274146321
 Transform:
   m_ObjectHideFlags: 0
@@ -573,7 +627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b06a6341b9ed4b9661f0c9b51e23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 
+  Id: 8cab6559-b011-40fe-8b26-97fb07c56e7e
+  SaveFile: test
 --- !u!1 &301239076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,7 +3204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b06a6341b9ed4b9661f0c9b51e23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: a3d3b347-a83a-448c-a3b9-b212524a1025
+  Id: 65253afa-10fb-4454-96c2-2e1bb5bd7d4c
+  SaveFile: tajm
 --- !u!1 &1808412432
 GameObject:
   m_ObjectHideFlags: 0

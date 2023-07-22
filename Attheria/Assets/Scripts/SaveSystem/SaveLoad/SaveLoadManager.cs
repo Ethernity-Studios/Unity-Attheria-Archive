@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Mirror;
 using SaveSystem.Surrogates;
 using UnityEngine;
+// ReSharper disable All
 
 public class SaveLoadManager : NetworkBehaviour
 {
@@ -34,35 +36,27 @@ public class SaveLoadManager : NetworkBehaviour
     }
     
     
-    private string SavePath => $"{Application.persistentDataPath}/save.lol";
+    private string SavePath => $"{Application.persistentDataPath}/";
 
     [ContextMenu("Save")]
     public void Save()
     {
-        var state = LoadFile();
-        CaptureState(state);
-        SaveFile(state);
+        Dictionary<string, object> state = new();
+        foreach (var saveable in Savables)
+        {
+            //state = LoadFile(saveable.SaveFile);         ///Need more testing to see if performance is better - when not using LoadFile we create new Dictionary every time and we have to write all data again
+            state[saveable.Id] = saveable.CaptureState();
+            SaveFile(state, saveable.SaveFile);
+        }
     }
 
     [ContextMenu("Load")]
     public void Load()
     {
-        var state = LoadFile();
-        RestoreState(state);
-    }
-
-    void CaptureState(IDictionary<string, object> state)
-    {
+        Dictionary<string, object> state = new();
         foreach (var saveable in Savables)
         {
-            state[saveable.Id] = saveable.CaptureState();
-        }
-    }
-
-    void RestoreState(IReadOnlyDictionary<string, object> state)
-    {
-        foreach (var saveable in Savables)
-        {
+            state = LoadFile(saveable.SaveFile);
             if (state.TryGetValue(saveable.Id, out object value))
             {
                 saveable.RestoreState(value);
@@ -70,20 +64,20 @@ public class SaveLoadManager : NetworkBehaviour
         }
     }
 
-    Dictionary<string, object> LoadFile()
+    Dictionary<string, object> LoadFile(string path)
     {
         if (!File.Exists(SavePath))
         {
             return new Dictionary<string, object>();
         }
 
-        using FileStream stream = File.Open(SavePath, FileMode.Open);
+        using FileStream stream = File.Open($"{SavePath}{path}.dat", FileMode.Open);
         return (Dictionary<string, object>)getBinaryFormatter().Deserialize(stream);
     }
     
-    void SaveFile(object state)
+    void SaveFile(object state, string path)
     {
-        using var stream = File.Open(SavePath, FileMode.Create);
+        using var stream = File.Open($"{SavePath}{path}.dat", FileMode.Create);
         getBinaryFormatter().Serialize(stream, state);
     }
 

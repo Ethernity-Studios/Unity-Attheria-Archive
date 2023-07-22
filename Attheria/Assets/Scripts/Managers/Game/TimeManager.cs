@@ -10,7 +10,6 @@ public class TimeManager : NetworkBehaviour, ISaveable
     public float Time;
     public int Hour;
     public int Day;
-    
     public event OnDayDelegate OnDay;
     public delegate void OnDayDelegate(int day);
     
@@ -46,7 +45,7 @@ public class TimeManager : NetworkBehaviour, ISaveable
     {
         Time = Time,
         Hour = Hour,
-        Day = Day
+        Day = Day,
     };
 
     public void LoadData(object data)

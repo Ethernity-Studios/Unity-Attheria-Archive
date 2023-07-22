@@ -5,6 +5,7 @@ using UnityEngine;
 public class Saveable : MonoBehaviour
 {
     public string Id;
+    public string SaveFile;
 
     [ContextMenu("Generate Id")]
     private void GenerateId() => Id = Guid.NewGuid().ToString();
