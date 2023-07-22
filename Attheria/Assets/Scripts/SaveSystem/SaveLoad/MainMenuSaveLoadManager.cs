@@ -20,6 +20,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
     public WorldSettings LoadedSettings;
     public string LoadedWorldPath;
+    public string LoadedSavePath;
 
     [SerializeField] private Transport KCP_TRANSPORT;
     [SerializeField] private Transport STEAMWORKS_TRANSPORT;
@@ -230,7 +231,8 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     public void LoadSave()
     {
         GameConfigManager.Instance.Settings = LoadedSettings;
-        GameConfigManager.Instance.SavePath = LoadedWorldPath;
+        GameConfigManager.Instance.WorldPath = LoadedWorldPath;
+        GameConfigManager.Instance.SavePath = LoadedSavePath;
 
         NetworkManager.singleton.StartHost();
         MainMenuUIManager.Instance.ShowLoadingScreen();

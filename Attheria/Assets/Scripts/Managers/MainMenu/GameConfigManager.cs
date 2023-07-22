@@ -6,6 +6,7 @@ public class GameConfigManager : MonoBehaviour
     public static GameConfigManager Instance { get; set; }
 
     public WorldSettings Settings;
+    public string WorldPath;
     public string SavePath;
     
     private void Awake()

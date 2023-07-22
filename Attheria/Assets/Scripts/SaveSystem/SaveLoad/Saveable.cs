@@ -1,24 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class SaveableEntity : MonoBehaviour
+public class Saveable : MonoBehaviour
 {
-    [SerializeField] private string id = string.Empty;
+    public string Id;
 
-    public string Id => id;
-
-    [ContextMenu("Genmerate id")]
-    private void GenerateId() => id = Guid.NewGuid().ToString();
+    [ContextMenu("Generate Id")]
+    private void GenerateId() => Id = Guid.NewGuid().ToString();
 
     public object CaptureState()
     {
         var state = new Dictionary<string, object>();
 
-        foreach (var saveable in GetComponents<ISavable>())
+        foreach (var saveable in GetComponents<ISaveable>())
         {
-            state[saveable.GetType().ToString()] = saveable.CaptureState();
+            state[saveable.GetType().ToString()] = saveable.SaveData();
         }
         return state;
     }
@@ -27,13 +24,13 @@ public class SaveableEntity : MonoBehaviour
     {
         var stateDictionary = (Dictionary<string, object>)state;
 
-        foreach (var saveable in GetComponents<ISavable>())
+        foreach (var saveable in GetComponents<ISaveable>())
         {
             string typeName = saveable.GetType().ToString();
 
             if (stateDictionary.TryGetValue(typeName, out object value))
             {
-                saveable.RestoreState(value);
+                saveable.LoadData(value);
             }
         }
     }

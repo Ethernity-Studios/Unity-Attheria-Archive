@@ -31,6 +31,7 @@ public class SavedGameInstance : MonoBehaviour
     {
         MainMenuSaveLoadManager.Instance.LoadedSettings = SavedWorldInstance.WorldSettings;
         MainMenuSaveLoadManager.Instance.LoadedWorldPath = SavedWorldInstance.Path;
+        MainMenuSaveLoadManager.Instance.LoadedSavePath = $"{SavedWorldInstance.Path}/Data/{SaveName}";
         
         MainMenuSaveLoadManager.Instance.LoadSave();
     }

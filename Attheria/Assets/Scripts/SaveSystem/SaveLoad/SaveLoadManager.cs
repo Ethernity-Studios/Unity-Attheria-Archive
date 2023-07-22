@@ -1,22 +1,27 @@
-using System;
-using System.Reflection;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using Mirror;
-using SaveSystem.Migrations;
+using SaveSystem.Surrogates;
 using UnityEngine;
 
 public class SaveLoadManager : NetworkBehaviour
 {
     public static SaveLoadManager Instance;
-    
+
     public event DataLoadedDelegate DataLoaded;
     public delegate void DataLoadedDelegate();
+
+    public List<Saveable> Savables; //List of all GameObjects that manage data saving
+    
     
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
-        
-        Invoke(nameof(onDataLoaded),1f);
+
+        Invoke(nameof(onDataLoaded), 1f);
     }
 
     /// <summary>
@@ -26,52 +31,81 @@ public class SaveLoadManager : NetworkBehaviour
     {
         DataLoaded?.Invoke();
         Debug.Log("Data loaded!");
-
-    }
-
-   // [Migration(test = "xDD", testFloat = 3)]
-    //public string ta;
-
-    private void Start()
-    {
-        GetAttribute();
-    }
-
-    public void GetAttribute()
-    {
-        //FieldInfo fieldInfo = typeof(SavableData).GetProperty("");
-        //var propertyInfo = typeof(SavableData).GetProperty("level");
-        //var test = (Migration)propertyInfo.GetCustomAttribute(typeof(Migration));
-           // Debug.Log("Mam to " + test.test + " " + test.testFloat);
-
-           Type type = typeof(SaveLoadManager);
-           FieldInfo[] fields = type.GetFields();
-
-           foreach (var field in fields)
-           {
-
-               object[] attributes = field.GetCustomAttributes(typeof(MigrationAttribute), false);
-               foreach (var a in attributes)
-               {
-                   if (a is not MigrationAttribute migrationAttribute) continue;
-                   Debug.Log("Field name: " + field.Name);
-
-                   Debug.Log("TEST " + migrationAttribute.test + migrationAttribute.testFloat);
-               }
-           }
     }
     
-    [Migration(test = "TESRRTAAD", testFloat = 69)]
-    public int level;
-    [Migration(test = "JMENO BEST", testFloat = 69000)]
-    public int name;
     
-    [Serializable]
-    public struct SavableData
+    private string SavePath => $"{Application.persistentDataPath}/save.lol";
+
+    [ContextMenu("Save")]
+    public void Save()
     {
-        [Migration(test = "TESRRTAAD", testFloat = 69)]
-        public int level;
-        [Migration(test = "JMENO BEST", testFloat = 69000)]
-        public int name;
+        var state = LoadFile();
+        CaptureState(state);
+        SaveFile(state);
     }
+
+    [ContextMenu("Load")]
+    public void Load()
+    {
+        var state = LoadFile();
+        RestoreState(state);
+    }
+
+    void CaptureState(IDictionary<string, object> state)
+    {
+        foreach (var saveable in Savables)
+        {
+            state[saveable.Id] = saveable.CaptureState();
+        }
+    }
+
+    void RestoreState(IReadOnlyDictionary<string, object> state)
+    {
+        foreach (var saveable in Savables)
+        {
+            if (state.TryGetValue(saveable.Id, out object value))
+            {
+                saveable.RestoreState(value);
+            }
+        }
+    }
+
+    Dictionary<string, object> LoadFile()
+    {
+        if (!File.Exists(SavePath))
+        {
+            return new Dictionary<string, object>();
+        }
+
+        using FileStream stream = File.Open(SavePath, FileMode.Open);
+        return (Dictionary<string, object>)getBinaryFormatter().Deserialize(stream);
+    }
+    
+    void SaveFile(object state)
+    {
+        using var stream = File.Open(SavePath, FileMode.Create);
+        getBinaryFormatter().Serialize(stream, state);
+    }
+
+    BinaryFormatter getBinaryFormatter()
+    {
+        BinaryFormatter formatter = new();
+
+        SurrogateSelector selector = new();
+        Vector3Surrogate vector3Surrogate = new();
+        QuaternionSurrogate quaternionSurrogate = new();
+
+        selector.AddSurrogate(typeof(Vector3), new StreamingContext(StreamingContextStates.All), vector3Surrogate);
+        selector.AddSurrogate(typeof(Quaternion), new StreamingContext(StreamingContextStates.All), quaternionSurrogate);
+
+        formatter.SurrogateSelector = selector;
+
+        return formatter;
+    }
+}
+
+public class Sa
+{
+    public string Id;
+    public string SaveFile;
 }
