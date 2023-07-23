@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: a4cbc1c6-90e2-42fe-b7d9-7fa52e086b93
-  SaveFile: lol
+  SaveFile: aha.lol
 --- !u!4 &209653658
 Transform:
   m_ObjectHideFlags: 0
@@ -599,7 +599,13 @@ MonoBehaviour:
   Enemies:
   - {fileID: 1427024151}
   - {fileID: 2001995202}
-  SavableEnemies: []
+  SavableEnemies:
+  - name: dad
+    hp: 45454
+    position: {x: 5, y: 6, z: 0}
+  - name: drfgdfgdfg
+    hp: 45
+    position: {x: 0, y: 34, z: 4}
 --- !u!4 &274146321
 Transform:
   m_ObjectHideFlags: 0
@@ -628,7 +634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 8cab6559-b011-40fe-8b26-97fb07c56e7e
-  SaveFile: test
+  SaveFile: gej.lol
 --- !u!1 &301239076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,9 +3163,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  Time: 0
-  Hour: 0
-  Day: 0
+  Time: 6
+  Hour: 1
+  Day: 561
 --- !u!4 &1624500017
 Transform:
   m_ObjectHideFlags: 0
@@ -3204,8 +3210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b06a6341b9ed4b9661f0c9b51e23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 65253afa-10fb-4454-96c2-2e1bb5bd7d4c
-  SaveFile: tajm
+  Id: b80eb412-f4db-4c50-8a6e-c2f7b8647960
+  SaveFile: gej.lol
 --- !u!1 &1808412432
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,6 +4389,8 @@ MonoBehaviour:
   syncInterval: 0
   Savables:
   - {fileID: 1624500019}
+  - {fileID: 274146322}
+  - {fileID: 209653656}
 --- !u!4 &2118973345
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Mirror;
 using SaveSystem.Surrogates;
 using UnityEngine;
+
 // ReSharper disable All
 
 public class SaveLoadManager : NetworkBehaviour
@@ -13,11 +14,12 @@ public class SaveLoadManager : NetworkBehaviour
     public static SaveLoadManager Instance;
 
     public event DataLoadedDelegate DataLoaded;
+
     public delegate void DataLoadedDelegate();
 
     public List<Saveable> Savables; //List of all GameObjects that manage data saving
-    
-    
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -34,50 +36,76 @@ public class SaveLoadManager : NetworkBehaviour
         DataLoaded?.Invoke();
         Debug.Log("Data loaded!");
     }
-    
-    
+
+
     private string SavePath => $"{Application.persistentDataPath}/";
 
     [ContextMenu("Save")]
     public void Save()
     {
+        Dictionary<string, Dictionary<string, object>> states = new();
         Dictionary<string, object> state = new();
         foreach (var saveable in Savables)
         {
             //state = LoadFile(saveable.SaveFile);         ///Need more testing to see if performance is better - when not using LoadFile we create new Dictionary every time and we have to write all data again
             state[saveable.Id] = saveable.CaptureState();
-            SaveFile(state, saveable.SaveFile);
+            if (states.ContainsKey(saveable.SaveFile))
+            {
+                states[saveable.SaveFile].Concat(state);
+            }
+            else
+            {
+                states.Add(saveable.SaveFile, state);
+            }
+        }
+
+        foreach (var v in states)
+        {
+            SaveFile(v.Value, v.Key);
         }
     }
 
     [ContextMenu("Load")]
     public void Load()
     {
-        Dictionary<string, object> state = new();
+        Dictionary<string, Dictionary<string, object>> states = new();
         foreach (var saveable in Savables)
         {
-            state = LoadFile(saveable.SaveFile);
-            if (state.TryGetValue(saveable.Id, out object value))
+            var state = LoadFile(saveable.SaveFile);
+
+            if (states.ContainsKey(saveable.SaveFile))
             {
-                saveable.RestoreState(value);
+                states[saveable.SaveFile].Concat(state);
+            }
+            else
+            {
+                states.Add(saveable.SaveFile, state);
+            }
+
+            foreach (var v in states)
+            {
+                if (v.Value.TryGetValue(saveable.Id, out object value))
+                {
+                    saveable.RestoreState(value);
+                }
             }
         }
     }
 
     Dictionary<string, object> LoadFile(string path)
     {
-        if (!File.Exists(SavePath))
+        if (!File.Exists($"{SavePath}{path}"))
         {
             return new Dictionary<string, object>();
         }
 
-        using FileStream stream = File.Open($"{SavePath}{path}.dat", FileMode.Open);
+        using FileStream stream = File.Open($"{SavePath}{path}", FileMode.Open);
         return (Dictionary<string, object>)getBinaryFormatter().Deserialize(stream);
     }
-    
+
     void SaveFile(object state, string path)
     {
-        using var stream = File.Open($"{SavePath}{path}.dat", FileMode.Create);
+        using FileStream stream = File.Open($"{SavePath}{path}", FileMode.Create);
         getBinaryFormatter().Serialize(stream, state);
     }
 
@@ -96,10 +124,4 @@ public class SaveLoadManager : NetworkBehaviour
 
         return formatter;
     }
-}
-
-public class Sa
-{
-    public string Id;
-    public string SaveFile;
 }
