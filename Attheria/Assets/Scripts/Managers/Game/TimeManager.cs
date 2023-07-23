@@ -1,9 +1,11 @@
 using System;
-using Mirror;
+using System.Threading.Tasks;
+using Managers;
 using SaveSystem.SaveLoad;
+using UnityEngine;
 
 [SaveFile("Game")]
-public class TimeManager : NetworkBehaviour, ISaveable
+public class TimeManager : Manager, ISaveable
 {
     public static TimeManager Instance;
     
@@ -48,13 +50,15 @@ public class TimeManager : NetworkBehaviour, ISaveable
         Day = Day,
     };
 
-    public void LoadData(object data)
+    public Task LoadData(object data)
     {
         var saveData = (SavableData)data;
 
         Time = saveData.Time;
         Hour = saveData.Hour;
         Day = saveData.Day;
+        Debug.Log("Data on time manager loaded!");
+        return Task.CompletedTask;
     }
     
     [Serializable]

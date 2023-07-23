@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Test3000 : MonoBehaviour, ISaveable
@@ -9,11 +10,13 @@ public class Test3000 : MonoBehaviour, ISaveable
         Sliggy = Sliggy
     };
 
-    public void LoadData(object data)
+    public Task LoadData(object data)
     {
         var saveData = (SavableData)data;
 
         Sliggy = saveData.Sliggy;
+
+        return Task.CompletedTask;
     }
     
     [Serializable]

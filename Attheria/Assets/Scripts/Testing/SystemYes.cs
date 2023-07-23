@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SystemYes : MonoBehaviour, ISaveable
@@ -19,13 +20,17 @@ public class SystemYes : MonoBehaviour, ISaveable
         enemies = Enemies.Select(enemy => enemy.Data).ToList()
     };
 
-    public void LoadData(object data)
+    public Task LoadData(object data)
     {
         var saveData = (SavableData)data;
 
         Level = saveData.level;
         GEJ = saveData.GEJ;
         SavableEnemies = saveData.enemies;
+
+        Debug.Log("Data on systemyes loaded!");
+
+        return Task.CompletedTask;
     }
     
     [Serializable]

@@ -12,7 +12,6 @@ using UnityEngine;
 public class SaveLoadManager : NetworkBehaviour
 {
     public static SaveLoadManager Instance;
-
     public event DataLoadedDelegate DataLoaded;
 
     public delegate void DataLoadedDelegate();
@@ -24,8 +23,11 @@ public class SaveLoadManager : NetworkBehaviour
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+    }
 
-        Invoke(nameof(onDataLoaded), 1f);
+    private void Start()
+    {
+        Load();
     }
 
     /// <summary>
@@ -66,7 +68,7 @@ public class SaveLoadManager : NetworkBehaviour
     }
 
     [ContextMenu("Load")]
-    public void Load()
+    public async void Load()
     {
         Dictionary<string, Dictionary<string, object>> states = new();
         foreach (var saveable in Savables)
@@ -86,10 +88,11 @@ public class SaveLoadManager : NetworkBehaviour
             {
                 if (v.Value.TryGetValue(saveable.Id, out object value))
                 {
-                    saveable.RestoreState(value);
+                    await saveable.RestoreState(value);
                 }
             }
         }
+        onDataLoaded();
     }
 
     Dictionary<string, object> LoadFile(string path)

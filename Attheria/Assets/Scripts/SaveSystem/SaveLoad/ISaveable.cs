@@ -1,5 +1,8 @@
+using System.Threading.Tasks;
+using UnityEngine;
+
 public interface ISaveable
 {
     object SaveData();
-    void LoadData(object data);
+    Task LoadData(object data);
 }
