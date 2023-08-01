@@ -1,16 +1,21 @@
 using System;
 using System.Threading.Tasks;
-using UnityEngine;
+using Managers;
 
-public class Test3000 : MonoBehaviour, ISaveable
+public class Test3000 : Manager
 {
+    private void Awake()
+    {
+        UnityEditor.EditorGUIUtility.PingObject(null);
+    }
+
     public string Sliggy;
-    public object SaveData() => new SavableData()
+    public override object SaveData() => new SavableData()
     {
         Sliggy = Sliggy
     };
 
-    public Task LoadData(object data)
+    public override Task LoadData(object data)
     {
         var saveData = (SavableData)data;
 

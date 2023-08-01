@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Mirror;
+using Misc.Console;
+using SaveSystem.SaveLoad;
 using SaveSystem.Surrogates;
 using UnityEngine;
 
@@ -36,11 +39,11 @@ public class SaveLoadManager : NetworkBehaviour
     private void onDataLoaded()
     {
         DataLoaded?.Invoke();
-        Debug.Log("Data loaded!");
+        Debug.Log("Data loaded!".Bold().Color("#FFFFFF").Size(13));
     }
 
 
-    private string SavePath => $"{Application.persistentDataPath}/";
+    //private string SavePath => $"{Application.persistentDataPath}/";
 
     [ContextMenu("Save")]
     public void Save()
@@ -91,24 +94,25 @@ public class SaveLoadManager : NetworkBehaviour
                     await saveable.RestoreState(value);
                 }
             }
+            states.Clear();
         }
         onDataLoaded();
     }
 
     Dictionary<string, object> LoadFile(string path)
     {
-        if (!File.Exists($"{SavePath}{path}"))
+        if (!File.Exists($"{GameConfigManager.Instance.SavePath}/{path}"))
         {
             return new Dictionary<string, object>();
         }
 
-        using FileStream stream = File.Open($"{SavePath}{path}", FileMode.Open);
+        using FileStream stream = File.Open($"{GameConfigManager.Instance.SavePath}/{path}", FileMode.Open);
         return (Dictionary<string, object>)getBinaryFormatter().Deserialize(stream);
     }
 
     void SaveFile(object state, string path)
     {
-        using FileStream stream = File.Open($"{SavePath}{path}", FileMode.Create);
+        using FileStream stream = File.Open($"{GameConfigManager.Instance.SavePath}/{path}", FileMode.Create);
         getBinaryFormatter().Serialize(stream, state);
     }
 
@@ -126,5 +130,19 @@ public class SaveLoadManager : NetworkBehaviour
         formatter.SurrogateSelector = selector;
 
         return formatter;
+    }
+
+    public void CreateSaveMetaData()
+    {
+        SaveMetaData meta = new()
+        {
+            SaveName = MenuManager.Instance.SelectedSaveName,
+            SaveDate = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
+            Playtime = TimeManager.Instance.PlayTime,
+            Version = GameManager.Instance.GameVersion
+        };
+
+        string json = JsonUtility.ToJson(meta);
+        File.WriteAllText($"{GameConfigManager.Instance.SavePath}/MetaData.dat", json);
     }
 }

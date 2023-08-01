@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using TMPro;
 using UI;
@@ -8,20 +9,26 @@ public class SavedGameInstance : MonoBehaviour
     public string Path;
 
     public string SaveName;
-    public string SaveDate;
-    public string SavePlaytime;
+    public long SaveDate;
+    public float SavePlaytime;
+    public string Version;
 
     [SerializeField] private TMP_Text SaveNameText;
     [SerializeField] private TMP_Text SaveDateText;
     [SerializeField] private TMP_Text SavePlaytimeText;
+    [SerializeField] private TMP_Text SaveVersionText;
 
     [HideInInspector] public SavedWorldInstance SavedWorldInstance;
 
     private void Start()
     {
         SaveNameText.text = SaveName;
-        SaveDateText.text = SaveDate;
-        SavePlaytimeText.text = SavePlaytime;
+        SaveDateText.text = DateTimeOffset.FromUnixTimeMilliseconds(SaveDate).UtcDateTime.ToString();
+        int days = Mathf.FloorToInt(SavePlaytime / 2880);
+        int hours = (int)(SavePlaytime % 2880)/120;
+        int minutes = (int)(SavePlaytime % 2880)%60;
+        SavePlaytimeText.text = $"{days}d :{hours}h :{minutes}m";
+        SaveVersionText.text = Version;
     }
 
     /// <summary>
@@ -31,7 +38,7 @@ public class SavedGameInstance : MonoBehaviour
     {
         MainMenuSaveLoadManager.Instance.LoadedSettings = SavedWorldInstance.WorldSettings;
         MainMenuSaveLoadManager.Instance.LoadedWorldPath = SavedWorldInstance.Path;
-        MainMenuSaveLoadManager.Instance.LoadedSavePath = $"{SavedWorldInstance.Path}/Data/{SaveName}";
+        MainMenuSaveLoadManager.Instance.LoadedSavePath = $"{SavedWorldInstance.Path}/Saves/{SaveName}";
         
         MainMenuSaveLoadManager.Instance.LoadSave();
     }
@@ -44,12 +51,12 @@ public class SavedGameInstance : MonoBehaviour
     {
         if (SavedWorldInstance.Saves.Count == 1)
         {
-            ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteSaveWorldTitle, ConfirmScreenDialogs.DeleteSaveWorldDescription);
+            ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteSaveWorldTitle, ConfirmScreenDialogs.DeleteSaveWorldDescription, ConfirmScreenDialogs.DeleteSavePositiveBtn, ConfirmScreenDialogs.DeleteSaveNegativeBtn);
             ConfirmScreenInstance.Instance.OnButtonClick += resultDialogWorld;
         }
         else if (SavedWorldInstance.Saves.Count > 1)
         {
-            ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteSaveTitle, ConfirmScreenDialogs.DeleteSaveDescription);
+            ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteSaveTitle, ConfirmScreenDialogs.DeleteSaveDescription, ConfirmScreenDialogs.DeleteSavePositiveBtn, ConfirmScreenDialogs.DeleteSaveNegativeBtn);
             ConfirmScreenInstance.Instance.OnButtonClick += resultDialogSave;
         }
     }
@@ -64,13 +71,8 @@ public class SavedGameInstance : MonoBehaviour
             Directory.Delete(Path, true);
             SavedWorldInstance.Saves.Remove(gameObject);
             Destroy(gameObject);
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         }
-        else
-        {
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
-        }
-
+        MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         ConfirmScreenInstance.Instance.OnButtonClick -= resultDialogSave;
     }
 
@@ -84,13 +86,8 @@ public class SavedGameInstance : MonoBehaviour
             Directory.Delete(SavedWorldInstance.Path, true);
             MainMenuSaveLoadManager.Instance.ReloadSaves();
             Destroy(gameObject);
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         }
-        else
-        {
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
-        }
-
+        MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         ConfirmScreenInstance.Instance.OnButtonClick -= resultDialogWorld;
     }
 }

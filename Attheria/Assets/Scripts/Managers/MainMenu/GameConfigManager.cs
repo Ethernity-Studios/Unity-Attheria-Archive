@@ -8,7 +8,7 @@ public class GameConfigManager : MonoBehaviour
     public WorldSettings Settings;
     public string WorldPath;
     public string SavePath;
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);

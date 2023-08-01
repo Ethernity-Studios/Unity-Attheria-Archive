@@ -1,5 +1,6 @@
 using System.Collections;
 using Mirror;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,17 +10,19 @@ public class LoadingScreen : MonoBehaviour
     private CanvasGroup group;
     [SerializeField] private Image fillImage;
     private float progress = 0;
-    
+
     void Start()
     {
         group = GetComponent<CanvasGroup>();
 
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += fadeOutScreen;
+
     }
 
     private void OnEnable()
     {
+        Debug.Log("Loading enable");
+        SceneManager.sceneLoaded += fadeOutScreen;
         StartCoroutine(animateLoadBar());
     }
 
@@ -30,11 +33,13 @@ public class LoadingScreen : MonoBehaviour
     /// <param name="loadSceneMode"></param>
     private void fadeOutScreen(Scene scene, LoadSceneMode loadSceneMode)
     {
+        SceneManager.sceneLoaded -= fadeOutScreen;
         SaveLoadManager.Instance.DataLoaded += fadeOut;
     }
 
     void fadeOut()
     {
+        SaveLoadManager.Instance.DataLoaded -= fadeOut;
         StartCoroutine(fadeOutScreenCoroutine());
     }
 
@@ -53,6 +58,8 @@ public class LoadingScreen : MonoBehaviour
         }
 
         yield return new WaitForSeconds(.25f);
+        Destroy(gameObject);
+        progress = 0;
         gameObject.SetActive(false);
         group.alpha = 0;
     }
@@ -63,7 +70,8 @@ public class LoadingScreen : MonoBehaviour
     /// <returns></returns>
     IEnumerator animateLoadBar()
     {
-        while (SceneManager.GetActiveScene().buildIndex == 0 && !NetworkManager.loadingSceneAsync.isDone && progress < .9f)
+        while (NetworkManager.loadingSceneAsync == null) yield return null;
+        while (/*SceneManager.GetActiveScene().buildIndex == 0 &&*/ !NetworkManager.loadingSceneAsync.isDone && progress < .9f)
         {
             progress = Mathf.MoveTowards(progress, NetworkManager.loadingSceneAsync.progress, Time.deltaTime);
             fillImage.fillAmount = progress;

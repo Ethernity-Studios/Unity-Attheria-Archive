@@ -1,3 +1,4 @@
+using System;
 using SaveSystem.WorldSettings;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class MainMenuUIManager : MonoBehaviour
     public Button SingleplayerBtn;
     public Button SettingsBtn;
     public Button ExitBtn;
+
+    public TMP_Text GameVersion;
 
     [Header("Reusable Components")]
     public GameObject BackBtn;
@@ -61,7 +64,13 @@ public class MainMenuUIManager : MonoBehaviour
         ConfirmScreen.SetActive(true);
         ConfirmScreen.SetActive(false);
     }
-/// <summary>
+
+    private void Start()
+    {
+        GameVersion.text = GameManager.Instance.GameVersion;
+    }
+
+    /// <summary>
 /// Open main screen
 /// </summary>
     public void OpenMainMenuScreen()
@@ -209,7 +218,7 @@ public class MainMenuUIManager : MonoBehaviour
 /// </summary>
     public void ShowLoadingScreen()
     {
-        LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
         LoadingScreenCanvas.SetActive(true);
+        LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
     }
 }

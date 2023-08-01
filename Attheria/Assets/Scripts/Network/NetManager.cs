@@ -33,7 +33,7 @@ public class NetManager : NetworkManager
 
         if (NetworkServer.isLoadingScene && newSceneName == networkSceneName)
         {
-            Debug.LogError($"Scene change is already in progress for {newSceneName}");
+            //Debug.LogError($"Scene change is already in progress for {newSceneName}"); //Was throwing some errors when i reloaded game scene
             return;
         }
 

@@ -12,7 +12,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
     [SerializeField] private GameObject World;
 
-    private string SavePath => $"{Application.persistentDataPath}/Saves";
+    private string SavePath => $"{Application.persistentDataPath}/Worlds";
 
     public List<WorldSettings> SavedGames = new();
     public List<GameObject> WorldInstances = new();
@@ -43,20 +43,27 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     void manageSaveFolder()
     {
 #if UNITY_STANDALONE
-        if (!Directory.Exists($"{Application.persistentDataPath}/Saves"))
+        if (!Directory.Exists($"{Application.persistentDataPath}/Worlds"))
         {
-            Directory.CreateDirectory($"{Application.persistentDataPath}/Saves");
+            Directory.CreateDirectory($"{Application.persistentDataPath}/Worlds");
         }
 #endif
     }
 
     /// <summary>
     /// Loads all worlds
+    /// If world contains no saves it will delete world directory
     /// </summary>
     public void LoadSaves()
     {
         foreach (var d in Directory.GetDirectories(SavePath))
         {
+            if (Directory.GetDirectories(d).Length == 0)
+            {
+                Directory.Delete(d);
+                continue;
+            }
+
             WorldSettings settings;
             string path = $"{d}/WorldSettings.wrld";
             if (!File.Exists(path))
@@ -116,7 +123,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
             createTomlTable(settings).WriteTo(writer);
         }
 
-        Directory.CreateDirectory($"{savePath}/Data");
+        Directory.CreateDirectory($"{savePath}/Saves");
 
         LoadedSettings = settings;
         LoadedWorldPath = savePath;

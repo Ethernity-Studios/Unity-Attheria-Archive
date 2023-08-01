@@ -1,15 +1,15 @@
 using System;
 using System.Threading.Tasks;
 using Managers;
-using SaveSystem.SaveLoad;
-using UnityEngine;
 
-[SaveFile("Game")]
-public class TimeManager : Manager, ISaveable
+public class TimeManager : Manager
 {
     public static TimeManager Instance;
+
+    public float Time => PlayTime;
+    public float PlayTime;
     
-    public float Time;
+    public float Minute;
     public int Hour;
     public int Day;
     public event OnDayDelegate OnDay;
@@ -26,11 +26,12 @@ public class TimeManager : Manager, ISaveable
 
     void Update()
     {
-        Time += UnityEngine.Time.deltaTime;
+        Minute += UnityEngine.Time.deltaTime;
+        PlayTime += UnityEngine.Time.deltaTime;
 
-        if (Time >= 120) // 120 - seconds - each in-game hour has 120 real life seconds
+        if (Minute >= 120) // 120 - seconds - each in-game hour has 120 real life seconds
         {
-            Time = 0;
+            Minute = 0;
             Hour++;
             OnHour?.Invoke(Hour);
         }
@@ -43,27 +44,29 @@ public class TimeManager : Manager, ISaveable
         }
     }
 
-    public object SaveData() => new SavableData()
+    public override object SaveData() => new SavableData()
     {
-        Time = Time,
+        PlayTime = PlayTime,
+        Time = Minute,
         Hour = Hour,
         Day = Day,
     };
 
-    public Task LoadData(object data)
+    public override Task LoadData(object data)
     {
         var saveData = (SavableData)data;
 
-        Time = saveData.Time;
+        PlayTime = saveData.PlayTime;
+        Minute = saveData.Time;
         Hour = saveData.Hour;
         Day = saveData.Day;
-        Debug.Log("Data on time manager loaded!");
         return Task.CompletedTask;
     }
     
     [Serializable]
     private struct SavableData
     {
+        public float PlayTime;
         public float Time;
         public int Hour;
         public int Day;

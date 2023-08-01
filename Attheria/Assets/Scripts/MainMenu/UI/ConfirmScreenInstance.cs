@@ -6,6 +6,9 @@ public class ConfirmScreenInstance : MonoBehaviour
     public TMP_Text Title;
     public TMP_Text Description;
 
+    public TMP_Text PositiveBtn;
+    public TMP_Text NegativeBtn;
+
     public static ConfirmScreenInstance Instance;
 
     public event OnButtonClickDelegate OnButtonClick;
@@ -22,11 +25,15 @@ public class ConfirmScreenInstance : MonoBehaviour
     /// </summary>
     /// <param name="title"> Title for confirmation dialog </param>
     /// <param name="description"> Description for confirmation dialog </param>
-    public void OpenDialog(string title, string description)
+    /// <param name="positiveBtn"> Text for confirmation button </param>
+    /// <param name="negativeBtn"> Text for cancel button </param>
+    public void OpenDialog(string title, string description, string positiveBtn, string negativeBtn)
     {
         gameObject.SetActive(true);
         Title.text = title;
         Description.text = description;
+        PositiveBtn.text = positiveBtn;
+        NegativeBtn.text = negativeBtn;
     }
 
     /// <summary>

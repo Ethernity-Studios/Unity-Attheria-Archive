@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Scripting;
 
-[RequiredInterface(typeof(ISaveable))]
 [ExecuteInEditMode]
 public class Saveable : MonoBehaviour
 {

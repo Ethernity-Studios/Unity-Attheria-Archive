@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SaveSystem.SaveLoad;
 using SaveSystem.WorldSettings;
 using TMPro;
 using UI;
@@ -34,15 +35,10 @@ public class SavedWorldInstance : MonoBehaviour
     {
         MainMenuUIManager.Instance.Saves.SetActive(true);
 
-        //Clears all saves
-        foreach (var g in Saves)
-        {
-            Destroy(g);
-        }
-        Saves.Clear();
+        reloadSaves();
 
         //Loads all saves
-        string path = $"{Path}/Data";
+        string path = $"{Path}/Saves";
         foreach (var dir in Directory.GetDirectories(path))
         {
             GameObject g = Instantiate(Save, MainMenuUIManager.Instance.SavedGames.transform, true);
@@ -53,10 +49,43 @@ public class SavedWorldInstance : MonoBehaviour
             sg.Path = dir;
             sg.SavedWorldInstance = this;
             sg.SaveName = savePath.Split("\\").Last();
+
+            
+            string metaPath = $"{dir}/MetaData.dat";
+            
+            string json = File.ReadAllText(metaPath);
+            SaveMetaData data = JsonUtility.FromJson<SaveMetaData>(json);
+
+            sg.Version = data.Version;
+            sg.SavePlaytime = data.Playtime;
+            sg.SaveDate = data.SaveDate;
+            
             Saves.Add(g);
             MainMenuSaveLoadManager.Instance.SaveInstances.Add(g);
         }
+        
+        //Order saves by save date
+        Saves = Saves.OrderBy(x => x.GetComponent<SavedGameInstance>().SaveDate).ToList();
+        Saves.Reverse();
+        int index = 0;
+        foreach (var save in Saves)
+        {
+            save.transform.SetSiblingIndex(index);
+            index++;
+        }
     }
+
+    void reloadSaves()
+    {
+        //Clears all saves
+        foreach (var g in Saves)
+        {
+            Destroy(g);
+        }
+
+        Saves.Clear();
+    }
+
 
     /// <summary>
     /// Load saved world settings
@@ -74,7 +103,7 @@ public class SavedWorldInstance : MonoBehaviour
     /// </summary>
     public void DeleteWorld()
     {
-        ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteWorldTitle, ConfirmScreenDialogs.DeleteWorldDescription);
+        ConfirmScreenInstance.Instance.OpenDialog(ConfirmScreenDialogs.DeleteWorldTitle, ConfirmScreenDialogs.DeleteWorldDescription, ConfirmScreenDialogs.DeleteWorldPositiveBtn, ConfirmScreenDialogs.DeleteWorldNegativeBtn);
         ConfirmScreenInstance.Instance.OnButtonClick += resultDialog;
     }
 
@@ -87,13 +116,9 @@ public class SavedWorldInstance : MonoBehaviour
         {
             Directory.Delete(Path, true);
             MainMenuSaveLoadManager.Instance.ReloadSaves();
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
-        }
-        else
-        {
-            MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         }
 
+        MainMenuUIManager.Instance.ConfirmScreen.SetActive(false);
         ConfirmScreenInstance.Instance.OnButtonClick -= resultDialog;
     }
 }

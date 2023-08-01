@@ -30,6 +30,7 @@
 /Pastelky
 /daw
 /Attheria/Assets/Graphics/Materials/Purchased
+/Attheria/Assets/PolyLabs
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
