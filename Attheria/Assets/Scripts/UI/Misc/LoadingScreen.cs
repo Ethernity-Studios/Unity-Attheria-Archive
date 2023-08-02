@@ -21,7 +21,6 @@ public class LoadingScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Loading enable");
         SceneManager.sceneLoaded += fadeOutScreen;
         StartCoroutine(animateLoadBar());
     }

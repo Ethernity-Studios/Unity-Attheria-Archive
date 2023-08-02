@@ -58,9 +58,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     {
         foreach (var d in Directory.GetDirectories(SavePath))
         {
-            if (Directory.GetDirectories(d).Length == 0)
+            if (Directory.GetDirectories($"{d}/Saves").Length == 0)
             {
-                Directory.Delete(d);
+                Directory.Delete(d, true);
                 continue;
             }
 

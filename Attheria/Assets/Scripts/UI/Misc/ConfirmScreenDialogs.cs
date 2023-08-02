@@ -31,8 +31,8 @@
         /// <summary>
         /// Messages for save overriting
         /// </summary>
-        public static readonly string OverrideSaveTitle = "Override save";
-        public static readonly string OverrideSaveDescription = "Are you sure you want to override this save?";
+        public static readonly string OverrideSaveTitle = "Overwrite save";
+        public static readonly string OverrideSaveDescription = "Are you sure you want to overwrite this save?";
         public static readonly string OverrideSavePositiveBtn = "Override";
         public static readonly string OverrideSaveNegativeBtn = "Cancel";
         
