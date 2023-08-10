@@ -22,7 +22,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Server/Server.exe",
             //locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName}/Server.exe",
             target = BuildTarget.StandaloneWindows64,
@@ -40,7 +40,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Server_Linux/Server.x86_64",
             target = BuildTarget.StandaloneLinux64,
             options = BuildOptions.CompressWithLz4HC,
@@ -58,7 +58,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Client/Mono/Attheria.exe",
             target = BuildTarget.StandaloneWindows64,
             options = BuildOptions.CompressWithLz4HC,
@@ -75,7 +75,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Client_Linux/Mono/Attheria",
             target = BuildTarget.StandaloneLinux64,
             options = BuildOptions.CompressWithLz4HC,
@@ -92,7 +92,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Client/Il2cpp/Attheria.exe",
             target = BuildTarget.StandaloneWindows64,
             options = BuildOptions.CompressWithLz4HC,
@@ -109,7 +109,7 @@ public static class GameBuilder
     {
         BuildPlayerOptions buildPlayerOptions = new()
         {
-            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Attheria.unity" },
+            scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Maps/Attheria.unity" },
             locationPathName = $"{Directory.GetParent(Directory.GetParent(Application.dataPath)!.FullName)}/Builds/Client_Linux/Il2cpp/Attheria",
             target = BuildTarget.StandaloneLinux64,
             options = BuildOptions.CompressWithLz4HC,

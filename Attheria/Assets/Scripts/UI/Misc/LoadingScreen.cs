@@ -1,6 +1,5 @@
 using System.Collections;
 using Mirror;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,7 +9,7 @@ public class LoadingScreen : MonoBehaviour
     private CanvasGroup group;
     [SerializeField] private Image fillImage;
     private float progress = 0;
-
+    
     void Start()
     {
         group = GetComponent<CanvasGroup>();
@@ -33,15 +32,26 @@ public class LoadingScreen : MonoBehaviour
     private void fadeOutScreen(Scene scene, LoadSceneMode loadSceneMode)
     {
         SceneManager.sceneLoaded -= fadeOutScreen;
-        SaveLoadManager.Instance.DataLoaded += fadeOut;
-    }
+        
+        StartCoroutine(WaitForInstance());
 
-    void fadeOut()
+    }
+    /// <summary>
+    /// Wait for SaveLoadManager instance to be initiated and for Loaded boolean because it threw null exception error in build
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator WaitForInstance()
     {
-        SaveLoadManager.Instance.DataLoaded -= fadeOut;
+        while (SaveLoadManager.Instance == null)
+        {
+            yield return null;
+        }
+        while (!SaveLoadManager.Instance.Loaded)
+        {
+            yield return null;
+        }
         StartCoroutine(fadeOutScreenCoroutine());
     }
-
 
     /// <summary>
     /// Animates the remaining .1 of load time since LoadSceneAsync loads to .9
@@ -58,9 +68,9 @@ public class LoadingScreen : MonoBehaviour
 
         yield return new WaitForSeconds(.25f);
         Destroy(gameObject);
-        progress = 0;
-        gameObject.SetActive(false);
-        group.alpha = 0;
+        //progress = 0;
+        //gameObject.SetActive(false);
+        //group.alpha = 0;
     }
 
     /// <summary>

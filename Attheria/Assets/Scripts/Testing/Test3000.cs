@@ -6,14 +6,14 @@ public class Test3000 : Manager
 {
     private void Awake()
     {
-        UnityEditor.EditorGUIUtility.PingObject(null);
+        //UnityEditor.EditorGUIUtility.PingObject(null);
     }
 
     public string Sliggy;
-    public override object SaveData() => new SavableData()
+    public override Task<object> SaveData() => Task.FromResult<object>(new SavableData()
     {
         Sliggy = Sliggy
-    };
+    });
 
     public override Task LoadData(object data)
     {

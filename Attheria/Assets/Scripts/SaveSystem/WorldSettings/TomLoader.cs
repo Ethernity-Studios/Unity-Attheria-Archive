@@ -71,6 +71,14 @@ namespace SaveSystem.WorldSettings {
                 };
             }
 
+            if (clazz == typeof(bool))
+            {
+                return new TomlBoolean
+                {
+                    Value = (bool)Convert.ChangeType(value, TypeCode.Boolean)
+                };
+            }
+
             return clazz.Name switch
             {
                 "Dictionary" => writeDictionary((Dictionary<string, object>)value, clazz.GenericTypeArguments[1]),
@@ -98,6 +106,11 @@ namespace SaveSystem.WorldSettings {
 
             if (clazz == typeof(double)) {
                 return node.AsFloat.Value;
+            }
+
+            if (clazz == typeof(bool))
+            {
+                return node.AsBoolean.Value;
             }
 
             return clazz.Name switch

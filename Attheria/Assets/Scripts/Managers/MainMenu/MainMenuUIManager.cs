@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MainMenuUIManager : MonoBehaviour
+namespace MainMenu
+{
+    public class MainMenuUIManager : MonoBehaviour
 {
     [Header("Main Menu")] 
     public Button MultiplayerBtn;
@@ -13,6 +15,12 @@ public class MainMenuUIManager : MonoBehaviour
     public Button ExitBtn;
 
     public TMP_Text GameVersion;
+
+    [Header("Server messages")] 
+    public GameObject ResponseMessageInstance;
+    public GameObject ServerPasswordInstance;
+    public ResponseMessageInstance ResponseMessage;
+    public ServerPasswordInstance ServerPassword;
 
     [Header("Reusable Components")]
     public GameObject BackBtn;
@@ -53,7 +61,6 @@ public class MainMenuUIManager : MonoBehaviour
     [Header("Loading screen")] 
     public GameObject LoadingScreenCanvas;
     public TMP_Text LoadingScreenWorldTitle;
-    
     public static MainMenuUIManager Instance { get; set; }
 
     private void Awake()
@@ -221,4 +228,5 @@ public class MainMenuUIManager : MonoBehaviour
         LoadingScreenCanvas.SetActive(true);
         LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
     }
+}
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MainMenu;
 using Mirror;
 using SaveSystem.WorldSettings;
 using Tommy;
@@ -12,7 +13,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
     [SerializeField] private GameObject World;
 
-    private string SavePath => $"{Application.persistentDataPath}/Worlds";
+    private string SavePath => $"{Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/'))}/Worlds";
 
     public List<WorldSettings> SavedGames = new();
     public List<GameObject> WorldInstances = new();
@@ -25,6 +26,9 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     [SerializeField] private Transport KCP_TRANSPORT;
     [SerializeField] private Transport STEAMWORKS_TRANSPORT;
 
+    public bool SteamMode;
+    [SerializeField] private SteamLobby steamLobby;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -34,7 +38,6 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     void Start()
     {
         manageSaveFolder();
-        manageServerWorld();
     }
 
     /// <summary>
@@ -42,10 +45,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     /// </summary>
     void manageSaveFolder()
     {
-#if UNITY_STANDALONE
-        if (!Directory.Exists($"{Application.persistentDataPath}/Worlds"))
+#if !UNITY_SERVER
+        if (!Directory.Exists($"{Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/'))}/Worlds"))
         {
-            Directory.CreateDirectory($"{Application.persistentDataPath}/Worlds");
+            Directory.CreateDirectory($"{Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/'))}/Worlds");
         }
 #endif
     }
@@ -68,13 +71,13 @@ public class MainMenuSaveLoadManager : MonoBehaviour
             string path = $"{d}/WorldSettings.wrld";
             if (!File.Exists(path))
             {
-                settings = createDefaultSettings();
+                settings = CreateDefaultSettings();
             }
             else
             {
                 using StreamReader reader = File.OpenText(path);
                 TomlTable table = TOML.Parse(reader);
-                settings = getTomlSettings(table);
+                settings = GetTomlSettings(table);
             }
 
             if (settings != null) SavedGames.Add(settings);
@@ -120,7 +123,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
 
         using (StreamWriter writer = File.CreateText($"{savePath}/WorldSettings.wrld"))
         {
-            createTomlTable(settings).WriteTo(writer);
+            CreateTomlTable(settings).WriteTo(writer);
         }
 
         Directory.CreateDirectory($"{savePath}/Saves");
@@ -132,45 +135,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles world saves on server build
-    /// </summary>
-    void manageServerWorld()
-    {
-#if UNITY_SERVER
-        string serverPath = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/World";
-        if (!Directory.Exists(serverPath))
-        {
-            Debug.Log("World directory not found, creating a new one!");
-
-            Directory.CreateDirectory(serverPath);
-        }
-
-        WorldSettings settings = new();
-        if (!File.Exists($"{serverPath}/WorldSettings.wrld"))
-        {
-            settings = createDefaultSettings();
-            using (StreamWriter writer = File.CreateText($"{serverPath}/WorldSettings.wrld"))
-            {
-                createTomlTable(settings).WriteTo(writer);
-            }
-        }
-        else
-        {
-            using StreamReader reader = File.OpenText($"{serverPath}/WorldSettings.wrld");
-            TomlTable table = TOML.Parse(reader);
-            settings = getTomlSettings(table);
-        }
-
-        string savePath = $"{serverPath}";
-        Directory.CreateDirectory($"{savePath}/Data");
-#endif
-    }
-
-    /// <summary>
     /// Generates default world settings
     /// </summary>
     /// <returns></returns>
-    WorldSettings createDefaultSettings()
+    public WorldSettings CreateDefaultSettings()
     {
         return new WorldSettings()
         {
@@ -198,7 +166,7 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         File.WriteAllText($"{path}/WorldSettings.wrld", "");
         using StreamWriter writer = File.CreateText($"{path}/WorldSettings.wrld");
         {
-            createTomlTable(settings).WriteTo(writer);
+            CreateTomlTable(settings).WriteTo(writer);
         }
     }
 
@@ -223,14 +191,14 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     /// </summary>
     /// <param name="settings"></param>
     /// <returns></returns>
-    TomlNode createTomlTable(WorldSettings settings) => TomLoader.writeValue(settings);
+    public TomlNode CreateTomlTable(WorldSettings settings) => TomLoader.writeValue(settings);
 
     /// <summary>
     /// Returns WorldSettings
     /// </summary>
     /// <param name="table"></param>
     /// <returns></returns>
-    WorldSettings getTomlSettings(TomlNode table) => TomLoader.readValue<WorldSettings>(table);
+    public WorldSettings GetTomlSettings(TomlNode table) => TomLoader.readValue<WorldSettings>(table);
 
     /// <summary>
     /// Starts selected game
@@ -240,8 +208,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
         GameConfigManager.Instance.Settings = LoadedSettings;
         GameConfigManager.Instance.WorldPath = LoadedWorldPath;
         GameConfigManager.Instance.SavePath = LoadedSavePath;
-
-        NetworkManager.singleton.StartHost();
+        
+        if (SteamMode) SteamLobby.Instance.HostSteamLobby();
+        else NetworkManager.singleton.StartHost();
+        
         MainMenuUIManager.Instance.ShowLoadingScreen();
     }
 
@@ -249,5 +219,10 @@ public class MainMenuSaveLoadManager : MonoBehaviour
     /// Sets network transport protocol
     /// </summary>
     /// <param name="onlineMode"></param>
-    public void SetTransportProtocol(bool onlineMode) => NetworkManager.singleton.transport = onlineMode ? STEAMWORKS_TRANSPORT : KCP_TRANSPORT;
+    public void SetTransportProtocol(bool onlineMode)
+    {
+        NetworkManager.singleton.transport = onlineMode ? STEAMWORKS_TRANSPORT : KCP_TRANSPORT;
+        Transport.active = NetworkManager.singleton.transport;
+        SteamMode = onlineMode ? STEAMWORKS_TRANSPORT : KCP_TRANSPORT;
+    }
 }

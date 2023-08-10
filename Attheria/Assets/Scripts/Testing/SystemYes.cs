@@ -14,12 +14,12 @@ public class SystemYes : Manager
     public List<TestENemi> Enemies;
     public List<TestENemi.SavableData> SavableEnemies;
     
-    public override object SaveData() => new SavableData()
+    public override Task<object> SaveData() => Task.FromResult<object>(new SavableData()
     {
         level = Level,
         GEJ = GEJ,
         enemies = Enemies.Select(enemy => enemy.Data).ToList()
-    };
+    });
 
     public override Task LoadData(object data)
     {

@@ -3,6 +3,6 @@ using UnityEngine;
 
 public interface ISaveable
 {
-    object SaveData();
+    Task<object> SaveData();
     Task LoadData(object data);
 }

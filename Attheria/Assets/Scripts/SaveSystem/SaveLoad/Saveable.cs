@@ -13,13 +13,13 @@ public class Saveable : MonoBehaviour
     [ContextMenu("Generate Id")]
     private void GenerateId() => Id = Guid.NewGuid().ToString();
 
-    public object CaptureState()
+    public async Task<object> CaptureState()
     {
         var state = new Dictionary<string, object>();
 
         foreach (var saveable in GetComponents<ISaveable>())
         {
-            state[saveable.GetType().ToString()] = saveable.SaveData();
+            state[saveable.GetType().ToString()] = await saveable.SaveData();
         }
 
         return state;

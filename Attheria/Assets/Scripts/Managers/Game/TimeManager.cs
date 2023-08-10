@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Managers;
+using UnityEngine;
 
 public class TimeManager : Manager
 {
@@ -18,7 +19,7 @@ public class TimeManager : Manager
     public event OnHourDelegate OnHour;
     public delegate void OnHourDelegate(int hour);
 
-    private void Awake()
+    public override void OnStartServer()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
@@ -26,6 +27,7 @@ public class TimeManager : Manager
 
     void Update()
     {
+        if (!isServer) return;
         Minute += UnityEngine.Time.deltaTime;
         PlayTime += UnityEngine.Time.deltaTime;
 
@@ -44,13 +46,13 @@ public class TimeManager : Manager
         }
     }
 
-    public override object SaveData() => new SavableData()
+    public override Task<object> SaveData() => Task.FromResult<object>(new SavableData()
     {
         PlayTime = PlayTime,
         Time = Minute,
         Hour = Hour,
         Day = Day,
-    };
+    });
 
     public override Task LoadData(object data)
     {

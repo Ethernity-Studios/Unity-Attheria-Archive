@@ -17,6 +17,8 @@ public class MenuManager : NetworkBehaviour
     [SerializeField] private GameObject Menu;
     [Header("Main Menu")] 
     [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject SaveBtn;
+    [SerializeField] public GameObject LoadBtn;
     [Header("Save Menu")] 
     [SerializeField] private GameObject SaveMenu;
     [SerializeField] private Transform SavesHolder;
@@ -53,7 +55,14 @@ public class MenuManager : NetworkBehaviour
 
     private void Start()
     {
-        SaveLoadManager.Instance.DataLoaded += init;
+        if (isServer)
+        {
+            SaveLoadManager.Instance.DataLoaded += init;
+            SaveBtn.SetActive(true);
+            LoadBtn.SetActive(true);
+            return;
+        }
+        init();
     }
 
     void init()
@@ -75,6 +84,7 @@ public class MenuManager : NetworkBehaviour
         opened = !opened; 
         MainMenu.SetActive(opened);
         Menu.SetActive(opened);
+
         if(opened) Back();
         if(!opened) closeAllMenus();
     }
@@ -260,11 +270,11 @@ public class MenuManager : NetworkBehaviour
     public void LoadSave(string path)
     {
         GameConfigManager.Instance.SavePath = path;
-        
+
         LoadingScreenCanvas.SetActive(true);
         LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
 
-        if(isServer) NetworkManager.singleton.ServerChangeScene(SceneManager.GetActiveScene().name);
+        NetworkManager.singleton.ServerChangeScene(SceneManager.GetActiveScene().name);
         
     }
 

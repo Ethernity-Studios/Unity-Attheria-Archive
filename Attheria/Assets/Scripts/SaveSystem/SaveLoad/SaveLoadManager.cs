@@ -16,11 +16,15 @@ public class SaveLoadManager : NetworkBehaviour
 {
     public static SaveLoadManager Instance;
     public event DataLoadedDelegate DataLoaded;
+    [SyncVar]
+    public bool Loaded = false;
+
+    public bool Loading;
+    public bool Saving;
 
     public delegate void DataLoadedDelegate();
 
     public List<Saveable> Savables; //List of all GameObjects that manage data saving
-
 
     private void Awake()
     {
@@ -30,6 +34,7 @@ public class SaveLoadManager : NetworkBehaviour
 
     private void Start()
     {
+        if (!isServer) return;
         Load();
     }
 
@@ -39,6 +44,8 @@ public class SaveLoadManager : NetworkBehaviour
     private void onDataLoaded()
     {
         DataLoaded?.Invoke();
+        Loaded = true;
+        Loading = false;
         Debug.Log("Data loaded!".Bold().Color("#FFFFFF").Size(13));
     }
 
@@ -46,14 +53,18 @@ public class SaveLoadManager : NetworkBehaviour
     //private string SavePath => $"{Application.persistentDataPath}/";
 
     [ContextMenu("Save")]
-    public void Save()
+    public async void Save()
     {
+        if (Saving) return;
+        Debug.Log("Saving");
+
+        Saving = true;
         Dictionary<string, Dictionary<string, object>> states = new();
         Dictionary<string, object> state = new();
         foreach (var saveable in Savables)
         {
             //state = LoadFile(saveable.SaveFile);         ///Need more testing to see if performance is better - when not using LoadFile we create new Dictionary every time and we have to write all data again
-            state[saveable.Id] = saveable.CaptureState();
+            state[saveable.Id] = await saveable.CaptureState();
             if (states.ContainsKey(saveable.SaveFile))
             {
                 states[saveable.SaveFile].Concat(state);
@@ -68,11 +79,16 @@ public class SaveLoadManager : NetworkBehaviour
         {
             SaveFile(v.Value, v.Key);
         }
+        Debug.Log("Save done");
+        Saving = false;
     }
 
     [ContextMenu("Load")]
     public async void Load()
     {
+        if (Loading) return;
+        Debug.Log("Loading");
+        Loading = true;
         Dictionary<string, Dictionary<string, object>> states = new();
         foreach (var saveable in Savables)
         {
@@ -96,6 +112,7 @@ public class SaveLoadManager : NetworkBehaviour
             }
             states.Clear();
         }
+        Debug.Log("Loading done");
         onDataLoaded();
     }
 

@@ -21,13 +21,6 @@
       "dependencies": {},
       "hash": "f9fb82dbaa73fd209d6565775b57ee6268645ea2"
     },
-    "com.mirror.steamworks.net": {
-      "version": "https://github.com/Chykary/FizzySteamworks.git?path=/com.mirror.steamworks.net",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f586cc33037326c47c79f388de0bfb762b10e6f8"
-    },
     "com.unity.ai.navigation": {
       "version": "1.1.4",
       "depth": 0,
