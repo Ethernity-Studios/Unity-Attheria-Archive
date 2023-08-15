@@ -56,8 +56,6 @@ public class SaveLoadManager : NetworkBehaviour
     public async void Save()
     {
         if (Saving) return;
-        Debug.Log("Saving");
-
         Saving = true;
         Dictionary<string, Dictionary<string, object>> states = new();
         Dictionary<string, object> state = new();
@@ -79,7 +77,6 @@ public class SaveLoadManager : NetworkBehaviour
         {
             SaveFile(v.Value, v.Key);
         }
-        Debug.Log("Save done");
         Saving = false;
     }
 
@@ -87,7 +84,6 @@ public class SaveLoadManager : NetworkBehaviour
     public async void Load()
     {
         if (Loading) return;
-        Debug.Log("Loading");
         Loading = true;
         Dictionary<string, Dictionary<string, object>> states = new();
         foreach (var saveable in Savables)
@@ -112,7 +108,6 @@ public class SaveLoadManager : NetworkBehaviour
             }
             states.Clear();
         }
-        Debug.Log("Loading done");
         onDataLoaded();
     }
 

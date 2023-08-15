@@ -9,7 +9,7 @@ public enum Result
     None = 0, Confirm = 1, Cancel = 2
 }
 
-public enum Disconnect
+public enum Gender
 {
-    
+    None = 0, Male = 1, Female = 2
 }

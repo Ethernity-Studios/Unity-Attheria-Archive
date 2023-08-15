@@ -42,7 +42,7 @@ using UnityEngine;
                     NetworkClient.Ready();
                     if (NetworkClient.localPlayer == null)
                     {
-                        NetworkClient.AddPlayer();
+                        NetworkClient.AddPlayer(-1);
                     }
                 }
             }

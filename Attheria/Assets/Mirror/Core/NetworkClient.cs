@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using Mirror.RemoteCalls;
 using UnityEngine;
 
@@ -997,7 +998,7 @@ namespace Mirror
         }
 
         /// <summary>Sends AddPlayer message to the server, indicating that we want to join the world.</summary>
-        public static bool AddPlayer()
+        public static bool AddPlayer(int zone)
         {
             // ensure valid ready connection
             if (connection == null)
@@ -1021,7 +1022,10 @@ namespace Mirror
             }
 
             // Debug.Log($"NetworkClient.AddPlayer() called with connection {readyConnection}");
-            connection.Send(new AddPlayerMessage());
+            connection.Send(new AddPlayerMessage()
+            {
+                Zone = zone
+            });
             return true;
         }
 

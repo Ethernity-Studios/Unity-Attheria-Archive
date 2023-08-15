@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8738417248987919765}
   - component: {fileID: 87952355442194775}
-  - component: {fileID: 306752356829831795}
   - component: {fileID: 87332273172011626}
   - component: {fileID: 107769642312836780}
   m_Layer: 0
@@ -86,14 +85,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &306752356829831795
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600119797492388873}
-  m_Enabled: 1
 --- !u!114 &87332273172011626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +197,33 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  PlayerData:
+    SteamId: 0
+    Spawned: 0
+    Dead: 0
+    Character:
+      Name: 
+      Gender: 0
+      HairType: 0
+      HairColor: 0
+      BeardType: 0
+      BeardColor: 0
+      EyeColor: 0
+      SkinColor: 0
+    UnlockedZones: 
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+  SteamId: 0
+  Name: 
+  Character:
+    Name: 
+    Gender: 0
+    HairType: 0
+    HairColor: 0
+    BeardType: 0
+    BeardColor: 0
+    EyeColor: 0
+    SkinColor: 0
 --- !u!114 &8375698882637393550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +252,7 @@ MonoBehaviour:
   sceneId: 0
   _assetId: 739954920
   serverOnly: 0
-  visible: 0
+  visible: 2
   hasSpawned: 0
 --- !u!33 &5923603176801912370
 MeshFilter:

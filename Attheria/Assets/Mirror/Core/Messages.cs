@@ -1,4 +1,5 @@
 using System;
+using System.Security.Policy;
 using UnityEngine;
 
 namespace Mirror
@@ -15,7 +16,10 @@ namespace Mirror
 
     public struct NotReadyMessage : NetworkMessage {}
 
-    public struct AddPlayerMessage : NetworkMessage {}
+    public struct AddPlayerMessage : NetworkMessage
+    {
+        public int Zone;
+    }
 
     public struct SceneMessage : NetworkMessage
     {

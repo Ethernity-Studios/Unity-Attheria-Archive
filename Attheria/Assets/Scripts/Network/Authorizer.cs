@@ -100,6 +100,7 @@ namespace Network
                     Message = "Accepted"
                 };
                 conn.Send(authMessage);
+                conn.steamId = msg.SteamId;
                 ServerAccept(conn);
                 return;
             }
@@ -142,6 +143,7 @@ namespace Network
                     Message = "Accepted"
                 };
                 conn.Send(authMessage);
+                conn.steamId = msg.SteamId;
                 Debug.Log($"User with steam id: {msg.SteamId} has successfully connected to the server!");
                 ServerAccept(conn);
             }
@@ -230,7 +232,21 @@ namespace Network
 
         public override void OnClientAuthenticate()
         {
+            if (MainMenuUIManager.Instance.DevInp)
+            {
+                AuthRequestMessage msg = new()
+                {
+                    SteamId = ulong.Parse(MainMenuUIManager.Instance.DevInp.text),
+                    GameVersion = GameManager.Instance.GameVersion
+                };
+
+                NetworkClient.Send(msg);
+                return;
+            }
+            
+            
             if (!SteamManager.Initialized) return;
+
             AuthRequestMessage message = new()
             {
                 SteamId = (ulong)SteamUser.GetSteamID(),

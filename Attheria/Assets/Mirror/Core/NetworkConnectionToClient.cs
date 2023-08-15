@@ -16,6 +16,8 @@ namespace Mirror
 
         public virtual string address => Transport.active.ServerGetClientAddress(connectionId);
 
+        public ulong steamId;
+
         /// <summary>NetworkIdentities that this connection can see</summary>
         // TODO move to server's NetworkConnectionToClient?
         public readonly HashSet<NetworkIdentity> observing = new HashSet<NetworkIdentity>();

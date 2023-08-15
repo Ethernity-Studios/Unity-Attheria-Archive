@@ -1,14 +1,34 @@
 using System;
+using System.Collections.Generic;
 using Mirror;
+using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-    [SyncVar]
+    public PlayerData PlayerData;
+    
+    public ulong SteamId;
     public string Name;
+    //[SyncVar(hook = nameof(onCharacterChange))]
+    public Character Character;
 
 
-    private void Start()
+    void onCharacterChange(Character _, Character newValue)
     {
-
+        
     }
+}
+
+[Serializable]
+public struct PlayerData
+{
+    public ulong SteamId;
+    public bool Spawned;
+    public bool Dead;
+    public Character Character;
+
+    public List<int> UnlockedZones;
+
+    public Vector3 Position;
+    public Vector3 Rotation;
 }

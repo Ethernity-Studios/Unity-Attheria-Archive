@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Managers;
-using UnityEngine;
 
 public class TimeManager : Manager
 {
@@ -19,6 +18,9 @@ public class TimeManager : Manager
     public event OnHourDelegate OnHour;
     public delegate void OnHourDelegate(int hour);
 
+    public static bool Paused;
+    public bool CanBePaused;
+
     public override void OnStartServer()
     {
         if (Instance != null && Instance != this) Destroy(this);
@@ -28,6 +30,7 @@ public class TimeManager : Manager
     void Update()
     {
         if (!isServer) return;
+        if (Paused) return;
         Minute += UnityEngine.Time.deltaTime;
         PlayTime += UnityEngine.Time.deltaTime;
 

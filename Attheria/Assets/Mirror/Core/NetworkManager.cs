@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -1194,8 +1195,6 @@ namespace Mirror
 
         void OnServerAddPlayerInternal(NetworkConnectionToClient conn, AddPlayerMessage msg)
         {
-            //Debug.Log("NetworkManager.OnServerAddPlayer");
-
             if (autoCreatePlayer && playerPrefab == null)
             {
                 Debug.LogError("The PlayerPrefab is empty on the NetworkManager. Please setup a PlayerPrefab object.");
@@ -1213,8 +1212,8 @@ namespace Mirror
                 Debug.LogError("There is already a player for this connection.");
                 return;
             }
-
-            OnServerAddPlayer(conn);
+            
+            OnServerAddPlayer(conn, msg.Zone);
         }
 
         void OnClientConnectInternal()
@@ -1364,8 +1363,10 @@ namespace Mirror
 
         /// <summary>Called on server when a client requests to add the player. Adds playerPrefab by default. Can be overwritten.</summary>
         // The default implementation for this function creates a new player object from the playerPrefab.
-        public virtual void OnServerAddPlayer(NetworkConnectionToClient conn)
+        public virtual void OnServerAddPlayer(NetworkConnectionToClient conn, int zoneId)
         {
+            Debug.Log("HAAH: " + zoneId + " | " + conn.steamId);
+
             Transform startPos = GetStartPosition();
             GameObject player = startPos != null
                 ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
@@ -1400,7 +1401,7 @@ namespace Mirror
                     NetworkClient.Ready();
 
                 if (autoCreatePlayer)
-                    NetworkClient.AddPlayer();
+                    NetworkClient.AddPlayer(-1);
             }
         }
 
@@ -1430,7 +1431,7 @@ namespace Mirror
             if (NetworkClient.connection.isAuthenticated && clientSceneOperation == SceneOperation.Normal && autoCreatePlayer && NetworkClient.localPlayer == null)
             {
                 // add player if existing one is null
-                NetworkClient.AddPlayer();
+                NetworkClient.AddPlayer(-1);
             }
         }
 

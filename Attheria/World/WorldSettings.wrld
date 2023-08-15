@@ -1,0 +1,7 @@
+[world]
+WorldName = "Default World"
+MapName = "Attheria"
+
+[someSettings]
+TestField = "HAHA"
+TestFieldInt = 0

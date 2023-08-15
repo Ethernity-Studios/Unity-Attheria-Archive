@@ -206,6 +206,105 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CharacterCreator"",
+            ""id"": ""7de01c52-dc1d-4350-9950-a284afc3e20e"",
+            ""actions"": [
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9b389ea1-9822-41c9-8a1b-25653e975025"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5c5e494-24d5-4758-ac14-144d215234fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""b129c752-f152-4028-861e-0e19cfdb63b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ba2d488b-832c-4adf-916d-7da8b3fb303f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""454455c9-69b4-40fb-a3b8-69978edf0229"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad36877d-8613-43ad-850f-beaf715d708a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8649904-921c-4112-bd43-ade641712568"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0fc2232-f0e6-4bd9-90df-18252b7309ed"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e722450b-1df9-4f6d-b297-f97c4b7cc987"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -225,6 +324,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Toggle = m_Menu.FindAction("Toggle", throwIfNotFound: true);
+        // CharacterCreator
+        m_CharacterCreator = asset.FindActionMap("CharacterCreator", throwIfNotFound: true);
+        m_CharacterCreator_Point = m_CharacterCreator.FindAction("Point", throwIfNotFound: true);
+        m_CharacterCreator_Rotate = m_CharacterCreator.FindAction("Rotate", throwIfNotFound: true);
+        m_CharacterCreator_Drag = m_CharacterCreator.FindAction("Drag", throwIfNotFound: true);
+        m_CharacterCreator_Zoom = m_CharacterCreator.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -512,6 +617,76 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // CharacterCreator
+    private readonly InputActionMap m_CharacterCreator;
+    private List<ICharacterCreatorActions> m_CharacterCreatorActionsCallbackInterfaces = new List<ICharacterCreatorActions>();
+    private readonly InputAction m_CharacterCreator_Point;
+    private readonly InputAction m_CharacterCreator_Rotate;
+    private readonly InputAction m_CharacterCreator_Drag;
+    private readonly InputAction m_CharacterCreator_Zoom;
+    public struct CharacterCreatorActions
+    {
+        private @PlayerInput m_Wrapper;
+        public CharacterCreatorActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Point => m_Wrapper.m_CharacterCreator_Point;
+        public InputAction @Rotate => m_Wrapper.m_CharacterCreator_Rotate;
+        public InputAction @Drag => m_Wrapper.m_CharacterCreator_Drag;
+        public InputAction @Zoom => m_Wrapper.m_CharacterCreator_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_CharacterCreator; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CharacterCreatorActions set) { return set.Get(); }
+        public void AddCallbacks(ICharacterCreatorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CharacterCreatorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CharacterCreatorActionsCallbackInterfaces.Add(instance);
+            @Point.started += instance.OnPoint;
+            @Point.performed += instance.OnPoint;
+            @Point.canceled += instance.OnPoint;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @Drag.started += instance.OnDrag;
+            @Drag.performed += instance.OnDrag;
+            @Drag.canceled += instance.OnDrag;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+        }
+
+        private void UnregisterCallbacks(ICharacterCreatorActions instance)
+        {
+            @Point.started -= instance.OnPoint;
+            @Point.performed -= instance.OnPoint;
+            @Point.canceled -= instance.OnPoint;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @Drag.started -= instance.OnDrag;
+            @Drag.performed -= instance.OnDrag;
+            @Drag.canceled -= instance.OnDrag;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+        }
+
+        public void RemoveCallbacks(ICharacterCreatorActions instance)
+        {
+            if (m_Wrapper.m_CharacterCreatorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICharacterCreatorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CharacterCreatorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CharacterCreatorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CharacterCreatorActions @CharacterCreator => new CharacterCreatorActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -531,5 +706,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnToggle(InputAction.CallbackContext context);
+    }
+    public interface ICharacterCreatorActions
+    {
+        void OnPoint(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnDrag(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }
