@@ -5220,7 +5220,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 973113975}
-  playerPrefab: {fileID: 1218241094401000122, guid: 7e6978a85fe627a44aaab8b1ec5d6fc4,
+  playerPrefab: {fileID: 4586402217618310745, guid: 7e6978a85fe627a44aaab8b1ec5d6fc4,
     type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
@@ -7708,7 +7708,7 @@ MonoBehaviour:
   LoadedSavePath: 
   KCP_TRANSPORT: {fileID: 973113978}
   STEAMWORKS_TRANSPORT: {fileID: 973113971}
-  SteamMode: 1
+  SteamMode: 0
   steamLobby: {fileID: 897145703}
 --- !u!1 &1258153582
 GameObject:

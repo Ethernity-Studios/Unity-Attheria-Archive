@@ -32,7 +32,7 @@ public class LoadingScreen : MonoBehaviour
     private void fadeOutScreen(Scene scene, LoadSceneMode loadSceneMode)
     {
         SceneManager.sceneLoaded -= fadeOutScreen;
-        
+        if(gameObject != null)
         StartCoroutine(WaitForInstance());
 
     }

@@ -35,6 +35,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""06d3bd94-4b66-48fb-8fd3-712f84dd87d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f30a9abc-633f-41f6-95eb-660dd2a605ec"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Hold(duration=1.401298E-45,pressPoint=1.401298E-45)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -107,6 +127,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ToggleView"",
+                    ""type"": ""Value"",
+                    ""id"": ""71b51cde-c69e-4e6d-8adf-c7ae1f160125"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ToggleMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""59a1e6e9-8acb-4970-ada5-6c0dd0c43eae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -120,6 +158,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af929a9e-9c16-43ab-8624-927ada04f9cd"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d8090d64-ea33-43d5-8c7c-a365977218ab"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""Clamp(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""ToggleView"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""818cbc85-280a-44fe-8cc6-e29184ca78a6"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""31f6ff63-c115-4bf1-b076-ea41e1dfd88e"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleView"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -198,6 +280,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""3583822d-fb59-4fae-bcb4-8e6a8158b98a"",
                     ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fb61178-bb42-4405-a292-226e43358cc6"",
+                    ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,9 +405,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
+        m_Camera_ToggleView = m_Camera.FindAction("ToggleView", throwIfNotFound: true);
+        m_Camera_ToggleMode = m_Camera.FindAction("ToggleMode", throwIfNotFound: true);
         // Console
         m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
         m_Console_Toggle = m_Console.FindAction("Toggle", throwIfNotFound: true);
@@ -392,11 +488,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMovement;
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Movement;
+    private readonly InputAction m_PlayerMovement_Jump;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
+        public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -409,6 +507,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -416,6 +517,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -438,11 +542,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
     private readonly InputAction m_Camera_Look;
+    private readonly InputAction m_Camera_ToggleView;
+    private readonly InputAction m_Camera_ToggleMode;
     public struct CameraActions
     {
         private @PlayerInput m_Wrapper;
         public CameraActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Look => m_Wrapper.m_Camera_Look;
+        public InputAction @ToggleView => m_Wrapper.m_Camera_ToggleView;
+        public InputAction @ToggleMode => m_Wrapper.m_Camera_ToggleMode;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -455,6 +563,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @ToggleView.started += instance.OnToggleView;
+            @ToggleView.performed += instance.OnToggleView;
+            @ToggleView.canceled += instance.OnToggleView;
+            @ToggleMode.started += instance.OnToggleMode;
+            @ToggleMode.performed += instance.OnToggleMode;
+            @ToggleMode.canceled += instance.OnToggleMode;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -462,6 +576,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @ToggleView.started -= instance.OnToggleView;
+            @ToggleView.performed -= instance.OnToggleView;
+            @ToggleView.canceled -= instance.OnToggleView;
+            @ToggleMode.started -= instance.OnToggleMode;
+            @ToggleMode.performed -= instance.OnToggleMode;
+            @ToggleMode.canceled -= instance.OnToggleMode;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -690,10 +810,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
         void OnLook(InputAction.CallbackContext context);
+        void OnToggleView(InputAction.CallbackContext context);
+        void OnToggleMode(InputAction.CallbackContext context);
     }
     public interface IConsoleActions
     {

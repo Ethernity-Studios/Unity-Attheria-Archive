@@ -41,7 +41,7 @@ public class MenuManager : NetworkBehaviour
     [SerializeField] private GameObject BackButton;
 
     private PlayerInput input;
-    private bool opened = false;
+    public bool Opened = false;
 
     private void Awake()
     {
@@ -80,19 +80,30 @@ public class MenuManager : NetworkBehaviour
     void toggleMenu(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        opened = !opened; 
-        MainMenu.SetActive(opened);
-        Menu.SetActive(opened);
+        Opened = !Opened; 
+        MainMenu.SetActive(Opened);
+        Menu.SetActive(Opened);
 
-        if(opened) Back();
-        if(!opened) closeAllMenus();
+        switch (Opened)
+        {
+            case true:
+                Back();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            case false:
+                closeAllMenus();
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+        }
 
         if (!isServer) return;
         //Pause game if host mode && if pause is possible
         TimeManager.Paused = isServer switch
         {
-            true when TimeManager.Instance.CanBePaused && opened => true,
-            true when !opened => false,
+            true when TimeManager.Instance.CanBePaused && Opened => true,
+            true when !Opened => false,
             _ => TimeManager.Paused
         };
     }
@@ -101,7 +112,9 @@ public class MenuManager : NetworkBehaviour
     {
         MainMenu.SetActive(false);
         Menu.SetActive(false);
-        opened = false;
+        Opened = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void openMainMenu()
