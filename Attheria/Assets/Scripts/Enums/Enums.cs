@@ -19,3 +19,8 @@ public enum CameraType
 {
     FirstPerson, ThirdPersonLocked, ThirdPersonFree
 }
+
+public enum MovementState
+{
+   idle, walking, sprinting, crouching, crawling, swimming, air
+}

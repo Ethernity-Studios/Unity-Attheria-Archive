@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Mirror;
 using UnityEngine;
@@ -88,6 +89,9 @@ public class LoadingScreen : MonoBehaviour
             yield return null;
         }
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= fadeOutScreen;
+    }
 }

@@ -123,7 +123,7 @@ public class PlayerCameraController : NetworkBehaviour
     public void ChangeCameraType(CameraType type)
     {
         if (MenuManager.Instance.Opened) return;
-        CameraType = type;
+        CameraType = type; 
 
         firstPersonCamera.SetActive(false);
         thirdPersonLockCamera.SetActive(false);
