@@ -1,0 +1,621 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/Graphics/Materials/World/Winter/IcePiles/IcePiles.sbsar
+  RawData: {fileID: -244192453324840774, guid: 5bb3d62717df7c843b8cec826354cc1e, type: 3}
+  Name: Default
+  IsRoot: 1
+  FlagedForDelete: 0
+  GUID: 14043ad6-4570-49f8-875c-a7571852e083
+  Index: 0
+  Input:
+  - rid: 6200043346314395824
+  - rid: 6200043346314395825
+  - rid: 6200043346314395826
+  - rid: 6200043346314395827
+  - rid: 6200043346314395828
+  - rid: 6200043346314395829
+  - rid: 6200043346314395830
+  - rid: 6200043346314395831
+  - rid: 6200043346314395832
+  - rid: 6200043346314395833
+  - rid: 6200043346314395834
+  - rid: 6200043346314395835
+  - rid: 6200043346314395836
+  - rid: 6200043346314395837
+  - rid: 6200043346314395838
+  - rid: 6200043346314395839
+  - rid: 6200043346314395840
+  - rid: 6200043346314395841
+  - rid: 6200043346314395842
+  - rid: 6200043346314395843
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 6
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: bfaa5b61426440c4dbc379733cc9acfa, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 1
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: e348bca54cfb7194890944a4d7937ec5, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  - Index: 2
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 2
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 3
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 3
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: a172d01a1ffd6844db695229122a9f05, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 4
+    VirtualOutputIndex: 10
+    Description:
+      Identifier: height
+      Label: height
+      Index: 4
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: 8fb97b4e695b4d241a947cba4c63fb57, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  - Index: 5
+    VirtualOutputIndex: 11
+    Description:
+      Identifier: ambientocclusion
+      Label: ambientocclusion
+      Index: 5
+      Type: 8
+      Channel: ambientOcclusion
+    OutputTexture: {fileID: 2800000, guid: e5753fd0ab169e544abf75996da7c7ae, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _OcclusionMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  HasThumbnail: 0
+  CurrentStatePreset: 
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: 385dd70dc622c4b4595d74088cb5c9e6, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://IcePiles\" label=\"\" >\n  <presetinput
+    identifier=\"$outputsize\" uid=\"2817228475\" type=\"8\" value=\"10,10\" />\n
+    </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  Presets:
+  - Info:
+      Label: Large Chunks
+      Description: 
+      URL: pkg://IcePiles
+    PresetIndex: 0
+    PresetValue: 
+    NativePreset: 1
+  - Info:
+      Label: Large Snowy Chunks
+      Description: 
+      URL: pkg://IcePiles
+    PresetIndex: 1
+    PresetValue: 
+    NativePreset: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6200043346314395824
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395825
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395826
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: ice_pattern_zoom
+          Label: Ice Pattern Zoom
+          GuiGroup: 
+          GuiDescription: The zoom of the ice pattern.
+          Type: 4
+          WidgetType: 1
+        Data: 8
+        NumericalDescription:
+          DefaultValue: 8
+          MinValue: 0
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395827
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: ice_pattern_rotation_random
+          Label: Ice Pattern Rotation Random
+          GuiGroup: 
+          GuiDescription: The randomness of the rotation of the patterns.
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395828
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: ice_color
+          Label: Ice Color
+          GuiGroup: 
+          GuiDescription: The color preset of the ice.
+          Type: 4
+          WidgetType: 5
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 3
+          EnumValues:
+          - Value: 1
+            Label: Default
+          - Value: 2
+            Label: Cloudy
+          - Value: 3
+            Label: Blue Ice
+    - rid: 6200043346314395829
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: enable_snow_switch
+          Label: Enable Snow
+          GuiGroup: Snow
+          GuiDescription: Enables the snow effect on the material. Has performance
+            benefits when set to off if it is not needed.
+          Type: 4
+          WidgetType: 4
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395830
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: snow_coloring
+          Label: Snow Coloring
+          GuiGroup: Snow
+          GuiDescription: The main color of the snow.
+          Type: 4
+          WidgetType: 5
+        Data: 2
+        NumericalDescription:
+          DefaultValue: 2
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 3
+          EnumValues:
+          - Value: 1
+            Label: Default
+          - Value: 2
+            Label: White
+          - Value: 3
+            Label: Blued
+    - rid: 6200043346314395831
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: snow_normal_intensity
+          Label: Snow Normal Intensity
+          GuiGroup: Snow
+          GuiDescription: The intensity of the normal map in respect to the snow
+            covering.
+          Type: 0
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 0
+          MaxValue: 10
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395832
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: snow_roughness
+          Label: Snow Roughness
+          GuiGroup: Snow
+          GuiDescription: The roughness of the snow overlay. Lower values give an
+            increasingly icy effect.
+          Type: 0
+          WidgetType: 1
+        Data: 0.7
+        NumericalDescription:
+          DefaultValue: 0.7
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395833
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: snow_dunes_amount
+          Label: Snow Dunes Amount
+          GuiGroup: Snow/Dunes
+          GuiDescription: The size and scale of the snow dunes. Dunes are intended
+            to give macro-level height information to the material. Not to be confused
+            with "Snow Waves" which are for micro-level details.
+          Type: 4
+          WidgetType: 1
+        Data: 6
+        NumericalDescription:
+          DefaultValue: 6
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395834
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 10
+        Description:
+          Identifier: snow_dunes_height_range
+          Label: Snow Dunes Height Range
+          GuiGroup: Snow/Dunes
+          GuiDescription: The range of the snow dunes. Higher values means higher
+            peaks and lower valleys, whereas lower values means the snow will be
+            more evenly-distributed.
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395835
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 11
+        Description:
+          Identifier: snow_waves_intensity
+          Label: Snow Waves Intensity
+          GuiGroup: Snow/Waves
+          GuiDescription: The intensity of the micro-level snow waves. When using
+            higher intensities, prefer to set the Dune Height Position >= 0.75 to
+            avoid "bottoming out" on the height detail.
+          Type: 0
+          WidgetType: 1
+        Data: 0.3
+        NumericalDescription:
+          DefaultValue: 0.3
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395836
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 12
+        Description:
+          Identifier: snow_waves_rotation
+          Label: Snow Waves Rotation
+          GuiGroup: Snow/Waves
+          GuiDescription: The rotation of the snow waves. Maps 0-360 degrees from
+            0 to 1.
+          Type: 0
+          WidgetType: 2
+        Data: 0.25
+        NumericalDescription:
+          DefaultValue: 0.25
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395837
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 13
+        Description:
+          Identifier: snow_waves_softness
+          Label: Snow Waves Softness
+          GuiGroup: Snow/Waves
+          GuiDescription: The softness of the snow waves. Determines how crisp or
+            dull the peaks of the waves appear.
+          Type: 0
+          WidgetType: 1
+        Data: 0.2
+        NumericalDescription:
+          DefaultValue: 0.2
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395838
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 14
+        Description:
+          Identifier: snow_height_offset
+          Label: Snow Height Offset
+          GuiGroup: Snow/Mixing
+          GuiDescription: The offset for how to balance the snow with the main material.
+            This can be seen as a "master control" for the height mixing. Lower than
+            0.5 will lessen the default height, while greater than 0.5 will increase
+            the default height.
+          Type: 0
+          WidgetType: 1
+        Data: 0.19
+        NumericalDescription:
+          DefaultValue: 0.19
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395839
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 15
+        Description:
+          Identifier: snow_height_mixing_contrast
+          Label: Snow Height Mixing Contrast
+          GuiGroup: Snow/Mixing
+          GuiDescription: Controls the amount of fading should occur between the
+            snow and the main material. Higher values give a more crisp cutoff between
+            material and snow.
+          Type: 0
+          WidgetType: 1
+        Data: 0.63
+        NumericalDescription:
+          DefaultValue: 0.63
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395840
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 16
+        Description:
+          Identifier: snow_cover_direction
+          Label: Snow Cover Direction
+          GuiGroup: Snow/Mixing
+          GuiDescription: Whether the snow covers the top areas first or the bottom.
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395841
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 17
+        Description:
+          Identifier: snow_waves_x_amount
+          Label: Snow Waves X Amount
+          GuiGroup: Snow/Waves
+          GuiDescription: The number of snow waves on the x-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 16
+        NumericalDescription:
+          DefaultValue: 16
+          MinValue: 1
+          MaxValue: 32
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395842
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 18
+        Description:
+          Identifier: snow_waves_y_amount
+          Label: Snow Waves Y Amount
+          GuiGroup: Snow/Waves
+          GuiDescription: The number of snow waves on the y-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 4
+        NumericalDescription:
+          DefaultValue: 4
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346314395843
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 19
+        Description:
+          Identifier: invert_normal_map
+          Label: Invert Normal Map
+          GuiGroup: Advanced
+          GuiDescription: Inverts the normal map direction for compatability with
+            OpenGL and DirectX.
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []

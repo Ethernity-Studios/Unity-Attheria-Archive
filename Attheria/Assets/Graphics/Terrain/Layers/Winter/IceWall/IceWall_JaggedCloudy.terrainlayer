@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1953259897 &8574412962073106934
+TerrainLayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: IceWall_JaggedCloudy
+  m_DiffuseTexture: {fileID: 2800000, guid: 3fc42fc61c8bbc843bea488dd9996343, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 2c64628bab8794645b78ef9ccd357149, type: 3}
+  m_MaskMapTexture: {fileID: 2800000, guid: eaf7204fe97b4574babe7fa356b2aedf, type: 3}
+  m_TileSize: {x: 2, y: 2}
+  m_TileOffset: {x: 0, y: 0}
+  m_Specular: {r: 0, g: 0, b: 0, a: 0}
+  m_Metallic: 0
+  m_Smoothness: 0
+  m_NormalScale: 1
+  m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
+  m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
+  m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}
+  m_MaskMapRemapMax: {x: 1, y: 1, z: 1, w: 1}

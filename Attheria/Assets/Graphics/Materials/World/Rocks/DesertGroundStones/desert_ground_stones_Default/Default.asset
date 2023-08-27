@@ -1,0 +1,868 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/Graphics/Materials/World/Rocks/desert_ground_stones/desert_ground_stones.sbsar
+  RawData: {fileID: -244192453324840774, guid: 492336245b80d714e96df02ebce1e79e, type: 3}
+  Name: Default
+  IsRoot: 1
+  FlagedForDelete: 0
+  GUID: 30b67a5f-7e7f-4cc5-b85a-546ab374f42d
+  Index: 0
+  Input:
+  - rid: 6200043345847517422
+  - rid: 6200043345847517423
+  - rid: 6200043345847517424
+  - rid: 6200043345847517425
+  - rid: 6200043345847517426
+  - rid: 6200043345847517427
+  - rid: 6200043345847517428
+  - rid: 6200043345847517429
+  - rid: 6200043345847517430
+  - rid: 6200043345847517431
+  - rid: 6200043345847517432
+  - rid: 6200043345847517433
+  - rid: 6200043345847517434
+  - rid: 6200043345847517435
+  - rid: 6200043345847517436
+  - rid: 6200043345847517437
+  - rid: 6200043345847517438
+  - rid: 6200043345847517439
+  - rid: 6200043345847517440
+  - rid: 6200043345847517441
+  - rid: 6200043345847517442
+  - rid: 6200043345847517443
+  - rid: 6200043345847517444
+  - rid: 6200043345847517445
+  - rid: 6200043345847517446
+  - rid: 6200043345847517447
+  - rid: 6200043345847517448
+  - rid: 6200043345847517449
+  - rid: 6200043345847517450
+  - rid: 6200043345847517451
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 6
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: 23090d8a8a2ce4fe4b20a06554926b43, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 1
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: 8cee7db232a9347189d7b9af8ca024ca, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  - Index: 2
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 2
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 3
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 3
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: 63b8f4b9979ff43499e9b04d51d67c8a, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 4
+    VirtualOutputIndex: 10
+    Description:
+      Identifier: height
+      Label: height
+      Index: 4
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: 4816d80acf45a45cbba9157a4196b49e, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  - Index: 5
+    VirtualOutputIndex: 11
+    Description:
+      Identifier: ambientocclusion
+      Label: ambientocclusion
+      Index: 5
+      Type: 8
+      Channel: ambientOcclusion
+    OutputTexture: {fileID: 2800000, guid: c375049216fda424da49cc188e357bd8, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _OcclusionMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  HasThumbnail: 0
+  CurrentStatePreset: 
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: fcb021fb1bc964cff9ba9c504fe2add8, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://desert_ground_stones\" label=\"\" >\n 
+    <presetinput identifier=\"$outputsize\" uid=\"3616333735\" type=\"8\" value=\"10,10\"
+    />\n </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  Presets:
+  - Info:
+      Label: Shale Ground Rocks Sandy
+      Description: 
+      URL: pkg://desert_ground_stones
+    PresetIndex: 0
+    PresetValue: 
+    NativePreset: 1
+  - Info:
+      Label: Shale Ground Rocks Wet and Sandy
+      Description: 
+      URL: pkg://desert_ground_stones
+    PresetIndex: 1
+    PresetValue: 
+    NativePreset: 1
+  - Info:
+      Label: Sandstone
+      Description: 
+      URL: pkg://desert_ground_stones
+    PresetIndex: 2
+    PresetValue: 
+    NativePreset: 1
+  - Info:
+      Label: Orange Sandstone
+      Description: 
+      URL: pkg://desert_ground_stones
+    PresetIndex: 3
+    PresetValue: 
+    NativePreset: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6200043345847517422
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517423
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517424
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: rock_type
+          Label: Rock Type
+          GuiGroup: 
+          GuiDescription: The type of rock color to use with this material.
+          Type: 4
+          WidgetType: 5
+        Data: 4
+        NumericalDescription:
+          DefaultValue: 4
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 9
+          EnumValues:
+          - Value: 1
+            Label: Basalt
+          - Value: 2
+            Label: Orange Sandstone
+          - Value: 3
+            Label: Sandstone
+          - Value: 4
+            Label: Shale
+          - Value: 5
+            Label: Siltstone
+          - Value: 6
+            Label: DirtRock
+          - Value: 7
+            Label: Dark Shale
+          - Value: 8
+            Label: Volcanic Rock
+          - Value: 9
+            Label: Limestone
+    - rid: 6200043345847517425
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: rock_highlights_opacity
+          Label: Rock Highlights Opacity
+          GuiGroup: Color
+          GuiDescription: Controls the edge highlight strength on the rocks.
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517426
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: rock_pattern_x_amount
+          Label: Rock Pattern X Amount
+          GuiGroup: Rock
+          GuiDescription: The amount of patterns in the x-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 1
+          MaxValue: 12
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517427
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: rock_pattern_y_amount
+          Label: Rock Pattern Y Amount
+          GuiGroup: Rock
+          GuiDescription: The amount of patterns on the y-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 1
+          MaxValue: 12
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517428
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: rock_height_variance
+          Label: Rock Height Variance
+          GuiGroup: Rock
+          GuiDescription: The height variance of the ground rocks.
+          Type: 0
+          WidgetType: 1
+        Data: 0.42
+        NumericalDescription:
+          DefaultValue: 0.42
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517429
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: rock_roughness_range
+          Label: Rock Roughness Range
+          GuiGroup: Rock
+          GuiDescription: The range of the roughness on the rock portions of the
+            material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.08
+        NumericalDescription:
+          DefaultValue: 0.08
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517430
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: rock_roughness_position
+          Label: Rock Roughness Position
+          GuiGroup: Rock
+          GuiDescription: The position of the roughness on the rock. Higher positions
+            yield rocks that are less reflective.
+          Type: 0
+          WidgetType: 1
+        Data: 0.77
+        NumericalDescription:
+          DefaultValue: 0.77
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517431
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: rock_normal_intensity
+          Label: Rock Normal Intensity
+          GuiGroup: Rock
+          GuiDescription: 'The <b>Intensity</b> parameter modifies the intensity
+            of height map '
+          Type: 0
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 0
+          MaxValue: 15
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517432
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 10
+        Description:
+          Identifier: ambient_occlusion_intensity
+          Label: Ambient Occlusion Intensity
+          GuiGroup: Ambient Occlusion
+          GuiDescription: Defines the intensity of the AO to simulate shadowed areas
+            on the material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.15
+        NumericalDescription:
+          DefaultValue: 0.15
+          MinValue: 0
+          MaxValue: 0.2
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517433
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 11
+        Description:
+          Identifier: enable_water_switch
+          Label: Enable Water
+          GuiGroup: Water
+          GuiDescription: Enable or disable the water feature on the material. Disabling
+            when not used has performance benefits.
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517434
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 12
+        Description:
+          Identifier: water_level
+          Label: Water Level
+          GuiGroup: Water
+          GuiDescription: The amount of flooding on the material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.25
+        NumericalDescription:
+          DefaultValue: 0.25
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517435
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 13
+        Description:
+          Identifier: water_darkness
+          Label: Water Darkness
+          GuiGroup: Water
+          GuiDescription: The amount to darken the areas that are submerged on the
+            material
+          Type: 0
+          WidgetType: 1
+        Data: 0.1
+        NumericalDescription:
+          DefaultValue: 0.1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517436
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 14
+        Description:
+          Identifier: water_edges_wetness
+          Label: Water Edges Wetness
+          GuiGroup: Water
+          GuiDescription: How we the edges where the material meets the water appears.
+          Type: 0
+          WidgetType: 1
+        Data: 0.1
+        NumericalDescription:
+          DefaultValue: 0.1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517437
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 15
+        Description:
+          Identifier: water_edges_wetness_distance
+          Label: Water Edges Wetness Distance
+          GuiGroup: Water
+          GuiDescription: How far the edge wetness spreads on the material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.1
+        NumericalDescription:
+          DefaultValue: 0.1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517438
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 16
+        Description:
+          Identifier: enable_sand_switch
+          Label: Enable Sand
+          GuiGroup: Sand
+          GuiDescription: Enables the sand effect. When not in use, disabling has
+            performance benefits.
+          Type: 4
+          WidgetType: 4
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517439
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 17
+        Description:
+          Identifier: sand_coloring
+          Label: Sand Coloring
+          GuiGroup: Sand
+          GuiDescription: The color preset for the sand effect.
+          Type: 4
+          WidgetType: 5
+        Data: 2
+        NumericalDescription:
+          DefaultValue: 2
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 4
+          EnumValues:
+          - Value: 1
+            Label: Beach Sand
+          - Value: 2
+            Label: Desert Sand
+          - Value: 3
+            Label: Sahara
+          - Value: 4
+            Label: Red
+    - rid: 6200043345847517440
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 18
+        Description:
+          Identifier: sand_normal_intensity
+          Label: Sand Normal Intensity
+          GuiGroup: Sand
+          GuiDescription: The intensity of the normal map on the sand.
+          Type: 0
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 0
+          MaxValue: 10
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517441
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 19
+        Description:
+          Identifier: sand_roughness
+          Label: Sand Roughness
+          GuiGroup: Sand
+          GuiDescription: The roughness of the sand. Lower values will give a "wet"
+            look, while higher values will give a dry look with little reflectivity.
+          Type: 0
+          WidgetType: 1
+        Data: 0.8
+        NumericalDescription:
+          DefaultValue: 0.8
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517442
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 20
+        Description:
+          Identifier: sand_dunes_amount
+          Label: Sand Dunes Amount
+          GuiGroup: Sand/Dunes
+          GuiDescription: The size and scale of the sand dunes. Dunes are intended
+            to give macro-level height information to the material. Not to be confused
+            with "Sand Waves" which are for micro-level details.
+          Type: 4
+          WidgetType: 1
+        Data: 3
+        NumericalDescription:
+          DefaultValue: 3
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517443
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 21
+        Description:
+          Identifier: sand_dunes_height_range
+          Label: Sand Dunes Height Range
+          GuiGroup: Sand/Dunes
+          GuiDescription: The range of the sand dunes. Higher values means higher
+            peaks and lower valleys, whereas lower values means the sand will be
+            more evenly-distributed.
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517444
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 22
+        Description:
+          Identifier: sand_dunes_height_position
+          Label: Sand Dunes Height Position
+          GuiGroup: Sand/Dunes
+          GuiDescription: The position of the sand dune height. Higher values will
+            mean more of the material is flooded with sand. When using a high Sand
+            Waves intensity, prefer to have this value >= 0.75 to prevent "bottoming
+            out".
+          Type: 0
+          WidgetType: 1
+        Data: 0.75
+        NumericalDescription:
+          DefaultValue: 0.75
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517445
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 23
+        Description:
+          Identifier: sand_waves_intensity
+          Label: Sand Waves Intensity
+          GuiGroup: Sand/Waves
+          GuiDescription: The intensity of the micro-level sand waves. When using
+            higher intensities, prefer to set the Dune Height Position >= 0.75 to
+            avoid "bottoming out" on the height detail.
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517446
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 24
+        Description:
+          Identifier: sand_waves_rotation
+          Label: Sand Waves Rotation
+          GuiGroup: Sand/Waves
+          GuiDescription: The rotation of the sand waves. Maps 0-360 degrees from
+            0 to 1.
+          Type: 0
+          WidgetType: 2
+        Data: 0.380361
+        NumericalDescription:
+          DefaultValue: 0.380361
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517447
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 25
+        Description:
+          Identifier: sand_waves_x_amount
+          Label: Sand Waves X Amount
+          GuiGroup: Sand/Waves
+          GuiDescription: The number of sand waves on the x-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 16
+        NumericalDescription:
+          DefaultValue: 16
+          MinValue: 1
+          MaxValue: 32
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517448
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 26
+        Description:
+          Identifier: sand_waves_y_amount
+          Label: Sand Waves Y Amount
+          GuiGroup: Sand/Waves
+          GuiDescription: The amount of sand waves on the y-axis.
+          Type: 4
+          WidgetType: 1
+        Data: 4
+        NumericalDescription:
+          DefaultValue: 4
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517449
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 27
+        Description:
+          Identifier: sand_height_offset
+          Label: Sand Height Offset
+          GuiGroup: Sand/Mixing
+          GuiDescription: The offset for how to balance the sand with the main material.
+            This can be seen as a "master control" for the height mixing. Lower than
+            0.5 will lessen the default height, while greater than 0.5 will increase
+            the default height.
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517450
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 28
+        Description:
+          Identifier: sand_height_mixing_contrast
+          Label: Sand Height Mixing Contrast
+          GuiGroup: Sand/Mixing
+          GuiDescription: Controls the amount of fading should occur between the
+            sand and the main material. Higher values give a more crisp cutoff between
+            material and sand.
+          Type: 0
+          WidgetType: 1
+        Data: 0.9
+        NumericalDescription:
+          DefaultValue: 0.9
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043345847517451
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 29
+        Description:
+          Identifier: invert_normal_map
+          Label: Invert Normal Map
+          GuiGroup: Advanced
+          GuiDescription: Inverts the normal map direction for compatability with
+            OpenGL and DirectX.
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []

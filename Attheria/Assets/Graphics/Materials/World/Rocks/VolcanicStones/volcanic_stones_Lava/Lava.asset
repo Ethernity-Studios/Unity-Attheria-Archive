@@ -1,0 +1,536 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: Lava
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/Graphics/Materials/World/Rocks/volcanic_stones/volcanic_stones.sbsar
+  RawData: {fileID: -244192453324840774, guid: 74825a4ccb27dd143be83f8e903181bd, type: 3}
+  Name: Lava
+  IsRoot: 0
+  FlagedForDelete: 0
+  GUID: affc7116-79ca-4399-afab-190fbfa94b33
+  Index: 0
+  Input:
+  - rid: 6200043346129584144
+  - rid: 6200043346129584145
+  - rid: 6200043346129584146
+  - rid: 6200043346129584147
+  - rid: 6200043346129584148
+  - rid: 6200043346129584149
+  - rid: 6200043346129584150
+  - rid: 6200043346129584151
+  - rid: 6200043346129584152
+  - rid: 6200043346129584153
+  - rid: 6200043346129584154
+  - rid: 6200043346129584155
+  - rid: 6200043346129584156
+  - rid: 6200043346129584157
+  - rid: 6200043346129584158
+  - rid: 6200043346129584159
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: 290fbd95c67de5244b5ff82211518ed6, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 1
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: 1e9e5052613b6574397fa7da9fb5fb9d, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  - Index: 2
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 2
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 3
+    VirtualOutputIndex: 10
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 3
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: 943ce9670072d224fbdc06db426b8e5f, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 4
+    VirtualOutputIndex: 11
+    Description:
+      Identifier: height
+      Label: height
+      Index: 4
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: e3d2b6bdf14e7464db0983d9c4a13644, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  - Index: 5
+    VirtualOutputIndex: 12
+    Description:
+      Identifier: ambientocclusion
+      Label: ambientocclusion
+      Index: 5
+      Type: 8
+      Channel: ambientOcclusion
+    OutputTexture: {fileID: 2800000, guid: 16d8b9b97fa902e468e08005c6940c9b, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _OcclusionMap
+  - Index: 6
+    VirtualOutputIndex: 13
+    Description:
+      Identifier: emissive
+      Label: emissive
+      Index: 6
+      Type: 8
+      Channel: emissive
+    OutputTexture: {fileID: 2800000, guid: 40e7abd6502c7454b99880a893c69a10, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _EmissionMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  HasThumbnail: 0
+  CurrentStatePreset: 
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: 973000c84e58c6f4c908c27bcb8870f9, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://volcanic_stones\" label=\"\" >\n  <presetinput
+    identifier=\"$outputsize\" uid=\"503798583\" type=\"8\" value=\"10,10\" />\n
+    </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  Presets:
+  - Info:
+      Label: Lava Flooding
+      Description: 
+      URL: pkg://volcanic_stones
+    PresetIndex: 0
+    PresetValue: 
+    NativePreset: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6200043346129584144
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584145
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584146
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: rock_type
+          Label: Rock Type
+          GuiGroup: 
+          GuiDescription: The type of rock color to use with this material.
+          Type: 4
+          WidgetType: 5
+        Data: 8
+        NumericalDescription:
+          DefaultValue: 8
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 5
+          EnumValues:
+          - Value: 1
+            Label: Basalt
+          - Value: 4
+            Label: Shale
+          - Value: 7
+            Label: Dark Shale
+          - Value: 8
+            Label: Volcanic Rock
+          - Value: 9
+            Label: Limestone
+    - rid: 6200043346129584147
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: rock_highlights_opacity
+          Label: Rock Highlights Opacity
+          GuiGroup: Color
+          GuiDescription: Controls the edge highlight strength on the rocks.
+          Type: 0
+          WidgetType: 1
+        Data: 0.8
+        NumericalDescription:
+          DefaultValue: 0.8
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584148
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: rock_pattern_zoom
+          Label: Rock Pattern Zoom
+          GuiGroup: Rock
+          GuiDescription: How many rocks to display on the material.
+          Type: 4
+          WidgetType: 1
+        Data: 8
+        NumericalDescription:
+          DefaultValue: 8
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 1
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584149
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: rock_height_variance
+          Label: Rock Height Variance
+          GuiGroup: Rock
+          GuiDescription: The height variance of the ground rocks.
+          Type: 0
+          WidgetType: 1
+        Data: 0.6
+        NumericalDescription:
+          DefaultValue: 0.6
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584150
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: rock_roughness_range
+          Label: Rock Roughness Range
+          GuiGroup: Rock
+          GuiDescription: The range of the roughness on the rock portions of the
+            material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.08
+        NumericalDescription:
+          DefaultValue: 0.08
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584151
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: rock_roughness_position
+          Label: Rock Roughness Position
+          GuiGroup: Rock
+          GuiDescription: The position of the roughness on the rock. Higher positions
+            yield rocks that are less reflective.
+          Type: 0
+          WidgetType: 1
+        Data: 0.77
+        NumericalDescription:
+          DefaultValue: 0.77
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584152
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: rock_normal_intensity
+          Label: Rock Normal Intensity
+          GuiGroup: Rock
+          GuiDescription: 'The <b>Intensity</b> parameter modifies the intensity
+            of height map '
+          Type: 0
+          WidgetType: 1
+        Data: 5
+        NumericalDescription:
+          DefaultValue: 5
+          MinValue: 0
+          MaxValue: 15
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584153
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: ambient_occlusion_intensity
+          Label: Ambient Occlusion Intensity
+          GuiGroup: Ambient Occlusion
+          GuiDescription: Defines the intensity of the AO to simulate shadowed areas
+            on the material.
+          Type: 0
+          WidgetType: 1
+        Data: 0.15
+        NumericalDescription:
+          DefaultValue: 0.15
+          MinValue: 0
+          MaxValue: 0.2
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584154
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 10
+        Description:
+          Identifier: enable_lava_switch
+          Label: Enable Lava Switch
+          GuiGroup: Lava
+          GuiDescription: If the lava effect should be enabled or not. Set to false
+            when not in use to get a slight performance bump.
+          Type: 4
+          WidgetType: 4
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584155
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 11
+        Description:
+          Identifier: lava_color
+          Label: Lava Color
+          GuiGroup: Lava
+          GuiDescription: The gradient color of the lava
+          Type: 4
+          WidgetType: 5
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 5
+          EnumValues:
+          - Value: 1
+            Label: Red Orange
+          - Value: 2
+            Label: Blue
+          - Value: 3
+            Label: Green
+          - Value: 4
+            Label: Red
+          - Value: 5
+            Label: Custom Color
+    - rid: 6200043346129584156
+      type: {class: SubstanceInputFloat4, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 12
+        Description:
+          Identifier: lava_custom_color
+          Label: Lava Custom Color
+          GuiGroup: Lava
+          GuiDescription: Specifies a custom color for the lava. The lava color option
+            must be set to custom first.
+          Type: 3
+          WidgetType: 3
+        Data: {x: 0, y: 1, z: 1, w: 1}
+        NumericalDescription:
+          DefaultValue: {x: 0, y: 1, z: 1, w: 1}
+          MinValue: {x: 0, y: 0, z: 0, w: 0}
+          MaxValue: {x: 0, y: 0, z: 0, w: 0}
+          SliderStep: 0
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584157
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 13
+        Description:
+          Identifier: lava_level
+          Label: Lava Level
+          GuiGroup: Lava
+          GuiDescription: The amount of lava flooding.
+          Type: 0
+          WidgetType: 1
+        Data: 0.77
+        NumericalDescription:
+          DefaultValue: 0.62
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584158
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 14
+        Description:
+          Identifier: lava_edge_strength
+          Label: Lava Edge Strength
+          GuiGroup: Lava
+          GuiDescription: The sharpness of the cutoff between the lava and material.
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 0.9
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 6200043346129584159
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 15
+        Description:
+          Identifier: invert_normal_map
+          Label: Invert Normal Map
+          GuiGroup: Advanced
+          GuiDescription: Inverts the normal map direction for compatability with
+            OpenGL and DirectX.
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 0
+          SliderStep: 0
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
