@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9bca3ecbeff19394495fb2f326b485a9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bca3ecbeff19394495fb2f326b485a9,
         type: 3}
@@ -63,10 +63,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.397
       objectReference: {fileID: 0}
+    - target: {fileID: -3951064468317463891, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3951064468317463891, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9bca3ecbeff19394495fb2f326b485a9,
         type: 3}
       propertyPath: m_Name
-      value: Cavernous_Cliff_1 Variant
+      value: Cavernous_Cliff_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931602975319844242, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931602975319844242, guid: 9bca3ecbeff19394495fb2f326b485a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 9bca3ecbeff19394495fb2f326b485a9,
         type: 3}
