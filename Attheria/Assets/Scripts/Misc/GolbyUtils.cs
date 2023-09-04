@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GolbyUtils
 {
@@ -9,6 +10,15 @@ namespace GolbyUtils
             if (angle < 0f) angle = 360 + angle;
             if (angle > 180f) return Mathf.Max(angle, 360 + from);
             return Mathf.Min(angle, to);
+        }
+    }
+
+    public static class TimeUtil
+    {
+        public static string FormatTime(double time)
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+            return $"{timeSpan.Days}d{timeSpan.Hours}h{timeSpan.Minutes}m{timeSpan.Seconds}s";
         }
     }
 }

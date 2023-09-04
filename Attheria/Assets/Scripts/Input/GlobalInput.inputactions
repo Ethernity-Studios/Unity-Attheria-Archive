@@ -1,0 +1,34 @@
+{
+    "name": "GlobalInput",
+    "maps": [
+        {
+            "name": "DebugMenu",
+            "id": "8f306d06-42c5-481b-8e37-35d808de1c35",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "13d3fcb7-d8ef-4b31-8faf-3d7af552e22b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e81f1180-163e-4f64-bd2f-333a20a8c0b2",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

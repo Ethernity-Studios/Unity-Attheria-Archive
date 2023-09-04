@@ -28,10 +28,10 @@ namespace Mirror
 
         // results from last interval
         // long bytes to support >2GB
-        [HideInInspector] public int  clientReceivedPacketsPerSecond;
-        [HideInInspector] public long clientReceivedBytesPerSecond;
-        [HideInInspector] public int  clientSentPacketsPerSecond;
-        [HideInInspector] public long clientSentBytesPerSecond;
+        [HideInInspector] public static int  clientReceivedPacketsPerSecond;
+        [HideInInspector] public static long clientReceivedBytesPerSecond;
+        [HideInInspector] public static int  clientSentPacketsPerSecond;
+        [HideInInspector] public static long clientSentBytesPerSecond;
 
         // ---------------------------------------------------------------------
 
@@ -45,10 +45,10 @@ namespace Mirror
 
         // results from last interval
         // long bytes to support >2GB
-        [HideInInspector] public int  serverReceivedPacketsPerSecond;
-        [HideInInspector] public long serverReceivedBytesPerSecond;
-        [HideInInspector] public int  serverSentPacketsPerSecond;
-        [HideInInspector] public long serverSentBytesPerSecond;
+        [HideInInspector] public static int  serverReceivedPacketsPerSecond;
+        [HideInInspector] public static long serverReceivedBytesPerSecond;
+        [HideInInspector] public static int  serverSentPacketsPerSecond;
+        [HideInInspector] public static long serverSentBytesPerSecond;
 
         // NetworkManager sets Transport.active in Awake().
         // so let's hook into it in Start().
@@ -143,6 +143,7 @@ namespace Mirror
 
         void OnGUI()
         {
+            /*
             // only show if either server or client active
             if (NetworkClient.active || NetworkServer.active)
             {
@@ -157,6 +158,7 @@ namespace Mirror
                 // end of GUI area
                 GUILayout.EndArea();
             }
+            */
         }
 
         void OnClientGUI()
