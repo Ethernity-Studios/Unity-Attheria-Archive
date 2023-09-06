@@ -211,7 +211,8 @@ namespace MainMenu
                 world = new()
                 {
                     WorldName = WorldNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : WorldNameInput.text,
-                    MapName = DefaultWorldSettings.MapName
+                    MapName = DefaultWorldSettings.MapName,
+                    AllZonesUnlocked = DefaultWorldSettings.AllZonesUnlocked
                 },
                 someSettings = new()
                 {

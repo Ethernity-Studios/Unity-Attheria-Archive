@@ -7,7 +7,6 @@ public class Player : NetworkBehaviour
 {
     public PlayerData PlayerData;
     
-    public ulong SteamId;
     public string Name;
     //[SyncVar(hook = nameof(onCharacterChange))]
     public Character Character;

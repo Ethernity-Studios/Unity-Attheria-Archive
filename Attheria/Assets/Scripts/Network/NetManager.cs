@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.SqlServer.Server;
 using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
@@ -118,9 +119,18 @@ public class NetManager : NetworkManager
             }
             else
             {
-                if (!playerData.UnlockedZones.Contains(zoneId)) return;
-                spawnPos = spawnpoints[rnd].position;
-                spawnRot = spawnpoints[rnd].rotation.eulerAngles;
+                if (playerData.UnlockedZones == null) //No player data
+                {
+                    spawnpoints = PlayerSpawner.Instance.Zones.FirstOrDefault(x => x.ZoneData.Id == 0).ZoneData.SpawnPoints;
+                    spawnPos = spawnpoints[rnd].position;
+                    spawnRot = spawnpoints[rnd].rotation.eulerAngles;
+                }
+                else
+                {
+                    if (!playerData.UnlockedZones.Contains(zoneId)) return;
+                    spawnPos = spawnpoints[rnd].position;
+                    spawnRot = spawnpoints[rnd].rotation.eulerAngles;
+                }
             }
         }
         

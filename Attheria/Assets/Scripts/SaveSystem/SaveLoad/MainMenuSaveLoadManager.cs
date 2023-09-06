@@ -145,7 +145,8 @@ public class MainMenuSaveLoadManager : MonoBehaviour
             world = new()
             {
                 WorldName = DefaultWorldSettings.WorldName,
-                MapName = DefaultWorldSettings.MapName
+                MapName = DefaultWorldSettings.MapName,
+                AllZonesUnlocked = DefaultWorldSettings.AllZonesUnlocked
             },
             someSettings = new()
             {
