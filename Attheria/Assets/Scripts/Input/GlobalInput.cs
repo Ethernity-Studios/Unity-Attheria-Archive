@@ -50,6 +50,34 @@ public partial class @GlobalInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BugReportMenu"",
+            ""id"": ""c520d334-5bdf-4205-b826-604a89e4560c"",
+            ""actions"": [
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad1110f9-a781-4bae-8087-cab3c4da0a03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""992bd049-1373-4a12-b5eb-814d5f0edc40"",
+                    ""path"": ""<Keyboard>/f7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -57,6 +85,9 @@ public partial class @GlobalInput: IInputActionCollection2, IDisposable
         // DebugMenu
         m_DebugMenu = asset.FindActionMap("DebugMenu", throwIfNotFound: true);
         m_DebugMenu_Toggle = m_DebugMenu.FindAction("Toggle", throwIfNotFound: true);
+        // BugReportMenu
+        m_BugReportMenu = asset.FindActionMap("BugReportMenu", throwIfNotFound: true);
+        m_BugReportMenu_Toggle = m_BugReportMenu.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,7 +191,57 @@ public partial class @GlobalInput: IInputActionCollection2, IDisposable
         }
     }
     public DebugMenuActions @DebugMenu => new DebugMenuActions(this);
+
+    // BugReportMenu
+    private readonly InputActionMap m_BugReportMenu;
+    private List<IBugReportMenuActions> m_BugReportMenuActionsCallbackInterfaces = new List<IBugReportMenuActions>();
+    private readonly InputAction m_BugReportMenu_Toggle;
+    public struct BugReportMenuActions
+    {
+        private @GlobalInput m_Wrapper;
+        public BugReportMenuActions(@GlobalInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Toggle => m_Wrapper.m_BugReportMenu_Toggle;
+        public InputActionMap Get() { return m_Wrapper.m_BugReportMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BugReportMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IBugReportMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BugReportMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BugReportMenuActionsCallbackInterfaces.Add(instance);
+            @Toggle.started += instance.OnToggle;
+            @Toggle.performed += instance.OnToggle;
+            @Toggle.canceled += instance.OnToggle;
+        }
+
+        private void UnregisterCallbacks(IBugReportMenuActions instance)
+        {
+            @Toggle.started -= instance.OnToggle;
+            @Toggle.performed -= instance.OnToggle;
+            @Toggle.canceled -= instance.OnToggle;
+        }
+
+        public void RemoveCallbacks(IBugReportMenuActions instance)
+        {
+            if (m_Wrapper.m_BugReportMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBugReportMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BugReportMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BugReportMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BugReportMenuActions @BugReportMenu => new BugReportMenuActions(this);
     public interface IDebugMenuActions
+    {
+        void OnToggle(InputAction.CallbackContext context);
+    }
+    public interface IBugReportMenuActions
     {
         void OnToggle(InputAction.CallbackContext context);
     }
