@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.SqlServer.Server;
 using UnityEngine;
 using Mirror;
+using UnityEditor.UIElements;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -134,12 +135,17 @@ public class NetManager : NetworkManager
             }
         }
         
-        GameObject player = Instantiate(playerPrefab, spawnPos,  Quaternion.Euler(spawnRot));
+        GameObject instance = Instantiate(playerPrefab, spawnPos,  Quaternion.Euler(spawnRot));
         
-        player.name = $"Player | {conn.steamId}";
-        PlayerManager.Instance.Players.Add(player.GetComponent<Player>());
-        NetworkServer.AddPlayerForConnection(conn, player);
+        instance.name = $"Player | {conn.steamId}";
+        Player player = instance.GetComponent<Player>();
+        PlayerManager.Instance.Players.Add(player);
+        NetworkServer.AddPlayerForConnection(conn, instance);
+
+        PlayerManager.Instance.LoadPlayerData(conn.steamId, player);
     }
+
+
 
     public override void OnServerReady(NetworkConnectionToClient conn)
     {

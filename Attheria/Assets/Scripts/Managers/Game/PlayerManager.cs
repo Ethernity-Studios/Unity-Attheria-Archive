@@ -37,30 +37,27 @@ public class PlayerManager : Manager
         while (SaveLoadManager.Instance == null) yield return null;
         while (!SaveLoadManager.Instance.Loaded) yield return null;
 
-        foreach (PlayerData playerData in PlayersData)
+        foreach (PlayerData playerData in PlayersData.Where(playerData => playerData.SteamId == conn.steamId))
         {
-            if (playerData.SteamId == conn.steamId)
+            if (playerData.Dead)
             {
-                if (playerData.Dead)
+                conn.Send(new PlayerSpawnResponse()
                 {
-                    conn.Send(new PlayerSpawnResponse()
-                    {
-                        OpenSpawner = true,
-                        OpenCharacterCreator = false,
-                        UnlockedZones = playerData.UnlockedZones
-                    });
-                    break;
-                }
-                else
+                    OpenSpawner = true,
+                    OpenCharacterCreator = false,
+                    UnlockedZones = playerData.UnlockedZones
+                });
+                break;
+            }
+            else
+            {
+                conn.Send(new PlayerSpawnResponse()
                 {
-                    conn.Send(new PlayerSpawnResponse()
-                    {
-                        OpenSpawner = false,
-                        OpenCharacterCreator = false,
-                        UnlockedZones = playerData.UnlockedZones
-                    });
-                    break;
-                }
+                    OpenSpawner = false,
+                    OpenCharacterCreator = false,
+                    UnlockedZones = playerData.UnlockedZones
+                });
+                break;
             }
         }
 
@@ -82,6 +79,18 @@ public class PlayerManager : Manager
                 UnlockedZones = new List<int> { -1 }
             });
         }
+    }
+
+    public void LoadPlayerData(ulong steamId, Player player)
+    {
+        PlayerData data = PlayerManager.Instance.PlayersData.FirstOrDefault(x => x.SteamId == steamId);
+        player.LoadData(data); //Loads data for local client
+        
+        player.LoadClientData(new PlayerData() //Loads data for all clients
+        {
+            SteamId = steamId,
+            Character = data.Character
+        });
     }
 
     [Server]
