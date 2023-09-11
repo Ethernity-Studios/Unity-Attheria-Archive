@@ -44,7 +44,7 @@ public class DebugMenu : NetworkBehaviour
 
     void init()
     {
-        GameBuildVersionText.text = GameManager.Instance.GameVersion;
+        GameBuildVersionText.text = GameManager.GameVersion;
     }
 
     private void Update()

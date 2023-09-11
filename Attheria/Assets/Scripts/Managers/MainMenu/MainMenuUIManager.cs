@@ -63,7 +63,7 @@ namespace MainMenu
 
         private void Start()
         {
-            GameVersion.text = GameManager.Instance.GameVersion;
+            GameVersion.text = GameManager.GameVersion;
         }
 
         /// <summary>

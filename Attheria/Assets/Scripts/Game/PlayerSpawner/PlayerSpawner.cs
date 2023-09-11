@@ -21,11 +21,6 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private GameObject ZonePing;
     [SerializeField] private Transform ZonePingHolder;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         if (Instance != null && Instance != this) Destroy(this);

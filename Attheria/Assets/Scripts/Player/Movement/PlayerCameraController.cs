@@ -34,7 +34,7 @@ public class PlayerCameraController : NetworkBehaviour
     [SerializeField] private GameObject FirstPerson;
     private void Start()
     {
-        //if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
 
         playerCam.SetActive(true);
         thirdPersonLockCamera.SetActive(true);
@@ -48,7 +48,7 @@ public class PlayerCameraController : NetworkBehaviour
 
     private void Update()
     {
-        //if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         if (MenuManager.Instance.Opened) return;
 
         xAxis.m_InputAxisValue = playerInputManager.PlayerInput.Camera.Look.ReadValue<Vector2>().x;

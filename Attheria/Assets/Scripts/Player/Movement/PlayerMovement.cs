@@ -54,7 +54,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Start()
     {
-        //if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
@@ -65,7 +65,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Update()
     {
-        //if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         setDrag();
         speedControl();
         rb.mass = angle > maxSlopeAngle ? 20 : 2;
@@ -79,7 +79,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        //if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         movePlayer();
 
         if (MovementState == MovementState.air) rb.AddForce(Vector3.down * 15, ForceMode.Force);

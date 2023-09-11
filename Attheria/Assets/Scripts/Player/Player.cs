@@ -5,27 +5,52 @@ using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-    [SyncVar] public string Name;
-    
     public PlayerData PlayerData;
-    [SyncVar(hook = nameof(onCharacterChange))]
-    public Character Character;
 
-    void onCharacterChange(Character _, Character newValue)
-    {
-        
-    }
+    [Header("Server data")] 
+    public List<int> UnlockedZones;
+    public bool Spawned;
+    public bool Dead;
     
+    [Header("Client data")]
+    [SyncVar] public string Name;
+    [SyncVar] public ulong SteamId;
+    [SyncVar] public Character Character;
 
+    [Server]
     public PlayerData SaveData()
     {
-        return new PlayerData();
+        return new PlayerData()
+        {
+            #region Server
+
+            UnlockedZones = UnlockedZones,
+            Position = transform.position,
+            Rotation = transform.rotation.eulerAngles,
+            Spawned = Spawned,
+            Dead = Dead,
+
+            #endregion
+
+
+            #region Client
+
+            SteamId = SteamId,
+            Character = Character
+
+            #endregion
+        };
     }
 
     [TargetRpc]
     public void LoadData(PlayerData data)
     {
+        Debug.Log("Loaded data for local client  + " + data.SteamId);
+
         PlayerData = data;
+        UnlockedZones = data.UnlockedZones;
+        Spawned = data.Spawned;
+        Dead = data.Dead;
     }
 
     /// <summary>
@@ -34,7 +59,11 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void LoadClientData(PlayerData data)
     {
+        Debug.Log("Loaded data for all clients  + " + data.SteamId);
         
+        Name = data.Character.Name;
+        SteamId = data.SteamId;
+        Character = data.Character;
     }
 }
 

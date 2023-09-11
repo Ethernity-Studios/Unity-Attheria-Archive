@@ -198,7 +198,7 @@ namespace Network
         bool isServerPasswordProtected() => GameConfigManager.Instance.ServerSettings.Password != string.Empty;
         bool checkPassword(string password) => GameConfigManager.Instance.ServerSettings.Password == password;
 
-        bool checkVersion(string version) => GameManager.Instance.GameVersion == version;
+        bool checkVersion(string version) => GameManager.GameVersion == version;
 
         bool checkDLC(ulong id) => true;
 
@@ -232,12 +232,12 @@ namespace Network
 
         public override void OnClientAuthenticate()
         {
-            if (MainMenuUIManager.Instance.DevInp)
+            if (MainMenuUIManager.Instance.OverrideSteamId)
             {
                 AuthRequestMessage msg = new()
                 {
-                    SteamId = ulong.Parse(MainMenuUIManager.Instance.DevInp.text),
-                    GameVersion = GameManager.Instance.GameVersion
+                    SteamId = 69,
+                    GameVersion = GameManager.GameVersion
                 };
 
                 NetworkClient.Send(msg);
@@ -250,7 +250,7 @@ namespace Network
             AuthRequestMessage message = new()
             {
                 SteamId = (ulong)SteamUser.GetSteamID(),
-                GameVersion = GameManager.Instance.GameVersion
+                GameVersion = GameManager.GameVersion
             };
 
             NetworkClient.Send(message);

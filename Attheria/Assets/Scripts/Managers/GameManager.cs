@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     
-    public string GameVersion;
+    public static string GameVersion = "0.0.0.1a";
     
     private void Awake()
     {

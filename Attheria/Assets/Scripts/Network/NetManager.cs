@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.SqlServer.Server;
 using UnityEngine;
 using Mirror;
-using UnityEditor.UIElements;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -96,6 +94,8 @@ public class NetManager : NetworkManager
     public List<Transform> Positions;
     public override void OnServerAddPlayer(NetworkConnectionToClient conn, int zoneId)
     {
+        Debug.Log("New client + " + conn.steamId);
+
         Vector3 spawnPos = Vector3.zero;
         Vector3 spawnRot = Vector3.zero;
         PlayerData playerData = PlayerManager.Instance.PlayersData.FirstOrDefault(x => x.SteamId == conn.steamId);
@@ -122,6 +122,7 @@ public class NetManager : NetworkManager
             {
                 if (playerData.UnlockedZones == null) //No player data
                 {
+                    Debug.Log("no plejr data");
                     spawnpoints = PlayerSpawner.Instance.Zones.FirstOrDefault(x => x.ZoneData.Id == 0).ZoneData.SpawnPoints;
                     spawnPos = spawnpoints[rnd].position;
                     spawnRot = spawnpoints[rnd].rotation.eulerAngles;
@@ -141,7 +142,6 @@ public class NetManager : NetworkManager
         Player player = instance.GetComponent<Player>();
         PlayerManager.Instance.Players.Add(player);
         NetworkServer.AddPlayerForConnection(conn, instance);
-
         PlayerManager.Instance.LoadPlayerData(conn.steamId, player);
     }
 

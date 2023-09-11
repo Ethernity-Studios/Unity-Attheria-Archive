@@ -151,7 +151,7 @@ public class SaveLoadManager : NetworkBehaviour
             SaveName = MenuManager.Instance.SelectedSaveName,
             SaveDate = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
             Playtime = TimeManager.Instance.PlayTime,
-            Version = GameManager.Instance.GameVersion
+            Version = GameManager.GameVersion
         };
 
         string json = JsonUtility.ToJson(meta);

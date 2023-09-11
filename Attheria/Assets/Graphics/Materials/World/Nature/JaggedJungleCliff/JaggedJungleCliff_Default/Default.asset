@@ -20,36 +20,36 @@ MonoBehaviour:
   GUID: c601c0ca-b8ee-43a7-9bf4-35891440511e
   Index: 0
   Input:
-  - rid: 6200043340162400679
-  - rid: 6200043340162400680
-  - rid: 6200043340162400681
-  - rid: 6200043340162400682
-  - rid: 6200043340162400683
-  - rid: 6200043340162400684
-  - rid: 6200043340162400685
-  - rid: 6200043340162400686
-  - rid: 6200043340162400687
-  - rid: 6200043340162400688
-  - rid: 6200043340162400689
-  - rid: 6200043340162400690
-  - rid: 6200043340162400691
-  - rid: 6200043340162400692
-  - rid: 6200043340162400693
-  - rid: 6200043340162400694
-  - rid: 6200043340162400695
-  - rid: 6200043340162400696
-  - rid: 6200043340162400697
-  - rid: 6200043340162400698
-  - rid: 6200043340162400699
-  - rid: 6200043340162400700
-  - rid: 6200043340162400701
-  - rid: 6200043340162400702
-  - rid: 6200043340162400703
-  - rid: 6200043340162400704
-  - rid: 6200043340162400705
-  - rid: 6200043340162400706
-  - rid: 6200043340162400707
-  - rid: 6200043340162400708
+  - rid: 5641340438332833822
+  - rid: 5641340438332833823
+  - rid: 5641340438332833824
+  - rid: 5641340438332833825
+  - rid: 5641340438332833826
+  - rid: 5641340438332833827
+  - rid: 5641340438332833828
+  - rid: 5641340438332833829
+  - rid: 5641340438332833830
+  - rid: 5641340438332833831
+  - rid: 5641340438332833832
+  - rid: 5641340438332833833
+  - rid: 5641340438332833834
+  - rid: 5641340438332833835
+  - rid: 5641340438332833836
+  - rid: 5641340438332833837
+  - rid: 5641340438332833838
+  - rid: 5641340438332833839
+  - rid: 5641340438332833840
+  - rid: 5641340438332833841
+  - rid: 5641340438332833842
+  - rid: 5641340438332833843
+  - rid: 5641340438332833844
+  - rid: 5641340438332833845
+  - rid: 5641340438332833846
+  - rid: 5641340438332833847
+  - rid: 5641340438332833848
+  - rid: 5641340438332833849
+  - rid: 5641340438332833850
+  - rid: 5641340438332833851
   Output:
   - Index: 0
     VirtualOutputIndex: 6
@@ -181,7 +181,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6200043340162400679
+    - rid: 5641340438332833822
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400680
+    - rid: 5641340438332833823
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -222,7 +222,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400681
+    - rid: 5641340438332833824
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -233,7 +233,7 @@ MonoBehaviour:
           GuiDescription: The type of rock color to use with this material.
           Type: 4
           WidgetType: 5
-        Data: 3
+        Data: 4
         NumericalDescription:
           DefaultValue: 3
           MinValue: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
             Label: Volcanic Rock
           - Value: 9
             Label: Limestone
-    - rid: 6200043340162400682
+    - rid: 5641340438332833825
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -273,7 +273,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 4
           WidgetType: 1
-        Data: 8
+        Data: 9
         NumericalDescription:
           DefaultValue: 8
           MinValue: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400683
+    - rid: 5641340438332833826
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -306,7 +306,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400684
+    - rid: 5641340438332833827
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5
@@ -317,7 +317,7 @@ MonoBehaviour:
           GuiDescription: Controls the edge highlight strength on the rocks.
           Type: 0
           WidgetType: 1
-        Data: 0.25
+        Data: 0.52
         NumericalDescription:
           DefaultValue: 0.25
           MinValue: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400685
+    - rid: 5641340438332833828
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 6
@@ -338,7 +338,7 @@ MonoBehaviour:
             material.
           Type: 0
           WidgetType: 1
-        Data: 0.08
+        Data: 0.39
         NumericalDescription:
           DefaultValue: 0.08
           MinValue: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400686
+    - rid: 5641340438332833829
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 7
@@ -368,7 +368,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400687
+    - rid: 5641340438332833830
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 8
@@ -380,7 +380,7 @@ MonoBehaviour:
             of height map '
           Type: 0
           WidgetType: 1
-        Data: 5
+        Data: 5.25
         NumericalDescription:
           DefaultValue: 5
           MinValue: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400688
+    - rid: 5641340438332833831
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 9
@@ -410,7 +410,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400689
+    - rid: 5641340438332833832
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 10
@@ -421,7 +421,7 @@ MonoBehaviour:
           GuiDescription: Enables the moss effect.
           Type: 4
           WidgetType: 4
-        Data: 1
+        Data: 0
         NumericalDescription:
           DefaultValue: 1
           MinValue: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400690
+    - rid: 5641340438332833833
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 11
@@ -464,7 +464,7 @@ MonoBehaviour:
             Label: Blue
           - Value: 5
             Label: Orange
-    - rid: 6200043340162400691
+    - rid: 5641340438332833834
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 12
@@ -475,7 +475,7 @@ MonoBehaviour:
           GuiDescription: Determines the height of the moss.
           Type: 0
           WidgetType: 1
-        Data: 0.7
+        Data: 0.47
         NumericalDescription:
           DefaultValue: 0.7
           MinValue: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400692
+    - rid: 5641340438332833835
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 13
@@ -496,7 +496,7 @@ MonoBehaviour:
             surrounding mossy areas.
           Type: 0
           WidgetType: 1
-        Data: 0.32
+        Data: 0.29
         NumericalDescription:
           DefaultValue: 0.32
           MinValue: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400693
+    - rid: 5641340438332833836
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 14
@@ -527,7 +527,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400694
+    - rid: 5641340438332833837
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 15
@@ -540,7 +540,7 @@ MonoBehaviour:
             appears to grow in the direction of a light source.
           Type: 0
           WidgetType: 1
-        Data: 0.89
+        Data: 0.91
         NumericalDescription:
           DefaultValue: 0.89
           MinValue: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400695
+    - rid: 5641340438332833838
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 16
@@ -572,7 +572,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400696
+    - rid: 5641340438332833839
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 17
@@ -583,7 +583,7 @@ MonoBehaviour:
           GuiDescription: The color preset for the vines.
           Type: 4
           WidgetType: 5
-        Data: 1
+        Data: 2
         NumericalDescription:
           DefaultValue: 1
           MinValue: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
             Label: Dark Green
           - Value: 4
             Label: Dry Gray
-    - rid: 6200043340162400697
+    - rid: 5641340438332833840
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 18
@@ -613,7 +613,7 @@ MonoBehaviour:
           GuiDescription: The zoom of the vines.
           Type: 4
           WidgetType: 1
-        Data: 4
+        Data: 8
         NumericalDescription:
           DefaultValue: 4
           MinValue: 2
@@ -624,7 +624,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400698
+    - rid: 5641340438332833841
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 19
@@ -647,7 +647,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400699
+    - rid: 5641340438332833842
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 20
@@ -658,7 +658,7 @@ MonoBehaviour:
           GuiDescription: The color preset of the dirt.
           Type: 4
           WidgetType: 5
-        Data: 1
+        Data: 5
         NumericalDescription:
           DefaultValue: 1
           MinValue: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
             Label: Dry
           - Value: 5
             Label: Graveled
-    - rid: 6200043340162400700
+    - rid: 5641340438332833843
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 21
@@ -690,7 +690,7 @@ MonoBehaviour:
           GuiDescription: The numerosity of dirt mounds on the material.
           Type: 4
           WidgetType: 1
-        Data: 10
+        Data: 32
         NumericalDescription:
           DefaultValue: 10
           MinValue: 1
@@ -701,7 +701,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400701
+    - rid: 5641340438332833844
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 22
@@ -722,7 +722,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400702
+    - rid: 5641340438332833845
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 23
@@ -744,7 +744,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400703
+    - rid: 5641340438332833846
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 24
@@ -765,7 +765,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400704
+    - rid: 5641340438332833847
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 25
@@ -786,7 +786,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400705
+    - rid: 5641340438332833848
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 26
@@ -808,7 +808,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400706
+    - rid: 5641340438332833849
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 27
@@ -828,7 +828,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400707
+    - rid: 5641340438332833850
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 28
@@ -840,7 +840,7 @@ MonoBehaviour:
             to change dirt flooding.
           Type: 0
           WidgetType: 1
-        Data: 0.1
+        Data: 0.38
         NumericalDescription:
           DefaultValue: 0.1
           MinValue: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
           SliderClamp: 1
           EnumValueCount: 0
           EnumValues: []
-    - rid: 6200043340162400708
+    - rid: 5641340438332833851
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 29
