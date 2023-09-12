@@ -23,7 +23,8 @@ namespace MainMenu
 
         [Header("Reusable Components")] public GameObject BackBtn;
         public GameObject ConfirmScreen;
-
+        [Header("Steam error")] 
+        public GameObject SteamError;
         [Header("Screens")] public GameObject MainMenuScreen;
         public GameObject MultiplayerScreen;
         public GameObject SingleplayerScreen;
@@ -42,7 +43,11 @@ namespace MainMenu
         [Header("World Settings")] public GameObject WorldSettingsScreen;
         public Button SettingsSaveBtn;
 
-        [Header("Settings fields")] public TMP_InputField TestField;
+        [Header("Settings fields")] 
+        public Toggle AllZonesUnlockedField;
+        public TMP_Text AllZonesUnlockedFieldDefault;
+        [Space(10)]
+        public TMP_InputField TestField;
         public TMP_Text TestFieldDefault;
         [Space(10)] public TMP_InputField TestIntField;
         public TMP_Text TestIntFieldDefault;
@@ -166,6 +171,7 @@ namespace MainMenu
         /// <param name="settings"></param>
         public void LoadWorldSetting(WorldSettings settings)
         {
+            AllZonesUnlockedField.isOn = settings.world.AllZonesUnlocked;
             TestField.text = settings.someSettings.TestField;
             TestIntField.text = settings.someSettings.TestFieldInt.ToString();
         }
@@ -175,6 +181,8 @@ namespace MainMenu
         /// </summary>
         void loadDefaultWorldSettings()
         {
+            AllZonesUnlockedField.isOn = DefaultWorldSettings.AllZonesUnlocked;
+            
             TestField.text = DefaultWorldSettings.TestField;
             TestIntField.text = DefaultWorldSettings.TestFieldInt.ToString();
         }
@@ -192,6 +200,8 @@ namespace MainMenu
             WorldSettings settings = MainMenuSaveLoadManager.Instance.LoadedSettings;
             if (settings != null)
             {
+                settings.world.AllZonesUnlocked = AllZonesUnlockedField.isOn;
+                
                 settings.someSettings.TestField = TestField.text;
                 settings.someSettings.TestFieldInt = int.Parse(TestIntField.text);
 
@@ -212,7 +222,7 @@ namespace MainMenu
                 {
                     WorldName = WorldNameInput.text == string.Empty ? DefaultWorldSettings.WorldName : WorldNameInput.text,
                     MapName = DefaultWorldSettings.MapName,
-                    AllZonesUnlocked = DefaultWorldSettings.AllZonesUnlocked
+                    AllZonesUnlocked = AllZonesUnlockedField.isOn
                 },
                 someSettings = new()
                 {
@@ -230,6 +240,14 @@ namespace MainMenu
         {
             LoadingScreenCanvas.SetActive(true);
             LoadingScreenWorldTitle.text = GameConfigManager.Instance.Settings.world.WorldName;
+        }
+
+        /// <summary>
+        /// Closes steam not initialized error menu
+        /// </summary>
+        public void CloseSteamError()
+        {
+            SteamError.SetActive(false);
         }
 
         #region Dev Testing

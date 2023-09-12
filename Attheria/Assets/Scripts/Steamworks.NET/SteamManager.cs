@@ -12,6 +12,7 @@
 using UnityEngine;
 #if !DISABLESTEAMWORKS
 using System.Collections;
+using MainMenu;
 using Steamworks;
 #endif
 
@@ -59,7 +60,7 @@ public class SteamManager : MonoBehaviour {
 		s_instance = null;
 	}
 #endif
-
+	[SerializeField] private MainMenuUIManager uiManager;
 	protected virtual void Awake() {
 		// Only one instance of SteamManager at a time!
 		if (s_instance != null) {
@@ -121,7 +122,8 @@ public class SteamManager : MonoBehaviour {
 		// https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
 		m_bInitialized = SteamAPI.Init();
 		if (!m_bInitialized) {
-			Debug.LogError("[Steamworks.NET] SteamAPI_Init() failed. Refer to Valve's documentation or the comment above this line for more information.", this);
+			uiManager.SteamError.SetActive(true);
+			//Debug.LogError("[Steamworks.NET] SteamAPI_Init() failed. Refer to Valve's documentation or the comment above this line for more information.", this);
 
 			return;
 		}

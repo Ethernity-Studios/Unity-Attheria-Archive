@@ -92,18 +92,19 @@ public class NetManager : NetworkManager
     }
 
     public List<Transform> Positions;
+    /// <summary>
+    /// Spawns player
+    /// </summary>
     public override void OnServerAddPlayer(NetworkConnectionToClient conn, int zoneId)
     {
-        Debug.Log("New client + " + conn.steamId);
-
         Vector3 spawnPos = Vector3.zero;
         Vector3 spawnRot = Vector3.zero;
         PlayerData playerData = PlayerManager.Instance.PlayersData.FirstOrDefault(x => x.SteamId == conn.steamId);
         if (zoneId == -1)
         {
             if (playerData.SteamId == 0) return;
-            if (playerData.Dead) return;
-            if (playerData.Spawned) return;
+            //if (playerData.Dead) return;
+            //if (playerData.Spawned) return;
 
             spawnPos = playerData.Position;
             spawnRot = playerData.Rotation;
@@ -122,7 +123,6 @@ public class NetManager : NetworkManager
             {
                 if (playerData.UnlockedZones == null) //No player data
                 {
-                    Debug.Log("no plejr data");
                     spawnpoints = PlayerSpawner.Instance.Zones.FirstOrDefault(x => x.ZoneData.Id == 0).ZoneData.SpawnPoints;
                     spawnPos = spawnpoints[rnd].position;
                     spawnRot = spawnpoints[rnd].rotation.eulerAngles;
@@ -137,7 +137,6 @@ public class NetManager : NetworkManager
         }
         
         GameObject instance = Instantiate(playerPrefab, spawnPos,  Quaternion.Euler(spawnRot));
-        
         instance.name = $"Player | {conn.steamId}";
         Player player = instance.GetComponent<Player>();
         PlayerManager.Instance.Players.Add(player);

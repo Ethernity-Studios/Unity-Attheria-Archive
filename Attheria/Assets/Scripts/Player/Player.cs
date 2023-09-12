@@ -42,11 +42,12 @@ public class Player : NetworkBehaviour
         };
     }
 
+    /// <summary>
+    /// Loads server data
+    /// </summary>
     [TargetRpc]
     public void LoadData(PlayerData data)
     {
-        Debug.Log("Loaded data for local client  + " + data.SteamId);
-
         PlayerData = data;
         UnlockedZones = data.UnlockedZones;
         Spawned = data.Spawned;
@@ -59,8 +60,6 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void LoadClientData(PlayerData data)
     {
-        Debug.Log("Loaded data for all clients  + " + data.SteamId);
-        
         Name = data.Character.Name;
         SteamId = data.SteamId;
         Character = data.Character;

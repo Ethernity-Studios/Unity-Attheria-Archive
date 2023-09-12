@@ -37,7 +37,6 @@ public class PlayerManager : Manager
     {
         while (SaveLoadManager.Instance == null) yield return null;
         while (!SaveLoadManager.Instance.Loaded) yield return null;
-        Debug.Log("On client join");
 
         clientJoin(conn);
     }
@@ -48,7 +47,6 @@ public class PlayerManager : Manager
         {
             if (playerData.Dead)
             {
-                Debug.Log("Player dead");
                 conn.Send(new PlayerSpawnResponse()
                 {
                     OpenSpawner = true,
@@ -59,8 +57,6 @@ public class PlayerManager : Manager
             }
             else
             {
-                Debug.Log("Player spawned");
-
                 conn.Send(new PlayerSpawnResponse()
                 {
                     OpenSpawner = false,
@@ -71,8 +67,6 @@ public class PlayerManager : Manager
             }
         }
         //No data found
-        Debug.Log("No data found");
-
         if (GameConfigManager.Instance.Settings.world.AllZonesUnlocked)
         {
             conn.Send(new PlayerSpawnResponse()
@@ -96,6 +90,7 @@ public class PlayerManager : Manager
     public void LoadPlayerData(ulong steamId, Player player)
     {
         PlayerData data = PlayersData.FirstOrDefault(x => x.SteamId == steamId);
+        data.Spawned = true;
         player.LoadData(data); //Loads data for local client
         player.LoadClientData(new PlayerData() //Loads data for all clients
         {
@@ -110,7 +105,6 @@ public class PlayerManager : Manager
         Player player = Players.FirstOrDefault(x => x.connectionToClient.steamId == id);
         if (player != null)
         {
-            Debug.Log("Changiong character");
             player.Character = character;
         }
         else
